@@ -1,0 +1,63 @@
+.order-container {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto;
+  gap: 1rem;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  padding-top: 2rem;
+  color: rgba(0, 0, 0, 1);
+}
+.order-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cashback-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(240, 241, 247, 1);
+  flex-direction: row;
+  border-radius: 5px;
+  gap: 1rem;
+  font-family: Roboto;
+  padding: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.cashback-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vift-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.normal {
+  font-weight: 400;
+}
+
+.background {
+  background-color: rgba(240, 241, 247, 1);
+}

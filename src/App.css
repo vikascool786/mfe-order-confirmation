@@ -1,0 +1,49 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(246, 246, 246);
+  padding: 4.563rem;
+}
+
+.order-confirmation-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 3.5rem;
+}
+
+.order-notifications {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1180px) {
+  .app-container {
+    padding: 2rem;
+  }
+
+  .order-confirmation-container {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .order-notifications {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+}
+
+.vift-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 27px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}

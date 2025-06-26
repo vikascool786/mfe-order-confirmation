@@ -1,0 +1,28 @@
+.disclaimer {
+  font-family: Roboto;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.order-updates-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.order-updates-label {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
