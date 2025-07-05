@@ -4,24 +4,30 @@ import "./styles.css";
 interface SectionCardProps {
   title: string;
   rightText?: string;
-  children: ReactNode;
+  children?: ReactNode;
   gradient?: boolean;
+  extraClass?: string;
 }
 
 const SectionCard: React.FC<SectionCardProps> = ({
   title,
   rightText,
-  children,
+  children = "",
   gradient,
+  extraClass = "",
 }) => {
   const isGradient = gradient ? "section-card-gradient" : "";
   return (
     <div className={`section-card-wrapper`}>
       <div className="section-card-header">
-        <h2 className="section-card-header">{title}</h2>
+        <p className="section-card-title">{title}</p>
         {rightText && <span>{rightText}</span>}
       </div>
-      <section className={`section-card-body  ${isGradient}`}>{children}</section>
+      {children && (
+        <section className={`section-card-body ${isGradient} ${extraClass}`}>
+          {children}
+        </section>
+      )}
     </div>
   );
 };

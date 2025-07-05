@@ -12,6 +12,29 @@
   margin-bottom: 3.5rem;
 }
 
+.recommended-products-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+
+.recommended-products-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.recommended-products-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.recommended-products-header {
+  margin-top: 1.5rem;
+}
+
 .order-notifications {
   flex: 1;
   display: flex;
@@ -29,11 +52,31 @@
     margin-bottom: 2rem;
   }
 
+  .recommended-products-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .recommended-products-header {
+    text-align: center;
+  }
+
   .order-notifications {
     margin-top: 2rem;
     margin-bottom: 2rem;
     gap: 1rem;
   }
+
+  .vift-tag {
+    font-size: 1.5rem;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
 }
 
 .vift-tag {

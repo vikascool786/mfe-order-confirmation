@@ -1,11 +1,13 @@
 import "./App.css";
 import VText from "./assets/svgs/VText";
+import HealthQuiz from "./components/HealthQuiz";
 import Notification from "./components/Notifications";
 import OrderHeader from "./components/OrderHeader";
 import OrderSummary from "./components/OrderSummary";
 import { OrderUpdates } from "./components/OrderUpdates";
 import PaymentMethod from "./components/PaymentMethod";
 import ProductSummary from "./components/ProductSummary";
+import RecommendedProduct from "./components/RecommendedProduct";
 import ShippingAddress from "./components/ShippingAddress";
 import Container from "./layout/Container";
 import SectionCard from "./layout/SectionCard";
@@ -92,6 +94,54 @@ const App = () => {
         </div>
       </div>
       <Container left={leftContent} right={rightContent} />
+      <SectionCard title="Health Quiz" extraClass="no-padding">
+        <HealthQuiz />
+      </SectionCard>
+      <div className="recommended-products-header">
+        <SectionCard title="Our Top Product Recommendations" />
+      </div>
+      <div className="recommended-products-container">
+        <RecommendedProduct
+          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
+          title="Isotonix OPC-3®"
+          subtitle="The World's Most Powerful Antioxidant"
+          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
+          price="$74.95"
+          rating={5}
+        />
+        <RecommendedProduct
+          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
+          title="Isotonix OPC-3®"
+          subtitle="The World's Most Powerful Antioxidant"
+          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
+          price="$74.95"
+          rating={5}
+        />
+        <RecommendedProduct
+          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
+          title="Isotonix OPC-3®"
+          subtitle="The World's Most Powerful Antioxidant"
+          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
+          price="$74.95"
+          rating={5}
+        />
+        <RecommendedProduct
+          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
+          title="Isotonix OPC-3®"
+          subtitle="The World's Most Powerful Antioxidant"
+          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
+          price="$74.95"
+          rating={5}
+        />
+        <RecommendedProduct
+          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
+          title="Isotonix OPC-3®"
+          subtitle="The World's Most Powerful Antioxidant"
+          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
+          price="$74.95"
+          rating={5}
+        />
+      </div>
     </div>
   );
 };
