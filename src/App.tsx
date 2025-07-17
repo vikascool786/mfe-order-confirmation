@@ -24,58 +24,43 @@ import { ICashback, IOrder } from "./types";
 import { ORDER } from "./mocks/Order";
 
 const App = () => {
-  const [orderDetails, setOrderDetails] = useState<IOrder>(ORDER);
+  const [orderDetails, setOrderDetails] = useState<IOrder>();
   const [recommendations, setRecommendations] = useState<IRecommendedProduct[]>(
-    PRODUCTS[0]?.products as IRecommendedProduct[]
+ 
   );
   const [loading, setLoading] = useState(false);
-  const [cashback, setCashback] = useState<ICashback | null>({
-    lifetimeCashbackEarned: "50415",
-    lifetimeCoaEarned: "25.00",
-    lifetimeTotalCashEarned: "50440",
-    pendingCashbackAvail: "71.21",
-    cashbackAvail: "42285.93",
-    coaAvail: "25.00",
-    redemptionThreshold: "10.00",
-    totalCoaCBAvail: "42310.93",
-    pendingCoaAvail: "0.00",
-    ytdCoaEarned: "0.00",
-    isWalletEligible: true,
-    newIbv: 0.0,
-    newCash: 0.0,
-    showNewCashOverlay: false,
-  });
+  const [cashback, setCashback] = useState<ICashback | null>(null);
 
-  const address = orderDetails.invoices.map(invoice => invoice.shippingAddress)[0];
+  const address = orderDetails?.invoices.map(invoice => invoice.shippingAddress)[0];
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const orderResponse = await getOrderDetails(
-  //         "mkYxXjppzhzmjzhxWzzpkYjzmYXZVzYWkeZjzwjhx",
-  //         "7222198"
-  //       );
-  //       setOrderDetails(orderResponse.data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const orderResponse = await getOrderDetails(
+          "mkYxXjppzhzmjzhxWzzpkYjzmYXZVzYWkeZjzwjhx",
+          "7222198"
+        );
+        setOrderDetails(orderResponse.data);
 
-  //       const recResponse = await getOrderConfirmationRecommendations(
-  //         "1316760835",
-  //         66
-  //       );
-  //       setRecommendations(recResponse.data[0].products);
+        const recResponse = await getOrderConfirmationRecommendations(
+          "1316760835",
+          66
+        );
+        setRecommendations(recResponse.data[0].products);
 
-  //       const cashbackResponse = await getEwalletCustomerInfo("6565841");
-  //       console.log("Cashback Response:", cashbackResponse.data);
-  //       setCashback(cashbackResponse.data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+        const cashbackResponse = await getEwalletCustomerInfo("6565841");
+        console.log("Cashback Response:", cashbackResponse.data);
+        setCashback(cashbackResponse.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
   const leftContent = (
     <>
       <SectionCard
