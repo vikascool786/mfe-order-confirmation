@@ -11,12 +11,17 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
 }) => {
   return (
     <div className="product-container">
-      <img src={image} style={{ width: "8.32rem", height: "7.77rem" }} />
+      <img src={image} />
       <div className="product-price-container">
-        <span className="product-name">Isotonix Calcium Plus</span>
-        <span className="product-description">Single Bottle (90 Servings)</span>
-        <span className="product-cashback">+ $0.52 Cashback</span>
-        <span className="product-quantity">Quantity: 1</span>
+        <div className="product-content">
+          <span className="product-name">Isotonix Calcium Plus</span>
+          <span className="product-description-summary">Single Bottle (90 Servings)</span>
+          <span className="product-cashback">+ $0.52 Cashback</span>
+          <span className="product-quantity">Quantity: 1</span>
+        </div>
+        <div className="product-content-price">
+          $25.00
+        </div>
       </div>
     </div>
   );

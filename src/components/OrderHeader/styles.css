@@ -2,51 +2,55 @@
   display: flex;
   flex: 2.5;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .order-id {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 20px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   color: rgba(0, 0, 0, 1);
+  margin-bottom: 13.28px;
 }
 
 .order-heading {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 40px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
+  margin-bottom: 14.62px;
 }
 
 .order-estimated-delivery {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 100%;
-  letter-spacing: 0%;
-  color: rgba(42, 135, 106, 1);
+  letter-spacing: 0;
+  color: #2A876A;
+  margin-bottom: 11.77px;
 }
 
 .order-confirmation {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 19px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   color: rgba(0, 0, 0, 1);
+  margin-bottom: 12.25px;
 }
 
 .order-confirmation-print {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  font-style: normal;
   font-size: 14px;
-  line-height: 1;
+  line-height: 100%;
   letter-spacing: 0;
   text-decoration: underline solid;
-  text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+  text-decoration-thickness: 0;
 }

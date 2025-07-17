@@ -31,7 +31,7 @@
   font-weight: 500;
   font-size: 37px;
   line-height: 131%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -40,7 +40,7 @@
   font-weight: 500;
   font-size: 26px;
   line-height: 131%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -51,11 +51,11 @@
 }
 
 .button-text {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 19px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 .image {
