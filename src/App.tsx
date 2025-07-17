@@ -1,4 +1,10 @@
 import "./App.css";
+import { useEffect, useState } from "react";
+import {
+  getOrderDetails,
+  getOrderConfirmationRecommendations,
+  getEwalletCustomerInfo,
+} from "./config/api";
 import VText from "./assets/svgs/VText";
 import HealthQuiz from "./components/HealthQuiz";
 import Notification from "./components/Notifications";
@@ -11,36 +17,81 @@ import RecommendedProduct from "./components/RecommendedProduct";
 import ShippingAddress from "./components/ShippingAddress";
 import Container from "./layout/Container";
 import SectionCard from "./layout/SectionCard";
+import { PRODUCTS } from "./mocks/RecommendedProducts";
+import { Spinner } from "./layout/Spinner";
+import { IRecommendedProduct } from "./components/RecommendedProduct/types";
+import { ICashback, IOrder } from "./types";
+import { ORDER } from "./mocks/Order";
 
 const App = () => {
+  const [orderDetails, setOrderDetails] = useState<IOrder>(ORDER);
+  const [recommendations, setRecommendations] = useState<IRecommendedProduct[]>(
+    PRODUCTS[0]?.products as IRecommendedProduct[]
+  );
+  const [loading, setLoading] = useState(false);
+  const [cashback, setCashback] = useState<ICashback | null>({
+    lifetimeCashbackEarned: "50415",
+    lifetimeCoaEarned: "25.00",
+    lifetimeTotalCashEarned: "50440",
+    pendingCashbackAvail: "71.21",
+    cashbackAvail: "42285.93",
+    coaAvail: "25.00",
+    redemptionThreshold: "10.00",
+    totalCoaCBAvail: "42310.93",
+    pendingCoaAvail: "0.00",
+    ytdCoaEarned: "0.00",
+    isWalletEligible: true,
+    newIbv: 0.0,
+    newCash: 0.0,
+    showNewCashOverlay: false,
+  });
+
+  const address = orderDetails.invoices.map(invoice => invoice.shippingAddress)[0];
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const orderResponse = await getOrderDetails(
+  //         "mkYxXjppzhzmjzhxWzzpkYjzmYXZVzYWkeZjzwjhx",
+  //         "7222198"
+  //       );
+  //       setOrderDetails(orderResponse.data);
+
+  //       const recResponse = await getOrderConfirmationRecommendations(
+  //         "1316760835",
+  //         66
+  //       );
+  //       setRecommendations(recResponse.data[0].products);
+
+  //       const cashbackResponse = await getEwalletCustomerInfo("6565841");
+  //       console.log("Cashback Response:", cashbackResponse.data);
+  //       setCashback(cashbackResponse.data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
   const leftContent = (
     <>
       <SectionCard
         title="Product Summary"
         rightText="Estimated Delivery Date Tuesday, April 15"
       >
-        <ProductSummary
-          products={[
-            {
-              image:
-                "https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600",
-              subtotal: "$25.00",
-              tax: "$2.02",
-              shipping: "$6.00",
-              cashback: "$10.47",
-              total: "$12.55",
-            },
-          ]}
-        />
+        <ProductSummary invoices={orderDetails?.invoices || []} />
       </SectionCard>
 
       <SectionCard title="Shipping Summary">
-        <ShippingAddress
-          name="Ruby Boyle"
-          address="1 Lower Ragsdale Dr"
-          cityStateZip="Monterey, CA 93940"
-          phone="831-123-4567"
-        />
+        {address && <ShippingAddress
+          name={address?.first + " " + address?.last}
+          address={address?.address1}
+          cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
+          phone={address?.phone}
+        />}
       </SectionCard>
     </>
   );
@@ -64,84 +115,63 @@ const App = () => {
       <SectionCard title="VIFT Balance" gradient>
         <div className="vift-tag">
           <VText />
-          <strong>$13.42</strong>
+          <span className="vift-cb">
+            ${cashback?.cashbackAvail || "$13.42"}
+          </span>
         </div>
       </SectionCard>
     </>
   );
 
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="app-container">
-      <div className="order-confirmation-container">
-        <OrderHeader
-          name="Ruby"
-          orderId="1235378422"
-          amount="13.42"
-          deliveryDate="Tuesday, April 15"
-          email="rubyb@shop.com"
-        />
-        <div className="order-notifications">
-          <Notification
-            icon="ChangeCircle"
-            title="Subscribe & Save 10%"
-            message="Explore Subscribe & Save"
-          />
-          <Notification
-            icon="Person"
-            title="Your Shop Consultant is Jane Doe"
-            message="Contact Jane Doe"
-          />
-        </div>
-      </div>
-      <Container left={leftContent} right={rightContent} />
-      <SectionCard title="Health Quiz" extraClass="no-padding">
-        <HealthQuiz />
-      </SectionCard>
-      <div className="recommended-products-header">
-        <SectionCard title="Our Top Product Recommendations" />
-      </div>
-      <div className="recommended-products-container">
-        <RecommendedProduct
-          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
-          title="Isotonix OPC-3®"
-          subtitle="The World's Most Powerful Antioxidant"
-          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
-          price="$74.95"
-          rating={5}
-        />
-        <RecommendedProduct
-          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
-          title="Isotonix OPC-3®"
-          subtitle="The World's Most Powerful Antioxidant"
-          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
-          price="$74.95"
-          rating={5}
-        />
-        <RecommendedProduct
-          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
-          title="Isotonix OPC-3®"
-          subtitle="The World's Most Powerful Antioxidant"
-          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
-          price="$74.95"
-          rating={5}
-        />
-        <RecommendedProduct
-          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
-          title="Isotonix OPC-3®"
-          subtitle="The World's Most Powerful Antioxidant"
-          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
-          price="$74.95"
-          rating={5}
-        />
-        <RecommendedProduct
-          image="https://img.shop.com/Image/210000/214100/214196/products/561800352.jpg?size=1600x1600"
-          title="Isotonix OPC-3®"
-          subtitle="The World's Most Powerful Antioxidant"
-          description="With 30 years as the best-selling anti-aging supplement, this is the world's most powerful antioxidant."
-          price="$74.95"
-          rating={5}
-        />
-      </div>
+      {orderDetails && (
+        <>
+          <div className="order-confirmation-container">
+            <OrderHeader
+              name="Ruby"
+              orderId="1235378422"
+              amount="13.42"
+              deliveryDate="Tuesday, April 15"
+              email="rubyb@shop.com"
+            />
+            <div className="order-notifications">
+              <Notification
+                icon="ChangeCircle"
+                title="Subscribe & Save 10%"
+                message="Explore Subscribe & Save"
+              />
+              <Notification
+                icon="Person"
+                title="Your Shop Consultant is Jane Doe"
+                message="Contact Jane Doe"
+              />
+            </div>
+          </div>
+          <Container left={leftContent} right={rightContent} />
+          <SectionCard title="Health Quiz" extraClass="no-padding">
+            <HealthQuiz />
+          </SectionCard>
+          <div className="recommended-products-header">
+            <SectionCard title="Our Top Product Recommendations" />
+          </div>
+          {recommendations && (
+            <div className="recommended-products-container">
+              {recommendations.map((product) => (
+                <RecommendedProduct
+                  product={product}
+                  currency={orderDetails?.currencySymbol}
+                  key={product.prodID}
+                />
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

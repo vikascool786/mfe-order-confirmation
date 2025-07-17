@@ -1,12 +1,10 @@
 import React from "react";
+import sanitize from 'sanitize-html';
 import { ProductSummaryItemProps } from "../types";
+import Vift from "../../../assets/svgs/Vift";
 
 const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
-  subtotal,
-  tax,
-  shipping,
-  cashback,
-  total,
+  product,
   image,
 }) => {
   return (
@@ -14,14 +12,21 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
       <img src={image} />
       <div className="product-price-container">
         <div className="product-content">
-          <span className="product-name">Isotonix Calcium Plus</span>
-          <span className="product-description-summary">Single Bottle (90 Servings)</span>
-          <span className="product-cashback">+ $0.52 Cashback</span>
-          <span className="product-quantity">Quantity: 1</span>
+          <span className="product-name">{sanitize(product.brand)}</span>
+          <span className="product-description-summary">
+            {product.options.map((option, index) => option)}
+          </span>
+          <span className="product-cashback">
+            <span className="cashback-amount">
+            + {product.cashback}
+            </span>
+            <span className="cashback-icon-text">
+              <Vift /> Cashback
+            </span>
+          </span>
+          <span className="product-quantity">Quantity: {product.quantity}</span>
         </div>
-        <div className="product-content-price">
-          $25.00
-        </div>
+        <div className="product-content-price">${product.price.toFixed(2)}</div>
       </div>
     </div>
   );

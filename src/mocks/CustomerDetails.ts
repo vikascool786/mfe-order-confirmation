@@ -1,0 +1,172 @@
+export const CUSTOMER_DETAILS = {
+  correlation_id: "bd5cd230-b5fe-4b6b-9bd1-340f5cfa78ba",
+  data: {
+    pc_id: "1316760835",
+    sponsor_id: "146466503",
+    ppc_date: "",
+    first_name: "Test",
+    last_name: "Tester",
+    gender: "",
+    date_of_birth: "",
+    home_phone: "",
+    cell_phone: "",
+    home_address: {
+      address_1: "",
+      address_2: "",
+      address_3: "",
+      address_4: "",
+      address_5: "",
+      address_6: "",
+      address_7: "",
+      district: "",
+      area: "",
+      city: "",
+      state: "",
+      postal_code: "",
+      home_country: "USA",
+    },
+    email_address: "couponTest_09282022@yopmail.com",
+    start_date: "2022-09-28",
+    transfer_date: "",
+    shopper_id: "46127296",
+    shopper_cid: "mkYxXjppzhzmjzhxWzzpkYjzmYXZVzYWkeZjzwjhx",
+    pc_types: [
+      {
+        pc_type: "isEZ",
+        enabled: false,
+      },
+      {
+        pc_type: "isCE",
+        enabled: false,
+      },
+      {
+        pc_type: "isMAA",
+        enabled: false,
+      },
+      {
+        pc_type: "isMAACustomer",
+        enabled: false,
+      },
+      {
+        pc_type: "isMAADeactivated",
+        enabled: false,
+      },
+      {
+        pc_type: "isMPA",
+        enabled: false,
+      },
+      {
+        pc_type: "isMPACustomer",
+        enabled: false,
+      },
+      {
+        pc_type: "isMPADeactivated",
+        enabled: false,
+      },
+      {
+        pc_type: "isMTA",
+        enabled: false,
+      },
+      {
+        pc_type: "isMTACustomer",
+        enabled: false,
+      },
+      {
+        pc_type: "isMTADeactivated",
+        enabled: false,
+      },
+      {
+        pc_type: "isPPC",
+        enabled: false,
+      },
+      {
+        pc_type: "isPracticingPC",
+        enabled: false,
+      },
+      {
+        pc_type: "isPromoter",
+        enabled: false,
+      },
+      {
+        pc_type: "isULO",
+        enabled: false,
+      },
+      {
+        pc_type: "isCustomerBattingLineup",
+        enabled: false,
+      },
+      {
+        pc_type: "isNMCustomer",
+        enabled: false,
+      },
+      {
+        pc_type: "isNCCustomer",
+        enabled: false,
+      },
+      {
+        pc_type: "hasPurchasedCore3",
+        enabled: true,
+      },
+      {
+        pc_type: "hasPurchasedCore3Beauty",
+        enabled: true,
+      },
+      {
+        pc_type: "hasPurchasedCore3Oily",
+        enabled: false,
+      },
+    ],
+    features: [
+      {
+        feature_id: "NutriPhysical",
+        enabled: false,
+      },
+      {
+        feature_id: "Skin_Care_Analysis",
+        enabled: false,
+      },
+      {
+        feature_id: "Custom_Blend",
+        enabled: false,
+      },
+      {
+        feature_id: "Custom_Cocktail",
+        enabled: false,
+      },
+      {
+        feature_id: "Autoship",
+        enabled: false,
+      },
+    ],
+    mta_id: "",
+    full_name: "Test Tester",
+    preferred_language_number: "1",
+    preferred_language_code: "ENG",
+    block_code: "",
+    customer_status: "A",
+    referring_pc_id: "",
+    nutrametrix_unsubscribe_date: "",
+    disable_date: "",
+    shop_portal_id: "TESTMA44",
+    motives_portal_id: "",
+    nutrametrix_portal_id: "",
+    motives_teen_associate_portal_id: "",
+    isotonix_portal_id: "",
+    motives_pro_artist_portal_id: "",
+    shop_global_portal_id: "",
+    custom_mini_portal_id: "",
+    is_ppc_ibv_incentive_option: false,
+    is_po_box: false,
+    mobile_phone_carrier: "",
+    twilio_validated_mobile_phone_number: "",
+    wechat_id: "",
+  },
+  meta: {
+    svrStatus: 0,
+    svrMessage: "",
+    svrCtrlCode: "bd5cd230",
+    svrCtrlName: "errSuccess",
+    svrLsDate: "07/17/2025",
+    svrLsTime: "09:57:24am",
+  },
+};

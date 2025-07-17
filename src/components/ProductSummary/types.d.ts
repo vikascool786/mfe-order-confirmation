@@ -1,3 +1,5 @@
+import { Invoice, Item } from "../../types";
+
 export interface ProductSummaryItemProps {
   image: ImageSource;
   subtotal: string;
@@ -5,8 +7,10 @@ export interface ProductSummaryItemProps {
   shipping: string;
   cashback: string;
   total: string;
+  product: Item;
+
 }
 
 export interface ProductSummaryProps {
-  products: ProductSummaryItemProps[];
+  invoices: Invoice[];
 }
