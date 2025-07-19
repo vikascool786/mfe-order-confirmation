@@ -12,5 +12,6 @@ export interface ProductSummaryItemProps {
 }
 
 export interface ProductSummaryProps {
-  invoices: Invoice[];
+  invoice: Invoice;
+  products: Item[];
 }

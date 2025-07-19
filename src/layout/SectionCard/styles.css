@@ -2,11 +2,18 @@
   margin-bottom: 1.5rem;
 }
 
+.section-card-right-text {
+  font-size: 14px;
+  color: #333;
+  align-self: flex-start;
+  padding-bottom: 1rem;
+}
+
 .section-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
@@ -19,7 +26,7 @@
 .section-card-header span {
   font-size: 0.95rem;
   color: #333;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -27,8 +34,11 @@
 }
 
 .section-card-body {
+  display: flex;
+  flex-direction: column;
   background-color: white;
-  padding: 1.25rem;
+  padding: 2rem;
+  gap: 3.6rem;
   border-radius: 12px;
   border: 0.2px solid #79787833;
   box-shadow: 0px 0px 5px 1px #79787840;
@@ -40,6 +50,19 @@
     linear-gradient(to right, rgba(114, 188, 129, 1), rgba(9, 167, 157, 1));
   background-origin: border-box;
   background-clip: padding-box, border-box;
+}
+
+.estimated-shipping-date {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+}
+
+.estimated-shipping-date-color {
+  color: rgba(17, 139, 44, 1);
 }
 
 @media (max-width: 768px) {

@@ -12,7 +12,7 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
       <img src={image} />
       <div className="product-price-container">
         <div className="product-content">
-          <span className="product-name">{sanitize(product.brand)}</span>
+          <span className="product-name">{sanitize(product.description)}</span>
           <span className="product-description-summary">
             {product.options.map((option, index) => option)}
           </span>

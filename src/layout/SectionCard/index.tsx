@@ -7,6 +7,7 @@ interface SectionCardProps {
   children?: ReactNode;
   gradient?: boolean;
   extraClass?: string;
+  rightTextExtraClass?: string;
 }
 
 const SectionCard: React.FC<SectionCardProps> = ({
@@ -15,13 +16,14 @@ const SectionCard: React.FC<SectionCardProps> = ({
   children = "",
   gradient,
   extraClass = "",
+  rightTextExtraClass = "",
 }) => {
   const isGradient = gradient ? "section-card-gradient" : "";
   return (
     <div className={`section-card-wrapper`}>
       <div className="section-card-header">
         <p className="section-card-title">{title}</p>
-        {rightText && <span>{rightText}</span>}
+        {rightText && <p className={`estimated-shipping-date ${rightTextExtraClass}`}>{rightText}</p>}
       </div>
       {children && (
         <section className={`section-card-body ${isGradient} ${extraClass}`}>
