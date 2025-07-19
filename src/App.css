@@ -3,6 +3,9 @@
   flex-direction: column;
   background-color: rgb(246, 246, 246);
   padding: 4.563rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .order-confirmation-container {
@@ -17,7 +20,7 @@
   flex-direction: row;
   gap: 2.5rem;
   overflow-x: auto;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   padding-bottom: 1rem;
   scroll-behavior: smooth;
 }
@@ -44,7 +47,11 @@
 
 @media (max-width: 1180px) {
   .app-container {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(246, 246, 246);
+    padding: 1rem;
+    overflow-x: hidden;
   }
 
   .order-confirmation-container {
@@ -53,8 +60,18 @@
   }
 
   .recommended-products-container {
-    flex-direction: row;
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1rem;
     align-items: flex-start;
+  }
+
+  .recommended-products-container > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 
   .recommended-products-header {
@@ -84,7 +101,7 @@
   flex-direction: row;
   align-items: center;
   gap: 1.5rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 27px;
   line-height: 100%;
@@ -93,9 +110,29 @@
 
 .vift-cb {
   font-family: Roboto;
-font-weight: 300;
-font-size: 27px;
-line-height: 100%;
-letter-spacing: 0%;
+  font-weight: 300;
+  font-size: 27px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
 
+/* Order Total section for mobile view */
+@media (max-width: 768px) {
+  .order-total-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+  }
+
+  .order-total-amount {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #000;
+  }
 }

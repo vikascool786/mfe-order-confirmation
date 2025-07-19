@@ -1,10 +1,5 @@
-import "./App.css";
 import { useEffect, useState } from "react";
-import {
-  getOrderDetails,
-  getOrderConfirmationRecommendations,
-  getEwalletCustomerInfo,
-} from "./config/api";
+import "./App.css";
 import VText from "./assets/svgs/VText";
 import HealthQuiz from "./components/HealthQuiz";
 import Notification from "./components/Notifications";
@@ -14,32 +9,40 @@ import { OrderUpdates } from "./components/OrderUpdates";
 import PaymentMethod from "./components/PaymentMethod";
 import ProductSummary from "./components/ProductSummary";
 import RecommendedProduct from "./components/RecommendedProduct";
+import { IRecommendedProduct } from "./components/RecommendedProduct/types";
 import ShippingAddress from "./components/ShippingAddress";
 import Container from "./layout/Container";
 import SectionCard from "./layout/SectionCard";
-import { PRODUCTS } from "./mocks/RecommendedProducts";
 import { Spinner } from "./layout/Spinner";
-import { IRecommendedProduct } from "./components/RecommendedProduct/types";
-import { ICashback, IOrder } from "./types";
 import { ORDER } from "./mocks/Order";
+import { PRODUCTS } from "./mocks/RecommendedProducts";
+import { ICashback, Invoice, IOrder } from "./types";
+import { getFormattedDate } from "./utils/getDateFormat";
+import { getProductsPerStore } from "./utils/getProductsPerStore";
+import {
+  getEwalletCustomerInfo,
+  getOrderConfirmationRecommendations,
+  getOrderDetails,
+} from "./config/api";
 
 const App = () => {
-  const [orderDetails, setOrderDetails] = useState<IOrder>();
-  const [recommendations, setRecommendations] = useState<IRecommendedProduct[]>(
- 
-  );
+  const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
+  const [recommendations, setRecommendations] =
+    useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
   const [cashback, setCashback] = useState<ICashback | null>(null);
 
-  const address = orderDetails?.invoices.map(invoice => invoice.shippingAddress)[0];
+  const address = orderDetails?.invoices?.map(
+    (invoice) => invoice.shippingAddress
+  )[0];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const orderResponse = await getOrderDetails(
-          "mkYxXjppzhzmjzhxWzzpkYjzmYXZVzYWkeZjzwjhx",
-          "7222198"
+          "ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz",
+          "7235119"
         );
         setOrderDetails(orderResponse.data);
 
@@ -50,7 +53,6 @@ const App = () => {
         setRecommendations(recResponse.data[0].products);
 
         const cashbackResponse = await getEwalletCustomerInfo("6565841");
-        console.log("Cashback Response:", cashbackResponse.data);
         setCashback(cashbackResponse.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -61,22 +63,57 @@ const App = () => {
 
     fetchData();
   }, []);
+
+  const productSummaryPerStore = getProductsPerStore(
+    orderDetails?.invoices ?? []
+  );
+
+
+  const showEstimatedDeliveryDate =
+    productSummaryPerStore && productSummaryPerStore.length < 1
+      ? getFormattedDate(productSummaryPerStore[0]?.shippingDate as string)
+      : "";
+
+  const getValidShippingDate = (date: string) => {
+    const parsedDate = new Date(date);
+    return isNaN(parsedDate.getTime())
+      ? date
+      : getFormattedDate(parsedDate.toDateString());
+  };
+
   const leftContent = (
     <>
-      <SectionCard
-        title="Product Summary"
-        rightText="Estimated Delivery Date Tuesday, April 15"
-      >
-        <ProductSummary invoices={orderDetails?.invoices || []} />
-      </SectionCard>
+      {productSummaryPerStore.map((section, index) => (
+        <SectionCard
+          title={section.storeName}
+          // get shipping date in this format Tuesday, April 15
+          rightText={`Estimated Delivery Date ${getValidShippingDate(
+            section.shippingDate
+          )}`}
+          rightTextExtraClass={
+            productSummaryPerStore.length === 0
+              ? ""
+              : "estimated-shipping-date-color"
+          }
+          key={index}
+        >
+          <ProductSummary
+            products={section.products}
+            invoice={orderDetails.invoices[index] as Invoice}
+            key={index}
+          />
+        </SectionCard>
+      ))}
 
       <SectionCard title="Shipping Summary">
-        {address && <ShippingAddress
-          name={address?.first + " " + address?.last}
-          address={address?.address1}
-          cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
-          phone={address?.phone}
-        />}
+        {address && (
+          <ShippingAddress
+            name={address?.first + " " + address?.last}
+            address={address?.address1}
+            cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
+            phone={address?.phone}
+          />
+        )}
       </SectionCard>
     </>
   );
@@ -108,21 +145,44 @@ const App = () => {
     </>
   );
 
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   if (loading) {
     return <Spinner />;
   }
 
   return (
     <div className="app-container">
-      {orderDetails && (
+      {/* Show order total mobile only on mobile screens */}
+      {isMobile && (
+        <div className="order-total-mobile">
+          <span>Order Total</span>
+          <span className="order-total-amount">
+            {orderDetails?.orderTotal &&
+            orderDetails.orderTotal.toString().trim() !== ""
+              ? orderDetails.currencySymbol+orderDetails.orderTotal
+              : "$0.00"}
+          </span>
+        </div>
+      )}
+      {orderDetails && orderDetails.invoices && (
         <>
           <div className="order-confirmation-container">
             <OrderHeader
-              name="Ruby"
-              orderId="1235378422"
-              amount="13.42"
-              deliveryDate="Tuesday, April 15"
-              email="rubyb@shop.com"
+              name={address?.first ?? ""}
+              orderId={orderDetails?.id?.toString()}
+              deliveryDate={showEstimatedDeliveryDate}
+              email={
+                orderDetails.invoices.find((invoice) => invoice.billingEmail)
+                  ?.billingEmail || ""
+              }
             />
             <div className="order-notifications">
               <Notification
