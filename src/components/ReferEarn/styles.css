@@ -1,0 +1,119 @@
+.social-pdp {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-pdp--wrap {
+  margin-top: 1.5rem;
+}
+
+.social-pdp__button {
+  background-color: #000;
+  border-color: black;
+  border-width: 1px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+
+.social-pdp__icon-svg {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.social-pdp__icon-svg--blue-black {
+  fill: black; /* Already overridden inline in your SVG */
+}
+
+.button-plain {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.social-core__terms-link {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-offset: 0%;
+  text-decoration-thickness: 0%;
+  color: rgba(0, 0, 0, 1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .social-pdp {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .social-pdp__button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .social-pdp__icon-svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.refer-earn-container {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  max-height: 244px;
+  flex-direction: row;
+}
+
+.cash-people-container {
+  display: flex;
+  flex: 0.4;
+  overflow: hidden;
+  width: 100%;
+  border-top-right-radius: 12px;
+}
+
+.cash-people-container img {
+  object-fit: cover;
+  transform-origin: center;
+  width: 100%;
+}
+
+.image-container {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.core-image {
+  width: 152.10548400878906px;
+}
+
+.core-text {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.text-container {
+  display: flex;
+  flex: 0.5;
+  gap: 1rem;
+  flex-direction: column;
+  padding: 12px;
+  justify-content: space-between;
+}

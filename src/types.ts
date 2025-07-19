@@ -212,6 +212,7 @@ export interface Item {
   flatRateRetailProfit: any;
   id: number;
   autoShipFrequency: number;
+  subscriptionOption?: string;
   onSale: boolean;
   isPurchaseable: boolean;
 }

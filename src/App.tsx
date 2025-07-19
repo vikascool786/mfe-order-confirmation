@@ -24,6 +24,7 @@ import {
   getOrderConfirmationRecommendations,
   getOrderDetails,
 } from "./config/api";
+import { ReferEarn } from "./components/ReferEarn";
 
 const App = () => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
@@ -36,13 +37,17 @@ const App = () => {
     (invoice) => invoice.shippingAddress
   )[0];
 
+  const hasCore3Subscription = orderDetails.invoices?.some((invoice) =>
+    invoice.items?.some((item) => item.subscriptionOption === "CORE3")
+  );
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const orderResponse = await getOrderDetails(
           "ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz",
-          "7235119"
+          "7235116"
         );
         setOrderDetails(orderResponse.data);
 
@@ -67,7 +72,6 @@ const App = () => {
   const productSummaryPerStore = getProductsPerStore(
     orderDetails?.invoices ?? []
   );
-
 
   const showEstimatedDeliveryDate =
     productSummaryPerStore && productSummaryPerStore.length < 1
@@ -120,6 +124,11 @@ const App = () => {
 
   const rightContent = (
     <>
+      {hasCore3Subscription && (
+        <SectionCard title="Refer and Earn $25 - $30" extraClass="no-padding">
+          <ReferEarn />
+        </SectionCard>
+      )}
       <SectionCard title="Order Summary">
         <PaymentMethod method="Mastercard 0469" />
         <OrderSummary
@@ -167,7 +176,7 @@ const App = () => {
           <span className="order-total-amount">
             {orderDetails?.orderTotal &&
             orderDetails.orderTotal.toString().trim() !== ""
-              ? orderDetails.currencySymbol+orderDetails.orderTotal
+              ? orderDetails.currencySymbol + orderDetails.orderTotal
               : "$0.00"}
           </span>
         </div>
