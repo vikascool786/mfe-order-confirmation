@@ -2,15 +2,15 @@ import React from "react";
 import "./styles.css";
 
 interface PaymentMethodProps {
-  method: string;
+  methods: Set<string>;
 }
 
-const PaymentMethod: React.FC<PaymentMethodProps> = ({ method }) => {
+const PaymentMethod: React.FC<PaymentMethodProps> = ({ methods }) => {
   return (
     <div className="payment-container">
       <span>Payment Method</span>
       <div className="payment-text">
-        <span>Mastercard 0469</span>
+       {Array.from(methods).map(method => <span>{method}</span>) }
       </div>
     </div>
   );

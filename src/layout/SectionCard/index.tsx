@@ -26,7 +26,7 @@ const SectionCard: React.FC<SectionCardProps> = ({
         {rightText && <p className={`estimated-shipping-date ${rightTextExtraClass}`}>{rightText}</p>}
       </div>
       {children && (
-        <section className={`section-card-body ${isGradient} ${extraClass}`}>
+        <section className={`section-card-body ${extraClass} ${isGradient}`}>
           {children}
         </section>
       )}

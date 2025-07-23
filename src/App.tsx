@@ -25,6 +25,7 @@ import {
   getOrderDetails,
 } from "./config/api";
 import { ReferEarn } from "./components/ReferEarn";
+import { getPaymentMethod } from "./utils/getPaymentMethod";
 
 const App = () => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
@@ -47,7 +48,7 @@ const App = () => {
         setLoading(true);
         const orderResponse = await getOrderDetails(
           "ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz",
-          "7235116"
+          "7235118"
         );
         setOrderDetails(orderResponse.data);
 
@@ -90,6 +91,7 @@ const App = () => {
       {productSummaryPerStore.map((section, index) => (
         <SectionCard
           title={section.storeName}
+          extraClass="add-gap"
           // get shipping date in this format Tuesday, April 15
           rightText={`Estimated Delivery Date ${getValidShippingDate(
             section.shippingDate
@@ -129,16 +131,12 @@ const App = () => {
           <ReferEarn />
         </SectionCard>
       )}
-      <SectionCard title="Order Summary">
-        <PaymentMethod method="Mastercard 0469" />
+      {orderDetails?.id && <SectionCard title="Order Summary">
+        <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} />
         <OrderSummary
-          subtotal="$25.00"
-          tax="$2.02"
-          shipping="$6.00"
-          cashback="$10.47"
-          total="$12.55"
+          order={orderDetails}
         />
-      </SectionCard>
+      </SectionCard>}
       <SectionCard title="Order Updates">
         <OrderUpdates updates={[]} />
       </SectionCard>

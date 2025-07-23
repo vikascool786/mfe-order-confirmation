@@ -1,6 +1,6 @@
 import { Invoice, Item } from "../types";
 
-type ProductSection = {
+export type ProductSection = {
   storeName: string;
   shippingDate: string;
   products: Item[];

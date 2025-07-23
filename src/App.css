@@ -15,6 +15,10 @@
   margin-bottom: 4.188rem;
 }
 
+.add-gap {
+  gap: 3.6rem;
+}
+
 .recommended-products-container {
   display: flex;
   flex-direction: row;
@@ -23,6 +27,10 @@
   /* white-space: nowrap; */
   padding-bottom: 1rem;
   scroll-behavior: smooth;
+}
+
+.no-gap {
+  gap: 0px;
 }
 
 .recommended-products-container::-webkit-scrollbar {

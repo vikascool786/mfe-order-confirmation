@@ -1,7 +1,7 @@
 .order-container {
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   gap: 1rem;
   font-size: 18px;
   line-height: 100%;
@@ -15,6 +15,57 @@
   gap: 0.5rem;
 }
 
+.pt {
+  padding-top: 1rem;
+}
+
+.item-price {
+  font-family: Roboto;
+  font-weight: 400;
+
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+
+  .cashback {
+    font-family: Roboto;
+    font-style: Regular;
+    font-size: 16px;
+    font-weight: 500;
+
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  .green {
+    color: rgba(17, 136, 99, 1);
+  }
+}
+
+.item-row-total {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+
+  .single {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .multiple {
+    padding-top: 1rem;
+    font-weight: 500;
+  }
+}
+.top-border {
+  border-top: 0.5px solid rgba(147, 147, 147, 1);
+}
 .cashback-container {
   display: flex;
   align-items: center;
@@ -23,7 +74,7 @@
   flex-direction: row;
   border-radius: 5px;
   gap: 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   padding: 6px;
   font-weight: 400;
   font-size: 16px;
@@ -45,9 +96,28 @@
 
 .item-container {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.item-row {
+  flex: 1;
+  display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.item-header {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
 .bold {
