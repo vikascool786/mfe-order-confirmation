@@ -1,17 +1,8 @@
 import React from "react";
-import "./styles.css";
-import { Item } from "./Item";
 import Vift from "../../assets/svgs/Vift";
-import { ProductSection } from "../../utils/getProductsPerStore";
-import { Invoice, IOrder } from "../../types";
-
-interface ILabel {
-  subTotal: string;
-  tax: string;
-  shipping: string;
-  cashback: string;
-  orderTotal?: string;
-}
+import { IOrder } from "../../types";
+import { Item } from "./Item";
+import "./styles.css";
 
 interface SummaryProps {
   order: IOrder;
@@ -20,7 +11,7 @@ interface SummaryProps {
 const OrderSummary: React.FC<SummaryProps> = ({ order }) => {
   const multipleShipments = order.invoices.length > 1;
   const totalString = multipleShipments ? "Total" : "Order Total";
-  const totalStyle = multipleShipments ? 'mult' : 'single';
+  const totalStyle = multipleShipments ? 'multiple' : 'single';
   const bordersForSummary = multipleShipments ? "top-border" : "";
 
 
@@ -38,12 +29,12 @@ const OrderSummary: React.FC<SummaryProps> = ({ order }) => {
 
       <div className="item-row item-price">
         <span className={`cashback`}>VIFT <span className="green">Cashback</span></span>
-        <span className={`item-price`}>{order.currencySymbol}{order.cashbackTotal.toFixed(2)}</span>
+        <span className={`cashback`}>-{order.currencySymbol}{order.cashbackTotal.toFixed(2)}</span>
       </div>
 
       <div className={`item-row-total ${bordersForSummary}`}>
         <span className={totalStyle}>{totalString}</span>
-        <span className={`item-price`}>{order.currencySymbol}{order.orderTotal.toFixed(2)}</span>
+        <span className={`item-price ${totalStyle}`}>{order.currencySymbol}{order.orderTotal.toFixed(2)}</span>
       </div>
 
       <div className="cashback-container">

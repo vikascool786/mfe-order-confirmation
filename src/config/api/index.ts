@@ -24,17 +24,31 @@ export const getOrderConfirmationRecommendations = (
 };
 
 // Get Ewallet Customer Info
-export const getEwalletCustomerInfo = (customerId: string) => {
+export const getEwalletCustomerInfo = (customerId: string, siteId: number) => {
   return apiClient.get(
     `/ewallet/v1/customer/${customerId}`,
     {
       params: {
         merchCountry: "USA",
         langCode: "ENG",
-        siteId: 222,
+        siteId: siteId,
         siteCountry: "USA",
         siteType: "SHP",
         api_key: "759ef1fc9e4c4e8bbf900db5f4b7caba",
+      },
+    }
+  );
+};
+
+
+
+// Get Customer Profile Alt
+export const getCustomerProfileAlt = (pcid: string, apiKey: string) => {
+  return apiClient.get(
+    `/customer-profile-alt-service/v1/profiles/customers/${pcid}`,
+    {
+      params: {
+        api_key: apiKey,
       },
     }
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import OrderConfirmationContainerWrapper from "./OrderConfirmationContainerWrapper";
+import OrderConfirmationContainerWrapper from './OrderConfirmationContainerWrapper';
 
 // Registers component as a custom element
 class OrderConfirmationContainerElement extends HTMLElement {
@@ -16,14 +16,16 @@ class OrderConfirmationContainerElement extends HTMLElement {
 
     const props = {
       shopperId: this.getAttribute("shopperid") || "",
-      cartId: this.getAttribute("cartid") || "",
+      orderId: this.getAttribute("orderid") || "",
       pcid: this.getAttribute("pcid") || "",
       siteId: this.getAttribute("siteid") || "",
       sessionId: this.getAttribute("sessionid") || "",
     };
 
     this.root = createRoot(this.mountPoint);
-    this.root.render(React.createElement(OrderConfirmationContainerWrapper, props));
+    this.root.render(
+      React.createElement(OrderConfirmationContainerWrapper, props)
+    );
   }
 
   disconnectedCallback() {
