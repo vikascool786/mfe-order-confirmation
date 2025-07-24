@@ -336,3 +336,35 @@ export interface Meta {
   svrLsDate: string;
   svrLsTime: string;
 }
+
+
+export interface ShopperPortal {
+  id: number
+  portalId: string
+  name: string
+  consultantName: string
+  ownerCompanyName: string
+  ownerEmail: string
+  ownerPhone: string
+  repId: string
+  distId: string
+  guaAccountId: string
+  imageName: string
+  hasFreeShipping: boolean
+  autoShipDiscount: number
+  hasItransact: boolean
+  webCenterEnabled: boolean
+  webCenterName: string
+  isSiteBranded: boolean
+  isPayPalDisabled: boolean
+  hasAmex: boolean
+  hasDiscover: boolean
+  error: string
+  minShipPercent: number
+  minShipChange: number
+  global: boolean
+  merchantCountry: string
+  npo: boolean
+  productCountry: string
+  active: boolean
+}

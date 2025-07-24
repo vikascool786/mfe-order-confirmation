@@ -4,12 +4,14 @@ import "./styles.css";
 interface NotificationProps {
   icon: "Person" | "ChangeCircle";
   title: string;
+  email?: string;
   message: string;
 }
 
 const Notification: React.FC<NotificationProps> = ({
   icon,
   title,
+  email,
   message,
 }) => {
   const IconComponent = React.lazy(() =>
@@ -25,7 +27,14 @@ const Notification: React.FC<NotificationProps> = ({
           <IconComponent />
         </React.Suspense>
       </div>
-      <div className="notification-content">
+      <div
+        className="notification-content"
+        onClick={() => {
+          if (email) {
+            window.location.href = `mailto:${email}`;
+          }
+        }}
+      >
         <span>{title}</span>
         <span className="notification-content-underline">{message}</span>
       </div>

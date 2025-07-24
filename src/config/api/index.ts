@@ -53,3 +53,14 @@ export const getCustomerProfileAlt = (pcid: string, apiKey: string) => {
     }
   );
 };
+// Get Micro Shopper Portal Details
+export const getMicroShopperPortalDetails = (shopperId: string) => {
+  return apiClient.get(
+    `/micro-shopper-portal/v1/Portal/Shopper/${shopperId}`,
+    {
+      params: {
+        api_key: "759ef1fc9e4c4e8bbf900db5f4b7caba",
+      },
+    }
+  );
+};

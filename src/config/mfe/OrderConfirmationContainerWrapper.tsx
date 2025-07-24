@@ -14,19 +14,25 @@ import ShippingAddress from "../../components/ShippingAddress";
 import Container from "../../layout/Container";
 import SectionCard from "../../layout/SectionCard";
 import { Spinner } from "../../layout/Spinner";
-import { CustomerDetails, ICashback, Invoice, IOrder } from "../../types";
+import {
+  CustomerDetails,
+  ICashback,
+  Invoice,
+  IOrder,
+  ShopperPortal,
+} from "../../types";
 import { getFormattedDate } from "../../utils/getDateFormat";
 import { getPaymentMethod } from "../../utils/getPaymentMethod";
 import { getProductsPerStore } from "../../utils/getProductsPerStore";
 import {
   getCustomerProfileAlt,
   getEwalletCustomerInfo,
+  getMicroShopperPortalDetails,
   getOrderConfirmationRecommendations,
   getOrderDetails,
 } from "../api";
 
-
-const API_KEY = "759ef1fc9e4c4e8bbf900db5f4b7caba"
+const API_KEY = "759ef1fc9e4c4e8bbf900db5f4b7caba";
 
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
@@ -37,6 +43,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 }) => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
+  const [shopperPortalData, setShopperPortalData] = useState<ShopperPortal>();
   const [recommendations, setRecommendations] =
     useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
@@ -54,8 +61,15 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const customerDetails = await getCustomerProfileAlt(appConfig.pcid, API_KEY);
-        setCustomerDetails(customerDetails.data)
+        const customerDetails = await getCustomerProfileAlt(
+          appConfig.pcid,
+          API_KEY
+        );
+        const microShopperDetails = await getMicroShopperPortalDetails(
+          appConfig.shopperId
+        );
+        setShopperPortalData(microShopperDetails.data);
+        setCustomerDetails(customerDetails.data);
 
         const orderResponse = await getOrderDetails(
           appConfig.shopperId,
@@ -69,7 +83,10 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         );
         setRecommendations(recResponse.data[0].products);
 
-        const cashbackResponse = await getEwalletCustomerInfo(appConfig.pcid, appConfig.siteId);
+        const cashbackResponse = await getEwalletCustomerInfo(
+          appConfig.pcid,
+          appConfig.siteId
+        );
         setCashback(cashbackResponse.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -84,11 +101,6 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const productSummaryPerStore = getProductsPerStore(
     orderDetails?.invoices ?? []
   );
-
-  const showEstimatedDeliveryDate =
-    productSummaryPerStore && productSummaryPerStore.length < 1
-      ? getFormattedDate(productSummaryPerStore[0]?.shippingDate as string)
-      : "";
 
   const getValidShippingDate = (date: string) => {
     const parsedDate = new Date(date);
@@ -108,7 +120,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             section.shippingDate
           )}`}
           rightTextExtraClass={
-            productSummaryPerStore.length === 0
+            Object.keys(orderDetails?.invoices).length === 1
               ? ""
               : "estimated-shipping-date-color"
           }
@@ -196,7 +208,13 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             <OrderHeader
               name={address?.first ?? ""}
               orderId={orderDetails?.id?.toString()}
-              deliveryDate={showEstimatedDeliveryDate}
+              deliveryDate={
+                Object.keys(orderDetails?.invoices).length === 1
+                  ? getFormattedDate(
+                      productSummaryPerStore[0]?.shippingDate as string
+                    )
+                  : ""
+              }
               email={
                 orderDetails.invoices.find((invoice) => invoice.billingEmail)
                   ?.billingEmail || ""
@@ -210,8 +228,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               />
               <Notification
                 icon="Person"
-                title="Your Shop Consultant is Jane Doe"
-                message="Contact Jane Doe"
+                title={`Your Shop Consultant is ${shopperPortalData?.consultantName}`}
+                email={shopperPortalData?.ownerEmail}
+                message={`Contact ${shopperPortalData?.consultantName}`}
               />
             </div>
           </div>
