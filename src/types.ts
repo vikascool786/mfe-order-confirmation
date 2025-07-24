@@ -239,20 +239,100 @@ export interface OrderTrackingServiceInfo {
   couponCode: string;
 }
 
-
 export interface ICashback {
-  lifetimeCashbackEarned: string
-  lifetimeCoaEarned: string
-  lifetimeTotalCashEarned: string
-  pendingCashbackAvail: string
-  cashbackAvail: string
-  coaAvail: string
-  redemptionThreshold: string
-  totalCoaCBAvail: string
-  pendingCoaAvail: string
-  ytdCoaEarned: string
-  isWalletEligible: boolean
-  newIbv: number
-  newCash: number
-  showNewCashOverlay: boolean
+  lifetimeCashbackEarned: string;
+  lifetimeCoaEarned: string;
+  lifetimeTotalCashEarned: string;
+  pendingCashbackAvail: string;
+  cashbackAvail: string;
+  coaAvail: string;
+  redemptionThreshold: string;
+  totalCoaCBAvail: string;
+  pendingCoaAvail: string;
+  ytdCoaEarned: string;
+  isWalletEligible: boolean;
+  newIbv: number;
+  newCash: number;
+  showNewCashOverlay: boolean;
+}
+
+export interface CustomerDetails {
+  data: Data;
+}
+
+export interface Data {
+  pc_id: string;
+  sponsor_id: string;
+  ppc_date: string;
+  first_name: string;
+  last_name: string;
+  gender: string;
+  date_of_birth: string;
+  home_phone: string;
+  cell_phone: string;
+  home_address: HomeAddress;
+  email_address: string;
+  start_date: string;
+  transfer_date: string;
+  shopper_id: string;
+  shopper_cid: string;
+  pc_types: PcType[];
+  features: Feature[];
+  mta_id: string;
+  full_name: string;
+  preferred_language_number: string;
+  preferred_language_code: string;
+  block_code: string;
+  customer_status: string;
+  referring_pc_id: string;
+  nutrametrix_unsubscribe_date: string;
+  disable_date: string;
+  shop_portal_id: string;
+  motives_portal_id: string;
+  nutrametrix_portal_id: string;
+  motives_teen_associate_portal_id: string;
+  isotonix_portal_id: string;
+  motives_pro_artist_portal_id: string;
+  shop_global_portal_id: string;
+  custom_mini_portal_id: string;
+  is_ppc_ibv_incentive_option: boolean;
+  is_po_box: boolean;
+  mobile_phone_carrier: string;
+  twilio_validated_mobile_phone_number: string;
+  wechat_id: string;
+}
+
+export interface HomeAddress {
+  address_1: string;
+  address_2: string;
+  address_3: string;
+  address_4: string;
+  address_5: string;
+  address_6: string;
+  address_7: string;
+  district: string;
+  area: string;
+  city: string;
+  state: string;
+  postal_code: string;
+  home_country: string;
+}
+
+export interface PcType {
+  pc_type: string;
+  enabled: boolean;
+}
+
+export interface Feature {
+  feature_id: string;
+  enabled: boolean;
+}
+
+export interface Meta {
+  svrStatus: number;
+  svrMessage: string;
+  svrCtrlCode: string;
+  svrCtrlName: string;
+  svrLsDate: string;
+  svrLsTime: string;
 }

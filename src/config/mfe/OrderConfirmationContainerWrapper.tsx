@@ -14,7 +14,7 @@ import ShippingAddress from "../../components/ShippingAddress";
 import Container from "../../layout/Container";
 import SectionCard from "../../layout/SectionCard";
 import { Spinner } from "../../layout/Spinner";
-import { ICashback, Invoice, IOrder } from "../../types";
+import { CustomerDetails, ICashback, Invoice, IOrder } from "../../types";
 import { getFormattedDate } from "../../utils/getDateFormat";
 import { getPaymentMethod } from "../../utils/getPaymentMethod";
 import { getProductsPerStore } from "../../utils/getProductsPerStore";
@@ -36,6 +36,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   sessionId: string;
 }) => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
+  const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
   const [recommendations, setRecommendations] =
     useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       try {
         setLoading(true);
         const customerDetails = await getCustomerProfileAlt(appConfig.pcid, API_KEY);
+        setCustomerDetails(customerDetails.data)
 
         const orderResponse = await getOrderDetails(
           appConfig.shopperId,
