@@ -4,7 +4,7 @@ export function getPaymentMethod(order: IOrder): Set<string> {
     const payments = order.invoices.map(invoice => {
         const type = invoice.paymentMethod?.type;
         const mask = invoice.paymentMethod?.mask;
-        if (type && mask) {
+        if (type && mask && !["paypal", "sezzle"].includes(type.toLowerCase())) {
             return `${type} ${mask.slice(-4)}`;
         } else if (type) {
             return type;

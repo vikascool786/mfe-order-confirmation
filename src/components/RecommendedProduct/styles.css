@@ -1,5 +1,5 @@
 .recommended-product-card {
-  width: 16.328rem;
+  min-width: 16.328rem;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 12px;
