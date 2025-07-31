@@ -1,5 +1,4 @@
 .recommended-product-card {
-  min-width: 16.328rem;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 12px;
@@ -10,6 +9,12 @@
   gap: 0.5rem;
   height: 32.625rem;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .recommended-product-card {
+    width: 16.328rem;
+  }
 }
 
 .product-image {
