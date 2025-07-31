@@ -125,3 +125,20 @@
     color: rgba(231, 57, 57, 1);
   }
 }
+
+
+@media (max-width: 768px) {
+  .mobile-input {
+    width: 16.328rem; /* ~261px */
+  }
+
+  .text-updates-content {
+    overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+
+  .text-updates-content::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}

@@ -24,6 +24,7 @@ import {
 import { getFormattedDate } from "../../utils/getDateFormat";
 import { getPaymentMethod } from "../../utils/getPaymentMethod";
 import { getProductsPerStore } from "../../utils/getProductsPerStore";
+import "../../App.css"
 import {
   getCustomerProfileAlt,
   getEwalletCustomerInfo,
