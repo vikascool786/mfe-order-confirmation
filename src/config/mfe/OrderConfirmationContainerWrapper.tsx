@@ -197,7 +197,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           <span className="order-total-amount">
             {orderDetails?.orderTotal &&
             orderDetails.orderTotal.toString().trim() !== ""
-              ? orderDetails.currencySymbol + orderDetails.orderTotal
+              ? orderDetails.currencySymbol + orderDetails.orderTotal.toFixed(2)
               : "$0.00"}
           </span>
         </div>
