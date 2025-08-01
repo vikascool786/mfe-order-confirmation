@@ -24,7 +24,7 @@ import {
 import { getFormattedDate } from "../../utils/getDateFormat";
 import { getPaymentMethod } from "../../utils/getPaymentMethod";
 import { getProductsPerStore } from "../../utils/getProductsPerStore";
-import "../../App.css"
+import "../../App.css";
 import {
   getCustomerProfileAlt,
   getEwalletCustomerInfo,
@@ -33,14 +33,16 @@ import {
   getOrderDetails,
 } from "../api";
 
-const API_KEY = "759ef1fc9e4c4e8bbf900db5f4b7caba";
-
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
   shopperId: string;
   siteId: number;
   pcid: string;
   sessionId: string;
+  languagecode: string;
+  sitetype: string;
+  countrycode: string;
+  portalid: string;
 }) => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
@@ -62,10 +64,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const customerDetails = await getCustomerProfileAlt(
-          appConfig.pcid,
-          API_KEY
-        );
+        const customerDetails = await getCustomerProfileAlt(appConfig.pcid);
         const microShopperDetails = await getMicroShopperPortalDetails(
           appConfig.shopperId
         );
@@ -86,7 +85,11 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
         const cashbackResponse = await getEwalletCustomerInfo(
           appConfig.pcid,
-          appConfig.siteId
+          appConfig.siteId,
+          shopperPortalData?.merchantCountry,
+          appConfig.languagecode,
+          appConfig.countrycode,
+          appConfig.sitetype
         );
         setCashback(cashbackResponse.data.data);
       } catch (error) {
@@ -162,17 +165,27 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         </SectionCard>
       )}
       <SectionCard title="Order Updates">
-        <OrderUpdates updates={[]} />
+        <OrderUpdates
+          orderId="3909222"
+          shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
+          pcid="2637612996"
+          siteId={222}
+          sessionId="3055555192"
+          languagecode="ENG"
+          sitetype="SHP"
+          countrycode="USA"
+          portalid="2245355.COM"
+        />
       </SectionCard>
 
-      <SectionCard title="VIFT Balance" gradient>
-        <div className="vift-tag">
-          <VText />
-          <span className="vift-cb">
-            ${cashback?.cashbackAvail || "$13.42"}
-          </span>
-        </div>
-      </SectionCard>
+      {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
+        <SectionCard title="VIFT Balance" gradient>
+          <div className="vift-tag">
+            <VText />
+            <span className="vift-cb">${cashback?.cashbackAvail}</span>
+          </div>
+        </SectionCard>
+      )}
     </>
   );
 
@@ -239,19 +252,21 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           <SectionCard title="Health Quiz" extraClass="no-padding">
             <HealthQuiz />
           </SectionCard>
-          <div className="recommended-products-header">
-            <SectionCard title="Our Top Product Recommendations" />
-          </div>
           {recommendations && (
-            <div className="recommended-products-container">
-              {recommendations.map((product) => (
-                <RecommendedProduct
-                  product={product}
-                  currency={orderDetails?.currencySymbol}
-                  key={product.prodID}
-                />
-              ))}
-            </div>
+            <>
+              <div className="recommended-products-header">
+                <SectionCard title="Our Top Product Recommendations" />
+              </div>
+              <div className="recommended-products-container">
+                {recommendations.map((product) => (
+                  <RecommendedProduct
+                    product={product}
+                    currency={orderDetails?.currencySymbol}
+                    key={product.prodID}
+                  />
+                ))}
+              </div>
+            </>
           )}
         </>
       )}

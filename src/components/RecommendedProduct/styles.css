@@ -87,3 +87,12 @@
   font-size: 0.85rem;
   color: #fbc02d;
 }
+
+.recommended-product-card {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.recommended-product-card::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}

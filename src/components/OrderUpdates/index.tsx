@@ -1,19 +1,49 @@
 import React from "react";
 import { useFormik } from "formik";
 import "./styles.css";
+import { postOrderSMSPhone } from "../../config/api";
 
-interface OrderUpdatesProps {
-  updates: string[];
-}
-
-export const OrderUpdates: React.FC<OrderUpdatesProps> = ({ updates }) => {
+export const OrderUpdates = (appConfig: {
+  orderId: string;
+  shopperId: string;
+  siteId: number;
+  pcid: string;
+  sessionId: string;
+  languagecode: string;
+  sitetype: string;
+  countrycode: string;
+  portalid: string;
+}) => {
   const formik = useFormik({
     initialValues: {
       boxChecked: false,
       phone: "",
     },
-    onSubmit: () => {},
+    validate: (values) => {
+      const errors: { phone?: string } = {};
+      const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4})$/;
+      if (!values.phone) {
+        errors.phone = "Phone is required";
+      } else if (!phoneRegex.test(values.phone)) {
+        errors.phone = "Invalid phone format";
+      }
+      return errors;
+    },
+    onSubmit: () => {
+      const payload = {
+        site_type: appConfig.sitetype,
+        siteCountry: appConfig.countrycode,
+        langCode: appConfig.languagecode,
+        temp_order_id: appConfig.orderId,
+        sms_phone: formik.values.phone,
+      };
+      postOrderSMSPhone(payload).then(() => {
+        setIsSubmitted(true);
+      });
+    },
   });
+
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   const { values, touched, errors, handleChange, handleBlur, setFieldValue } =
     formik;
@@ -27,6 +57,14 @@ export const OrderUpdates: React.FC<OrderUpdatesProps> = ({ updates }) => {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFieldValue("phone", e.target.value);
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="confirmation-message">
+        You will receive updates at {values.phone}
+      </div>
+    );
+  }
 
   return (
     <form className="order-updates-container" onSubmit={formik.handleSubmit}>
@@ -60,7 +98,26 @@ export const OrderUpdates: React.FC<OrderUpdatesProps> = ({ updates }) => {
             value={values.phone}
             required
             onChange={handlePhoneChange}
-            onBlur={handleBlur}
+            onBlur={(e) => {
+              handleBlur(e);
+              const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4})$/;
+              if (
+                phoneRegex.test(formik.values.phone) &&
+                formik.values.boxChecked &&
+                !formik.errors.phone
+              ) {
+                const payload = {
+                  site_type: appConfig.sitetype,
+                  siteCountry: appConfig.countrycode,
+                  langCode: appConfig.languagecode,
+                  temp_order_id: appConfig.orderId,
+                  sms_phone: formik.values.phone,
+                };
+                postOrderSMSPhone(payload).then(() => {
+                  setIsSubmitted(true);
+                });
+              }
+            }}
           />
           {touched.phone && typeof errors.phone === "string" && (
             <div className="error">{errors.phone}</div>
