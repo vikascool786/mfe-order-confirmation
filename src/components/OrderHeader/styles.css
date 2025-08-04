@@ -1,11 +1,12 @@
 .order-header-container {
   display: flex;
   flex: 2.5;
+  gap: 16px;
   flex-direction: column;
 }
 
 .order-id {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 20px;
   line-height: 100%;
@@ -15,7 +16,7 @@
 }
 
 .order-heading {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 40px;
   line-height: 100%;
@@ -24,17 +25,17 @@
 }
 
 .order-estimated-delivery {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 100%;
   letter-spacing: 0;
-  color: #2A876A;
+  color: #2a876a;
   margin-bottom: 11.77px;
 }
 
 .order-confirmation {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 19px;
   line-height: 100%;
@@ -44,7 +45,7 @@
 }
 
 .order-confirmation-print {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 14px;
@@ -53,4 +54,61 @@
   text-decoration: underline solid;
   text-underline-offset: 2px;
   text-decoration-thickness: 0;
+}
+
+@media (max-width: 768px) {
+  .order-header-container {
+    display: flex;
+    flex: 2.5;
+    gap: 12px;
+    flex-direction: column;
+  }
+  .order-id {
+    font-family: Roboto;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 17px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  .order-heading {
+    font-family: Roboto;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 35px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  .order-estimated-delivery {
+    font-family: Roboto;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 19px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  .order-confirmation {
+    font-family: Roboto;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 18px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
+  .order-confirmation-print {
+    font-family: Roboto;
+    font-weight: 300;
+    font-style: Light;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+  }
 }

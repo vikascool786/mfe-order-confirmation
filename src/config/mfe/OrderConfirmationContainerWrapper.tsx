@@ -108,6 +108,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
   const getValidShippingDate = (date: string) => {
     const parsedDate = new Date(date);
+    console.log(parsedDate)
     return isNaN(parsedDate.getTime())
       ? date
       : getFormattedDate(parsedDate.toDateString());
@@ -120,9 +121,11 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           title={section.storeName}
           extraClass="add-gap"
           // get shipping date in this format Tuesday, April 15
-          rightText={`Estimated Delivery Date ${getValidShippingDate(
+          rightText={
             section.shippingDate
-          )}`}
+              ? `Estimated Delivery Date ${getValidShippingDate(section.shippingDate)}`
+              : undefined
+          }
           rightTextExtraClass={
             Object.keys(orderDetails?.invoices).length === 1
               ? ""
@@ -192,10 +195,22 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches);
+    };
+
+    // Set initial value
+    handleResize(mediaQuery);
+
+    // Add listener
+    mediaQuery.addEventListener("change", handleResize);
+
+    // Cleanup
+    return () => {
+      mediaQuery.removeEventListener("change", handleResize);
+    };
   }, []);
 
   if (loading) {
@@ -204,72 +219,93 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
   return (
     <div className="app-container">
-      {/* Show order total mobile only on mobile screens */}
-      {isMobile && (
-        <div className="order-total-mobile">
-          <span>Order Total</span>
-          <span className="order-total-amount">
-            {orderDetails?.orderTotal &&
-            orderDetails.orderTotal.toString().trim() !== ""
-              ? orderDetails.currencySymbol + orderDetails.orderTotal.toFixed(2)
-              : "$0.00"}
-          </span>
-        </div>
-      )}
-      {orderDetails && orderDetails.invoices && (
-        <>
-          <div className="order-confirmation-container">
-            <OrderHeader
-              name={address?.first ?? ""}
-              orderId={orderDetails?.id?.toString()}
-              deliveryDate={
-                Object.keys(orderDetails?.invoices).length === 1
-                  ? getFormattedDate(
-                      productSummaryPerStore[0]?.shippingDate as string
-                    )
-                  : ""
-              }
-              email={
-                orderDetails.invoices.find((invoice) => invoice.billingEmail)
-                  ?.billingEmail || ""
-              }
-            />
-            <div className="order-notifications">
-              <Notification
-                icon="ChangeCircle"
-                title="Subscribe & Save 10%"
-                message="Explore Subscribe & Save"
-              />
-              <Notification
-                icon="Person"
-                title={`Your Shop Consultant is ${shopperPortalData?.consultantName}`}
-                email={shopperPortalData?.ownerEmail}
-                message={`Contact ${shopperPortalData?.consultantName}`}
-              />
-            </div>
+      <div className="app-container-wrapper">
+        {/* Show order total mobile only on mobile screens */}
+        {isMobile && (
+          <div className="order-total-mobile">
+            <span>Order Total</span>
+            <span className="order-total-amount">
+              {orderDetails?.orderTotal &&
+              orderDetails.orderTotal.toString().trim() !== ""
+                ? orderDetails.currencySymbol +
+                  orderDetails.orderTotal.toFixed(2)
+                : "$0.00"}
+            </span>
           </div>
-          <Container left={leftContent} right={rightContent} />
-          <SectionCard title="Health Quiz" extraClass="no-padding">
-            <HealthQuiz />
-          </SectionCard>
-          {recommendations && (
-            <>
-              <div className="recommended-products-header">
-                <SectionCard title="Our Top Product Recommendations" />
-              </div>
-              <div className="recommended-products-container">
-                {recommendations.map((product) => (
-                  <RecommendedProduct
-                    product={product}
-                    currency={orderDetails?.currencySymbol}
-                    key={product.prodID}
+        )}
+        {orderDetails && orderDetails.invoices && (
+          <>
+            <div className="order-confirmation-container">
+              <OrderHeader
+                name={address?.first ?? ""}
+                orderId={orderDetails?.id?.toString()}
+                deliveryDate={
+                  Object.keys(orderDetails?.invoices).length === 1
+                    ? getFormattedDate(
+                        productSummaryPerStore[0]?.shippingDate as string
+                      )
+                    : ""
+                }
+                email={
+                  orderDetails.invoices.find((invoice) => invoice.billingEmail)
+                    ?.billingEmail || ""
+                }
+              />
+              {/* SHOW WHEN HERE DESKTOP VIEW */}
+              {!isMobile && (
+                <div className="order-notifications">
+                  <Notification
+                    icon="ChangeCircle"
+                    title="Subscribe & Save 10%"
+                    message="Explore Subscribe & Save"
                   />
-                ))}
+                  <Notification
+                    icon="Person"
+                    title={`Your Shop Consultant is ${shopperPortalData?.consultantName}`}
+                    email={shopperPortalData?.ownerEmail}
+                    message={`Contact ${shopperPortalData?.consultantName}`}
+                  />
+                </div>
+              )}
+            </div>
+            <Container left={leftContent} right={rightContent} />
+            {isMobile && (
+              <div className="order-notifications">
+                <Notification
+                  icon="ChangeCircle"
+                  title="Subscribe & Save 10%"
+                  message="Explore Subscribe & Save"
+                />
+                <Notification
+                  icon="Person"
+                  title={`Your Shop Consultant is ${shopperPortalData?.consultantName}`}
+                  email={shopperPortalData?.ownerEmail}
+                  message={`Contact ${shopperPortalData?.consultantName}`}
+                />
               </div>
-            </>
-          )}
-        </>
-      )}
+            )}
+            <SectionCard title="Health Quiz" extraClass="no-padding">
+              <HealthQuiz />
+            </SectionCard>
+            {recommendations && (
+              <>
+                <div className="recommended-products-header">
+                  <SectionCard title="Our Top Product Recommendations" />
+                </div>
+                <div className="recommended-products-container">
+                  {recommendations.map((product) => (
+                    <RecommendedProduct
+                      product={product}
+                      currency={orderDetails?.currencySymbol}
+                      key={product.prodID}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
