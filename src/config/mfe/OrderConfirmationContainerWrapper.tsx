@@ -32,6 +32,8 @@ import {
   getOrderConfirmationRecommendations,
   getOrderDetails,
 } from "../api";
+import FeedbackForm from "../../components/CustomerFeedback";
+import Feedback from "../../components/CustomerFeedback/Feedback";
 
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
@@ -303,6 +305,8 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 </div>
               </>
             )}
+
+            <Feedback sessionId={appConfig.sessionId} siteId={appConfig.siteId.toString()} pcId={appConfig.pcid} />
           </>
         )}
       </div>

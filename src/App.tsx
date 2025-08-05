@@ -19,17 +19,17 @@ const App: React.FC = () => {
     // />
 
     // MA Product - VIFT Wallet
-    // <OrderConfirmationContainerWrapper
-    //   orderId="3909710"
-    //   shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
-    //   pcid="2637612996"
-    //   siteId={222}
-    //   sessionId="3055555192"
-    //   languagecode="ENG"
-    //   sitetype="SHP"
-    //   countrycode="USA"
-    //   portalid="2245355.COM"
-    // />
+    <OrderConfirmationContainerWrapper
+      orderId="3909710"
+      shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
+      pcid="2637612996"
+      siteId={222}
+      sessionId="3055555192"
+      languagecode="ENG"
+      sitetype="SHP"
+      countrycode="USA"
+      portalid="2245355.COM"
+    />
 
     // MA + MOR Product using Paypal - not working
     // <OrderConfirmationContainerWrapper
@@ -95,17 +95,17 @@ const App: React.FC = () => {
     //   portalid="2245355.COM"
     // />
     // MA + MOR Product
-    <OrderConfirmationContainerWrapper
-      orderId="3909736  "
-      shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
-      pcid="2637612996"
-      siteId={222}
-      sessionId="3006839890"
-      languagecode="ENG"
-      sitetype="SHP"
-      countrycode="USA"
-      portalid="2245355.COM"
-    />
+    // <OrderConfirmationContainerWrapper
+    //   orderId="3909736  "
+    //   shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
+    //   pcid="2637612996"
+    //   siteId={222}
+    //   sessionId="3006839890"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   countrycode="USA"
+    //   portalid="2245355.COM"
+    // />
   );
 };
 
