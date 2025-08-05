@@ -90,10 +90,7 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
       ) : (
         <>
           <p className="feedback-form__thanks">
-            {("thanksForFeedback")}
-          </p>
-          <p className="feedback-form__review">
-            {("ngSearchFeedback")}
+            Thanks for Feedback
           </p>
         </>
       )}
