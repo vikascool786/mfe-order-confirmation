@@ -4,6 +4,15 @@ import {
   GET_API_KEY,
 } from "../../utils/urlResolver";
 
+// Extend Window interface to include FS
+declare global {
+  interface Window {
+    FS?: {
+      getCurrentSessionURL?: () => string;
+    };
+  }
+}
+
 const apiClient = axios.create({
   baseURL: GET_API_ENDPOINT_BASE_URL_ONLY(),
   headers: {
