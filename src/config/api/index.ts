@@ -4,15 +4,6 @@ import {
   GET_API_KEY,
 } from "../../utils/urlResolver";
 
-// Extend Window interface to include FS
-declare global {
-  interface Window {
-    FS?: {
-      getCurrentSessionURL?: () => string;
-    };
-  }
-}
-
 const apiClient = axios.create({
   baseURL: GET_API_ENDPOINT_BASE_URL_ONLY(),
   headers: {
@@ -112,30 +103,30 @@ export const postFeedback = async (
     "{{path}}",
     getFeedbackPath(pcId)
   );
-  const fullStoryLink = window.FS?.getCurrentSessionURL?.() || "";
+  const fullStoryLink = window.FS.getCurrentSessionURL() || "";
   const feedbackPayload = {
-    classid: "36",
+    classid: 36,
     comments: feedback,
     httpreferrer: window.location.href,
-    orderid: "0",
-    surveytypeid: "17",
-    userSessionId: sessionId?.toString() ?? "-1",
+    orderid: 0,
+    surveytypeid: 17,
+    userSessionId: sessionId || -1,
     trackingID: fullStoryLink,
   };
 
   try {
-    const res = await axios.post(
-      apiEndpoint,
-      new URLSearchParams(feedbackPayload),
-      {
+    const res = await axios.post(apiEndpoint, "", feedbackPayload, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-      }
-    );
+      })
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
+
     return res;
   } catch (err) {
     console.log(err);
     throw err;
   }
 };
+

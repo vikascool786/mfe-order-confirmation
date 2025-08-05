@@ -46,6 +46,27 @@ export const OrderUpdates = (appConfig: {
 
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
+  React.useEffect(() => {
+    const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4})$/;
+    if (
+      phoneRegex.test(formik.values.phone) &&
+      formik.values.boxChecked &&
+      !formik.errors.phone &&
+      !isSubmitted
+    ) {
+      const payload = {
+        site_type: appConfig.sitetype,
+        siteCountry: appConfig.countrycode,
+        langCode: appConfig.languagecode,
+        temp_order_id: appConfig.orderId.at(-1)?.at(-1)?.value ?? "",
+        sms_phone: formik.values.phone,
+      };
+      postOrderSMSPhone(payload).then(() => {
+        setIsSubmitted(true);
+      });
+    }
+  }, [formik.values.phone, formik.values.boxChecked, formik.errors.phone, isSubmitted]);
+
   const { values, touched, errors, handleChange, handleBlur, setFieldValue } =
     formik;
 
@@ -99,26 +120,6 @@ export const OrderUpdates = (appConfig: {
             value={values.phone}
             required
             onChange={handlePhoneChange}
-            onBlur={(e) => {
-              handleBlur(e);
-              const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4})$/;
-              if (
-                phoneRegex.test(formik.values.phone) &&
-                formik.values.boxChecked &&
-                !formik.errors.phone
-              ) {
-                const payload = {
-                  site_type: appConfig.sitetype,
-                  siteCountry: appConfig.countrycode,
-                  langCode: appConfig.languagecode,
-                  temp_order_id: appConfig.orderId.at(-1)?.at(-1)?.value ?? "",
-                  sms_phone: formik.values.phone,
-                };
-                postOrderSMSPhone(payload).then(() => {
-                  setIsSubmitted(true);
-                });
-              }
-            }}
           />
           {touched.phone && typeof errors.phone === "string" && (
             <div className="error">{errors.phone}</div>
