@@ -57,7 +57,7 @@ export const GET_API_ENDPOINT_BASE_URL = (
 export const GET_API_ENDPOINT_BASE_URL_FOR_TRANSLATIONS = (mode: APIMODE) => {
   switch (mode) {
     case "localhost":
-      return `https://devapi2.shop.com{{path}}?api_key=0cf27ca394e94667ad6729d427b700d4`;
+      return `https://stagingapi2.shop.com{{path}}?api_key=0cf27ca394e94667ad6729d427b700d4`;
     case "dev":
       return `https://devapi2.shop.com{{path}}?api_key=0cf27ca394e94667ad6729d427b700d4`;
     case "staging":
@@ -71,7 +71,7 @@ export const GET_API_ENDPOINT_BASE_URL_ONLY = () => {
   const mode = GET_API_MODE();
   switch (mode) {
     case "localhost":
-      return "https://devapi2.shop.com";
+      return "https://stagingapi2.shop.com";
     case "dev":
       return "https://devapi2.shop.com";
     case "staging":
@@ -139,7 +139,7 @@ export const GET_APM_URL = () => {
 export const GET_API_KEY = () => {
   switch (GET_API_MODE()) {
     case "localhost":
-      return "6f598d0a7639480eae2d266a1e87c15c";
+      return "759ef1fc9e4c4e8bbf900db5f4b7caba";
     case "dev":
       return "6f598d0a7639480eae2d266a1e87c15c";
     case "staging":
@@ -154,7 +154,7 @@ export const GET_API_KEY = () => {
 export const GET_TOKEN_SERVICE = () => {
   switch (GET_API_MODE()) {
     case "localhost":
-      return "https://devccsoa.marketamerica.com/TokenService/GetToken";
+      return "https://stagingccsoa.marketamerica.com/TokenService/GetToken";
     case "dev":
       return "https://devccsoa.marketamerica.com/TokenService/GetToken";
     case "staging":

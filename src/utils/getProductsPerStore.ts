@@ -31,7 +31,7 @@ export function getProductsPerStore(invoices: Invoice[]): ProductSection[] {
     });
   });
 
-  const isSingleStore = Object.keys(storeCountMap).length === 1;
+  const isSingleStore = invoices.length === 1;
   const storeInstanceTracker: Record<string, number> = {};
 
   // Update the store names with shipment number if needed
