@@ -14,7 +14,7 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
         <div className="product-content">
           <span className="product-name">{sanitize(product.description)}</span>
           <span className="product-description-summary">
-            {product.options.map((option, index) => option)}
+            {product?.options?.map((option, index) => option)}
           </span>
           <span className="product-cashback">
             <span className="cashback-amount">

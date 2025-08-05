@@ -31,7 +31,7 @@ const App: React.FC = () => {
     //   portalid="2245355.COM"
     // />
 
-    // MA + MOR Product using Paypal
+    // MA + MOR Product using Paypal - not working
     // <OrderConfirmationContainerWrapper
     //   orderId="7239595"
     //   shopperId="ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz"
@@ -44,13 +44,17 @@ const App: React.FC = () => {
     //   portalid="2245355.COM"
     // />
 
-    // MA Autoship Product using Card Payment
+    // MA Autoship Product using Card Payment  - not working
     // <OrderConfirmationContainerWrapper
     //   orderId="7239596"
     //   shopperId="ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz"
     //   pcid="6565841"
     //   siteId={66}
     //   sessionId="3055555192"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   countrycode="USA"
+    //   portalid="2245355.COM"
     // />
 
     // MA Autoship Product using Card Payment
@@ -79,12 +83,24 @@ const App: React.FC = () => {
     //   portalid="2245355.COM"
     // />
     // Back/Pre Order Product Shipping Now
+    // <OrderConfirmationContainerWrapper
+    //   orderId="3909708"
+    //   shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
+    //   pcid="2637612996"
+    //   siteId={222}
+    //   sessionId="3055555192"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   countrycode="USA"
+    //   portalid="2245355.COM"
+    // />
+    // MA + MOR Product
     <OrderConfirmationContainerWrapper
-      orderId="3909708"
+      orderId="3909736  "
       shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
       pcid="2637612996"
       siteId={222}
-      sessionId="3055555192"
+      sessionId="3006839890"
       languagecode="ENG"
       sitetype="SHP"
       countrycode="USA"
