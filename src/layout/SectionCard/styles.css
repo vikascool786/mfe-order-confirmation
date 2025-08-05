@@ -74,8 +74,12 @@
     font-size: 20px;
     line-height: 100%;
     letter-spacing: 0%;
+    margin-bottom: 1rem;
   }
 
+  .estimated-shipping-date  {
+    color: #118B2C;
+  }
   .section-card-header span {
     font-family: Roboto;
     font-weight: 500;

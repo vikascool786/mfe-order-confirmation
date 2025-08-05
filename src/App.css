@@ -1,7 +1,13 @@
+*, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .app-container-wrapper {
   max-width: 1670px;
   min-height: 100vh;
   background-color: rgb(246, 246, 246);
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -18,7 +24,7 @@
 
 .app-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   background-color: rgb(246, 246, 246);
   padding: 4.563rem;
   margin: 0 auto;

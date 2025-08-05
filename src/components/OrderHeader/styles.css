@@ -66,6 +66,7 @@
     font-size: 17px;
     line-height: 100%;
     letter-spacing: 0%;
+    margin-bottom: 8px;
   }
 
   .order-heading {
@@ -73,8 +74,9 @@
     font-weight: 300;
     font-style: Light;
     font-size: 35px;
-    line-height: 100%;
+    line-height: 42px;
     letter-spacing: 0%;
+    margin-bottom: 11px;
   }
 
   .order-estimated-delivery {
@@ -91,7 +93,7 @@
     font-weight: 300;
     font-style: Light;
     font-size: 18px;
-    line-height: 100%;
+    line-height:21px;
     letter-spacing: 0%;
   }
 
