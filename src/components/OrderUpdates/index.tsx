@@ -2,9 +2,10 @@ import React from "react";
 import { useFormik } from "formik";
 import "./styles.css";
 import { postOrderSMSPhone } from "../../config/api";
+import { Attribute } from "../../types";
 
 export const OrderUpdates = (appConfig: {
-  orderId: string;
+  orderId: Attribute[][];
   shopperId: string;
   siteId: number;
   pcid: string;
@@ -34,7 +35,7 @@ export const OrderUpdates = (appConfig: {
         site_type: appConfig.sitetype,
         siteCountry: appConfig.countrycode,
         langCode: appConfig.languagecode,
-        temp_order_id: appConfig.orderId,
+        temp_order_id: appConfig.orderId.at(-1)?.at(-1)?.value ?? "",
         sms_phone: formik.values.phone,
       };
       postOrderSMSPhone(payload).then(() => {
@@ -110,7 +111,7 @@ export const OrderUpdates = (appConfig: {
                   site_type: appConfig.sitetype,
                   siteCountry: appConfig.countrycode,
                   langCode: appConfig.languagecode,
-                  temp_order_id: appConfig.orderId,
+                  temp_order_id: appConfig.orderId.at(-1)?.at(-1)?.value ?? "",
                   sms_phone: formik.values.phone,
                 };
                 postOrderSMSPhone(payload).then(() => {

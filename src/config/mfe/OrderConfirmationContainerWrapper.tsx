@@ -171,7 +171,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       )}
       <SectionCard title="Order Updates">
         <OrderUpdates
-          orderId="3909222"
+          orderId={orderDetails?.invoices?.map(invoice => invoice.attributes)}
           shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
           pcid="2637612996"
           siteId={222}

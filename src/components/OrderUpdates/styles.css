@@ -25,6 +25,15 @@
   gap: 0.5rem;
 }
 
+.confirmation-message {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
 .extra-label {
   font-family: Roboto;
   font-weight: 300;
@@ -125,7 +134,6 @@
     color: rgba(231, 57, 57, 1);
   }
 }
-
 
 @media (max-width: 768px) {
   .mobile-input {
