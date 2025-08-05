@@ -12,7 +12,6 @@
   line-height: 100%;
   letter-spacing: 0;
   color: rgba(0, 0, 0, 1);
-  margin-bottom: 13.28px;
 }
 
 .order-heading {
@@ -21,7 +20,6 @@
   font-size: 40px;
   line-height: 100%;
   letter-spacing: 0;
-  margin-bottom: 14.62px;
 }
 
 .order-estimated-delivery {
@@ -31,7 +29,6 @@
   line-height: 100%;
   letter-spacing: 0;
   color: #2a876a;
-  margin-bottom: 11.77px;
 }
 
 .order-confirmation {
@@ -41,7 +38,6 @@
   line-height: 100%;
   letter-spacing: 0;
   color: rgba(0, 0, 0, 1);
-  margin-bottom: 12.25px;
 }
 
 .order-confirmation-print {
@@ -95,7 +91,6 @@
     font-weight: 300;
     font-style: Light;
     font-size: 18px;
-    leading-trim: NONE;
     line-height: 100%;
     letter-spacing: 0%;
   }

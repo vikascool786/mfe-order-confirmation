@@ -1,7 +1,6 @@
 .app-container-wrapper {
-  max-width: 1440px;
+  max-width: 1670px;
   min-height: 100vh;
-  margin: 0 auto;
   background-color: rgb(246, 246, 246);
 }
 
