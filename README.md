@@ -1,1 +1,1 @@
-# mfr-order-confirmation
+# mfe-order-confirmation
