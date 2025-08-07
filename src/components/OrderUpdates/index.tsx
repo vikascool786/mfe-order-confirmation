@@ -22,7 +22,7 @@ export const OrderUpdates = (appConfig: {
     },
     validate: (values) => {
       const errors: { phone?: string } = {};
-      const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4})$/;
+      const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4}|\d{3}-\d{3}-\d{5})$/;
       if (!values.phone) {
         errors.phone = "Phone is required";
       } else if (!phoneRegex.test(values.phone)) {
@@ -31,12 +31,14 @@ export const OrderUpdates = (appConfig: {
       return errors;
     },
     onSubmit: () => {
+
+      const typeId = appConfig.orderId.find(attr => attr.find(att => att.typeId == 16));
       const payload = {
         site_type: appConfig.sitetype,
         siteCountry: appConfig.countrycode,
         langCode: appConfig.languagecode,
-        temp_order_id: appConfig.orderId.at(-1)?.at(-1)?.value ?? "",
-        sms_phone: formik.values.phone,
+        temp_order_id: typeId?.find(t => t.value)?.value ?? "",
+        sms_phone: formik.values.phone.replace(/-/g, ""),
       };
       postOrderSMSPhone(payload).then(() => {
         setIsSubmitted(true);
@@ -47,19 +49,20 @@ export const OrderUpdates = (appConfig: {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   React.useEffect(() => {
-    const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4})$/;
+    const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4}|\d{3}-\d{3}-\d{5})$/;
     if (
       phoneRegex.test(formik.values.phone) &&
       formik.values.boxChecked &&
       !formik.errors.phone &&
       !isSubmitted
     ) {
+      const typeId = appConfig.orderId.find(attr => attr.find(att => att.typeId == 16));
       const payload = {
         site_type: appConfig.sitetype,
         siteCountry: appConfig.countrycode,
         langCode: appConfig.languagecode,
-        temp_order_id: appConfig.orderId.at(-1)?.at(-1)?.value ?? "",
-        sms_phone: formik.values.phone,
+        temp_order_id: typeId?.find(t => t.typeId == 16)?.value ?? "",
+        sms_phone: formik.values.phone.replace(/-/g, ""),
       };
       postOrderSMSPhone(payload).then(() => {
         setIsSubmitted(true);
@@ -77,7 +80,18 @@ export const OrderUpdates = (appConfig: {
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue("phone", e.target.value);
+    let raw = e.target.value.replace(/\D/g, ""); // Remove non-digits
+
+    if (raw.length > 11) raw = raw.slice(0, 11);
+
+    let formatted = raw;
+    if (raw.length > 6) {
+      formatted = `${raw.slice(0, 3)}-${raw.slice(3, 6)}-${raw.slice(6)}`;
+    } else if (raw.length > 3) {
+      formatted = `${raw.slice(0, 3)}-${raw.slice(3)}`;
+    }
+
+    setFieldValue("phone", formatted);
   };
 
   if (isSubmitted) {

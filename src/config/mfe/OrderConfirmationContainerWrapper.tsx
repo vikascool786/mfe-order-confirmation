@@ -79,12 +79,6 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         );
         setOrderDetails(orderResponse.data);
 
-        const recResponse = await getOrderConfirmationRecommendations(
-          appConfig.pcid,
-          appConfig.siteId
-        );
-        setRecommendations(recResponse.data[0].products);
-
         const cashbackResponse = await getEwalletCustomerInfo(
           appConfig.pcid,
           appConfig.siteId,
@@ -93,7 +87,14 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           appConfig.countrycode,
           appConfig.sitetype
         );
+        console.log(cashbackResponse);
         setCashback(cashbackResponse.data.data);
+
+        const recResponse = await getOrderConfirmationRecommendations(
+          appConfig.pcid,
+          appConfig.siteId
+        );
+        setRecommendations(recResponse.data[0].products);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -110,7 +111,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
   const getValidShippingDate = (date: string) => {
     const parsedDate = new Date(date);
-    console.log(parsedDate)
+    console.log(parsedDate);
     return isNaN(parsedDate.getTime())
       ? date
       : getFormattedDate(parsedDate.toDateString());
@@ -125,7 +126,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `Estimated Delivery Date ${getValidShippingDate(section.shippingDate)}`
+              ? `Estimated Delivery Date ${getValidShippingDate(
+                  section.shippingDate
+                )}`
               : undefined
           }
           rightTextExtraClass={
@@ -171,7 +174,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       )}
       <SectionCard title="Order Updates">
         <OrderUpdates
-          orderId={orderDetails?.invoices?.map(invoice => invoice.attributes)}
+          orderId={orderDetails?.invoices?.map((invoice) => invoice.attributes)}
           shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
           pcid="2637612996"
           siteId={222}
@@ -306,7 +309,11 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               </>
             )}
 
-            <Feedback sessionId={appConfig.sessionId} siteId={appConfig.siteId.toString()} pcId={appConfig.pcid} />
+            <Feedback
+              sessionId={appConfig.sessionId}
+              siteId={appConfig.siteId.toString()}
+              pcId={appConfig.pcid}
+            />
           </>
         )}
       </div>
