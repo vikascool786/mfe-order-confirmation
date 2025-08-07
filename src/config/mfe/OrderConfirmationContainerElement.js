@@ -20,6 +20,10 @@ class OrderConfirmationContainerElement extends HTMLElement {
       pcid: this.getAttribute("pcid") || "",
       siteId: this.getAttribute("siteid") || "",
       sessionId: this.getAttribute("sessionid") || "",
+      languagecode: this.getAttribute("languagecode") || "",
+      sitetype: this.getAttribute("sitetype") || "",
+      countrycode: this.getAttribute("countrycode") || "",
+      portalid: this.getAttribute("portalid") || "",
     };
 
     this.root = createRoot(this.mountPoint);

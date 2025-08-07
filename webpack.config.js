@@ -28,6 +28,8 @@ module.exports = (env, argv) => {
       publicPath: isDev
         ? "http://localhost:3011/"
         : `https://${domainEndpoint()}/OrderConfirmation/`,
+      filename: "[name].[contenthash].js",
+      clean: true,
     },
     devtool: isDev ? "source-map" : false,
     resolve: {
@@ -52,17 +54,26 @@ module.exports = (env, argv) => {
           resolve: { fullySpecified: false },
         },
         {
-          test: /\.(ts|tsx|js|jsx)$/,
+          test: /\.(css|s[ac]ss)$/i,
+          use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+        },
+        {
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: { loader: "babel-loader" },
+          use: {
+            loader: "babel-loader",
+          },
+        },
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "ts-loader",
+          },
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
           use: [{ loader: "file-loader" }],
-        },
-        {
-          test: /\.(scss|sass|css)$/i,
-          use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
         },
       ],
     },
@@ -80,7 +91,7 @@ module.exports = (env, argv) => {
           "./React": "react",
           "./ReactDOM": "react-dom",
           "./ReactDOMClient": "react-dom/client",
-          './OrderConfirmationElement': './src/OrderConfirmationContainerElement',
+          './OrderConfirmationElement': './src/config/mfe/OrderConfirmationContainerElement',
         },
         shared: {
           ...deps,
