@@ -5,12 +5,14 @@ interface NotificationProps {
   icon: "Person" | "ChangeCircle";
   title: string;
   email?: string;
+  link?: string;
   message: string;
 }
 
 const Notification: React.FC<NotificationProps> = ({
   icon,
   title,
+  link,
   email,
   message,
 }) => {
@@ -32,6 +34,10 @@ const Notification: React.FC<NotificationProps> = ({
         onClick={() => {
           if (email) {
             window.location.href = `mailto:${email}`;
+          }
+
+          if (link) {
+            window.open(link, "_blank");
           }
         }}
       >
