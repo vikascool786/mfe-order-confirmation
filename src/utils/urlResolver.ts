@@ -29,13 +29,13 @@ export const GET_API_ENDPOINT_BASE_URL = (
     case "localhost":
       return `https://devapi2.shop.com{{path}}?api_key=${
         isModuleRanker
-          ? "6f598d0a7639480eae2d266a1e87c15c"
-          : "6f598d0a7639480eae2d266a1e87c15c"
+          ? "78cfbfddd65949e886faef65db6bba26"
+          : "759ef1fc9e4c4e8bbf900db5f4b7caba"
       }`;
     case "dev":
       return `https://devapi2.shop.com{{path}}?api_key=${
         isModuleRanker
-          ? "6f598d0a7639480eae2d266a1e87c15c"
+          ? "010308abff314fcbad7452230f0a918d"
           : "6f598d0a7639480eae2d266a1e87c15c"
       }`;
     case "staging":

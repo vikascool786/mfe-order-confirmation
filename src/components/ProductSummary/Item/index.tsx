@@ -1,7 +1,6 @@
 import React from "react";
 import sanitize from 'sanitize-html';
 import { ProductSummaryItemProps } from "../types";
-import "../styles.css"
 import Vift from "../../../assets/svgs/Vift";
 
 const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
@@ -12,7 +11,7 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
     <div className="product-container">
       <img src={image} />
       <div className="product-price-container">
-        <div className="product-content" onClick={() => (window.location.href = product.productURL)}>
+        <div className="product-content">
           <span className="product-name">{sanitize(product.description)}</span>
           <span className="product-description-summary">
             {product?.options?.map((option, index) => option)}
