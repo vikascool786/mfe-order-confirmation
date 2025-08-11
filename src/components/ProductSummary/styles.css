@@ -47,6 +47,9 @@
 }
 
 .product-description-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 13px;

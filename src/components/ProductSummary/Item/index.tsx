@@ -1,7 +1,9 @@
 import React from "react";
-import sanitize from 'sanitize-html';
+import sanitize from "sanitize-html";
 import { ProductSummaryItemProps } from "../types";
 import Vift from "../../../assets/svgs/Vift";
+import "../styles.css";
+import { getSpecialInstructionMessage } from "../../../utils/getSpecialInstructionMessage";
 
 const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
   product,
@@ -14,12 +16,17 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
         <div className="product-content">
           <span className="product-name">{sanitize(product.description)}</span>
           <span className="product-description-summary">
-            {product?.options?.map((option, index) => option)}
+            {product?.specialInstructionList?.map((instruction) => (
+              <span>
+                {`${getSpecialInstructionMessage(
+                  instruction.specialInstructionTypeID
+                )}
+                ${instruction.specialInstruction}`}
+              </span>
+            ))}
           </span>
           <span className="product-cashback">
-            <span className="cashback-amount">
-            + {product.cashback}
-            </span>
+            <span className="cashback-amount">+ {product.cashback}</span>
             <span className="cashback-icon-text">
               <Vift /> Cashback
             </span>
