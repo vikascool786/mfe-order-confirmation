@@ -34,6 +34,7 @@ import {
 } from "../api";
 import FeedbackForm from "../../components/CustomerFeedback";
 import Feedback from "../../components/CustomerFeedback/Feedback";
+import { GuestCheckout } from "../../components/GuestCheckout";
 
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
@@ -110,7 +111,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
   const getValidShippingDate = (date: string) => {
     const parsedDate = new Date(date);
-    console.log(parsedDate)
+    console.log(parsedDate);
     return isNaN(parsedDate.getTime())
       ? date
       : getFormattedDate(parsedDate.toDateString());
@@ -125,7 +126,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `Estimated Delivery Date ${getValidShippingDate(section.shippingDate)}`
+              ? `Estimated Delivery Date ${getValidShippingDate(
+                  section.shippingDate
+                )}`
               : undefined
           }
           rightTextExtraClass={
@@ -171,7 +174,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       )}
       <SectionCard title="Order Updates">
         <OrderUpdates
-          orderId={orderDetails?.invoices?.map(invoice => invoice.attributes)}
+          orderId={orderDetails?.invoices?.map((invoice) => invoice.attributes)}
           shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
           pcid="2637612996"
           siteId={222}
@@ -272,6 +275,14 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               )}
             </div>
             <Container left={leftContent} right={rightContent} />
+            {isMobile &&
+              customerDetails?.data.pc_types.find(
+                (pcType) => pcType.pc_type == "isEZ"
+              )?.enabled && (
+                <GuestCheckout
+                  email={customerDetails?.data.email_address ?? ""}
+                />
+              )}
             {isMobile && (
               <div className="order-notifications">
                 <Notification
@@ -307,7 +318,11 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               </>
             )}
 
-            <Feedback sessionId={appConfig.sessionId} siteId={appConfig.siteId.toString()} pcId={appConfig.pcid} />
+            <Feedback
+              sessionId={appConfig.sessionId}
+              siteId={appConfig.siteId.toString()}
+              pcId={appConfig.pcid}
+            />
           </>
         )}
       </div>
