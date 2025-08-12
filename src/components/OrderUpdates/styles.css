@@ -7,6 +7,15 @@
   letter-spacing: 0;
 }
 
+.error {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: red;
+}
 .mobile-input {
   width: 25rem; /* approximately 400px */
   height: 2.4rem; /* approximately 39px */
@@ -142,6 +151,7 @@
 
   .text-updates-content {
     overflow-x: hidden;
+    gap: 1.5rem;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }

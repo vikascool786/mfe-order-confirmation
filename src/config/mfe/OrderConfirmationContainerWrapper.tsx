@@ -275,12 +275,12 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               )}
             </div>
             <Container left={leftContent} right={rightContent} />
-            {isMobile &&
-              customerDetails?.data.pc_types.find(
-                (pcType) => pcType.pc_type == "isEZ"
-              )?.enabled && (
+            {isMobile && (
                 <GuestCheckout
                   email={customerDetails?.data.email_address ?? ""}
+                  sessionId={appConfig.sessionId}
+                  customerDetails={customerDetails as CustomerDetails}
+                  setCustomerDetails={setCustomerDetails}
                 />
               )}
             {isMobile && (

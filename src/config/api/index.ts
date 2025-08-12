@@ -97,6 +97,34 @@ export const postOrderSMSPhone = (data: {
 };
 
 
+// Put PrePC
+export const updatePrePC = (data: {
+  firstName: string;
+  lastName: string;
+  referrer?: string;
+  password: string;
+  mobilePhone?: string;
+  passwordConfirm: string;
+  portalname: string;
+  optInIds: string;
+  userSessionId: string;
+  email: string;
+}) => {
+  return apiClient.put(
+    `/shoppers/v1/PrePC`,
+    new URLSearchParams(data as any),
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;v=2",
+      },
+      params: {
+        api_key: GET_API_KEY(),
+      },
+    }
+  );
+};
+
+
 const getFeedbackPath = (pcId: string | null | undefined) =>
   `/site-surveys/v1/Survey/${pcId}`;
 
