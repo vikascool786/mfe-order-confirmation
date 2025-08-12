@@ -4,6 +4,7 @@
   background-color: white;
   align-items: start;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .product-container img {
@@ -27,6 +28,7 @@
   justify-content: space-between;
   width: 100%;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .product-content-price {

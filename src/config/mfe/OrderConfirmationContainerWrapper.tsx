@@ -111,7 +111,6 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
   const getValidShippingDate = (date: string) => {
     const parsedDate = new Date(date);
-    console.log(parsedDate);
     return isNaN(parsedDate.getTime())
       ? date
       : getFormattedDate(parsedDate.toDateString());
@@ -126,9 +125,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `Estimated Delivery Date ${getValidShippingDate(
-                  section.shippingDate
-                )}`
+              ? `Estimated Delivery Date ${getValidShippingDate(section.shippingDate)}`
               : undefined
           }
           rightTextExtraClass={
@@ -282,7 +279,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                   customerDetails={customerDetails as CustomerDetails}
                   setCustomerDetails={setCustomerDetails}
                 />
-              )}
+            )}
             {isMobile && (
               <div className="order-notifications">
                 <Notification
@@ -318,11 +315,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               </>
             )}
 
-            <Feedback
-              sessionId={appConfig.sessionId}
-              siteId={appConfig.siteId.toString()}
-              pcId={appConfig.pcid}
-            />
+            <Feedback sessionId={appConfig.sessionId} siteId={appConfig.siteId.toString()} pcId={appConfig.pcid} />
           </>
         )}
       </div>

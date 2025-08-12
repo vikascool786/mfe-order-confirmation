@@ -13,7 +13,7 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
     <div className="product-container">
       <img src={image} />
       <div className="product-price-container">
-        <div className="product-content">
+        <div className="product-content" onClick={() => (window.location.href = product.productURL)}>
           <span className="product-name">{sanitize(product.description)}</span>
           <span className="product-description-summary">
             {product?.specialInstructionList?.map((instruction) => (
@@ -26,7 +26,7 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
             ))}
           </span>
           <span className="product-cashback">
-            <span className="cashback-amount">+ {product.cashback}</span>
+             <span className="cashback-amount">+ {product.cashback}</span>
             <span className="cashback-icon-text">
               <Vift /> Cashback
             </span>

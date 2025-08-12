@@ -96,7 +96,6 @@ export const postOrderSMSPhone = (data: {
   );
 };
 
-
 // Put PrePC
 export const updatePrePC = (data: {
   firstName: string;
@@ -123,7 +122,6 @@ export const updatePrePC = (data: {
     }
   );
 };
-
 
 const getFeedbackPath = (pcId: string | null | undefined) =>
   `/site-surveys/v1/Survey/${pcId}`;

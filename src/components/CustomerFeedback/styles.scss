@@ -127,7 +127,13 @@
   }
   .feedback-form__thanks {
     font-size: 1rem;
-    text-align: left;
+    font-family: Roboto;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
   }
   .feedback-form__review {
     font-size: 0.875rem;

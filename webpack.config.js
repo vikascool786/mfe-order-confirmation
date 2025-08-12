@@ -3,6 +3,8 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const Dotenv = require("dotenv-webpack");
 const { ProvidePlugin } = require("webpack");
 const deps = require("./package.json").dependencies;
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = (env, argv) => {
   const mode = argv.mode || 'development';
@@ -28,14 +30,18 @@ module.exports = (env, argv) => {
       publicPath: isDev
         ? "http://localhost:3011/"
         : `https://${domainEndpoint()}/OrderConfirmation/`,
-      filename: "[name].[contenthash].js",
+      // filename: "[name].[contenthash].js",
       clean: true,
     },
     devtool: isDev ? "source-map" : false,
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },
-
+    optimization: {
+      usedExports: true,
+      minimize: !isDev,
+      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+    },
     devServer: {
       port: 3011,
       historyApiFallback: true,
@@ -44,6 +50,7 @@ module.exports = (env, argv) => {
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
       },
+      allowedHosts: 'all'
     },
 
     module: {
