@@ -1,7 +1,6 @@
 *, body {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: auto !important;
 }
 .app-container-wrapper {
   max-width: 1670px;

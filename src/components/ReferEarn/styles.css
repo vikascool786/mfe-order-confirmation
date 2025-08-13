@@ -30,7 +30,9 @@
 }
 
 .social-pdp__icon-svg--blue-black {
-  fill: black; /* Already overridden inline in your SVG */
+  fill: black;
+  background-color: transparent !important;
+  border: 1px solid #000 !important;
 }
 
 .button-plain {
@@ -81,7 +83,7 @@
 
 .cash-people-container {
   display: flex;
-  flex: 0.4;
+  flex: 1;
   overflow: hidden;
   width: 100%;
   border-top-right-radius: 12px;
@@ -109,6 +111,7 @@
   line-height: 100%;
   letter-spacing: 0%;
 }
+
 .text-container {
   display: flex;
   flex: 0.5;

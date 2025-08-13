@@ -19,8 +19,14 @@
   line-height: 100%;
   letter-spacing: 0;
 }
+
 .section-card-title {
   margin: 12px 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
 }
 
 .section-card-header span {
@@ -77,9 +83,10 @@
     margin-bottom: 1rem;
   }
 
-  .estimated-shipping-date  {
+  .estimated-shipping-date {
     color: #118B2C;
   }
+
   .section-card-header span {
     font-family: Roboto;
     font-weight: 500;

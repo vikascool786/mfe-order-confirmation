@@ -20,6 +20,7 @@
   font-size: 40px;
   line-height: 100%;
   letter-spacing: 0;
+  color: #000;
 }
 
 .order-estimated-delivery {
@@ -50,6 +51,7 @@
   text-decoration: underline solid;
   text-underline-offset: 2px;
   text-decoration-thickness: 0;
+  color: #000;
 }
 
 @media (max-width: 768px) {
