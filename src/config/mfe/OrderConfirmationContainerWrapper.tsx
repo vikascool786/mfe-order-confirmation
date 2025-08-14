@@ -125,7 +125,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `Estimated Delivery Date ${getValidShippingDate(section.shippingDate)}`
+              ? `Estimated Delivery Date ${getValidShippingDate(
+                  section.shippingDate
+                )}`
               : undefined
           }
           rightTextExtraClass={
@@ -272,13 +274,15 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               )}
             </div>
             <Container left={leftContent} right={rightContent} />
-            {isMobile && (
-                <GuestCheckout
-                  email={customerDetails?.data.email_address ?? ""}
-                  sessionId={appConfig.sessionId}
-                  customerDetails={customerDetails as CustomerDetails}
-                  setCustomerDetails={setCustomerDetails}
-                />
+            {customerDetails?.data.pc_types.find(
+              (pcType) => pcType.pc_type == "isEZ"
+            )?.enabled && (
+              <GuestCheckout
+                email={customerDetails?.data.email_address ?? ""}
+                sessionId={appConfig.sessionId}
+                customerDetails={customerDetails as CustomerDetails}
+                setCustomerDetails={setCustomerDetails}
+              />
             )}
             {isMobile && (
               <div className="order-notifications">
@@ -315,7 +319,11 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               </>
             )}
 
-            <Feedback sessionId={appConfig.sessionId} siteId={appConfig.siteId.toString()} pcId={appConfig.pcid} />
+            <Feedback
+              sessionId={appConfig.sessionId}
+              siteId={appConfig.siteId.toString()}
+              pcId={appConfig.pcid}
+            />
           </>
         )}
       </div>

@@ -21,7 +21,6 @@
   cursor: pointer;
 }
 
-
 .social-pdp__icon-svg {
   display: flex;
   width: 20px;
@@ -119,4 +118,49 @@
   flex-direction: column;
   padding: 12px;
   justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .refer-earn-container {
+    flex-direction: column;
+    max-height: none;
+    align-items: center;
+  }
+
+  .image-container {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 0;
+  }
+
+  .cash-people-container {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    width: 100%;
+  }
+
+  .cash-people-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin-top: 0;
+  }
+
+  .text-box-container {
+    width: 100%;
+  }
+
+  .text-container {
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    padding: 12px 8px;
+    width: 100%;
+  }
 }

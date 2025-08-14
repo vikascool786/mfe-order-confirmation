@@ -10,7 +10,7 @@ export const ReferEarn = () => (
       />
     </div>
     <div className="text-container">
-      <div>
+      <div className="text-box-container">
         <div className="core-image">
           <img src="https://images.marketamerica.com/creative/2023/shop-pq4921-core3-health-campaign/usa/lp/c3-primary-logo-white-health.svg?v=1" />
         </div>
