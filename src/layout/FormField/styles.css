@@ -3,7 +3,8 @@
   flex-direction: column;
   width: 100%;
   margin-bottom: 1rem;
-  font-size: 16px;
+  font-size: 1rem;
+  line-height: 20px;
   font-weight: 400;
 }
 
@@ -25,6 +26,7 @@
     right: 10px;
     color: #dd1f1f;
     font-size: 20px;
+    line-height: 23px;
   }
 }
 
@@ -34,7 +36,7 @@
   border-radius: 4px; /* Slightly increased border-radius for modern UI */
   background-color: #ffffff;
   border: 1px solid #000000;
-  font-size: 16px;
+  font-size: 1rem;
   min-height: 46px;
   line-height: 18px;
   font-weight: normal;
@@ -70,7 +72,8 @@
 
 .disable-password-manager {
   font-family: "password";
-  font-size: 16px;
+  font-size: 1rem;
+  line-height: 20px;
   font-weight: 400;
   color: #000000; /* Neutral color for password manager text */
 }
@@ -89,7 +92,8 @@
 
 .field-extra-label {
   font-family: "Inter", sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
+  line-height: 20px;
   font-weight: 300;
   margin-top: 4px;
   margin-bottom: 4px;

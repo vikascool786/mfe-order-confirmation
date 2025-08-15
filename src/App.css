@@ -145,7 +145,7 @@
   font-weight: 300;
   font-size: 27px;
   line-height: 100%;
-  letter-spacing: 0%;
+  
 }
 
 /* Order Total section for mobile view */
@@ -159,7 +159,7 @@
     font-weight: 300;
     font-size: 18px;
     line-height: 100%;
-    letter-spacing: 0%;
+    
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 2rem;
   }
@@ -170,7 +170,7 @@
     font-style: Light;
     font-size: 18px;
     line-height: 100%;
-    letter-spacing: 0%;
+    
     color: #000;
   }
   .order-notifications {
