@@ -123,4 +123,4 @@ const App: React.FC = () => {
 };
 
 export default App;
-createRoot(document.getElementById("app")!).render(<App />);
+createRoot(document.getElementById("root")!).render(<App />);
