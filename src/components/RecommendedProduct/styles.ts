@@ -1,4 +1,6 @@
-.recommended-product-card {
+import styled from "styled-components";
+
+export const RecommendedProductCard = styled.div`
   padding: 1.5rem;
   min-width: 16.328rem;
   background-color: #fff;
@@ -10,28 +12,32 @@
   gap: 0.5rem;
   height: 32.625rem;
   overflow: hidden;
-}
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 
-@media (max-width: 768px) {
-  .recommended-product-card {
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  @media (max-width: 768px) {
     width: 16.328rem;
   }
-}
+`;
 
-.product-image {
+export const ProductImage = styled.img`
   width: 100%;
   object-fit: contain;
-}
+`;
 
-.product-info {
+export const ProductInfo = styled.div`
   display: flex;
   flex: 1;
   justify-content: space-between;
   flex-direction: column;
   gap: 0.25rem;
-}
+`;
 
-.product-title {
+export const ProductTitle = styled.h3`
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 19.92px;
@@ -39,9 +45,9 @@
   letter-spacing: 0;
   white-space: normal;
   word-break: break-word;
-}
+`;
 
-.product-subtitle {
+export const ProductSubtitle = styled.h4`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 14.06px;
@@ -51,9 +57,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
+`;
 
-.product-description {
+export const ProductDescription = styled.p`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 11.72px;
@@ -68,31 +74,22 @@
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-}
+`;
 
-.product-footer {
+export const ProductFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 0.5rem;
-}
+`;
 
-.product-price {
+export const ProductPrice = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
-}
+`;
 
-.product-rating {
+export const ProductRating = styled.span`
   font-size: 0.85rem;
   color: #fbc02d;
-}
-
-.recommended-product-card {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-.recommended-product-card::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
-}
+`;

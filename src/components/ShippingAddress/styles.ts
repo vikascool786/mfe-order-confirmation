@@ -1,4 +1,6 @@
-.address-container {
+import styled from "styled-components";
+
+export const AddressContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
@@ -7,8 +9,9 @@
   font-size: 18px;
   line-height: 100%;
   letter-spacing: 0;
-}
-.address-text {
+`;
+
+export const AddressText = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
@@ -17,4 +20,4 @@
   font-size: 18px;
   line-height: 100%;
   letter-spacing: 0;
-}
+`;

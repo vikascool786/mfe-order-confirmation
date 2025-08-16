@@ -1,8 +1,18 @@
 import React from "react";
-import "./styles.css";
 import sanitize from 'sanitize-html'
 import { IRecommendedProduct } from "./types";
 import Star from "../../assets/svgs/Star";
+import {
+  RecommendedProductCard,
+  ProductImage,
+  ProductInfo,
+  ProductTitle,
+  ProductSubtitle,
+  ProductDescription,
+  ProductFooter,
+  ProductPrice,
+  ProductRating,
+} from "./styles";
 
 interface RecommendedProductProps {
   product: IRecommendedProduct;
@@ -15,15 +25,15 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
 }) => {
   const {baseUrl, AltText, title, description, price, rating, department} = product;
   return (
-    <div className="recommended-product-card">
-      <img src={baseUrl} alt={AltText} className="product-image" />
-      <div className="product-info">
-        <h4 className="product-title">{sanitize(title)}</h4>
-        <p className="product-subtitle">{sanitize(department)}</p>
-        <p className="product-description">{sanitize(description)}</p>
-        <div className="product-footer">
-          <span className="product-price">{currency}{price.toFixed(2)}</span>
-          <span className="product-rating">
+    <RecommendedProductCard>
+      <ProductImage src={baseUrl} alt={AltText} />
+      <ProductInfo>
+        <ProductTitle>{sanitize(title)}</ProductTitle>
+        <ProductSubtitle>{sanitize(department)}</ProductSubtitle>
+        <ProductDescription>{sanitize(description)}</ProductDescription>
+        <ProductFooter>
+          <ProductPrice>{currency}{price.toFixed(2)}</ProductPrice>
+          <ProductRating>
             {[...Array(5)].map((_, index) => {
               const filledPercent = Math.min(Math.max((parseFloat(rating) - index) * 100, 0), 100);
               return (
@@ -46,10 +56,10 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
                 </span>
               );
             })}
-          </span>
-        </div>
-      </div>
-    </div>
+          </ProductRating>
+        </ProductFooter>
+      </ProductInfo>
+    </RecommendedProductCard>
   );
 };
 
