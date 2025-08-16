@@ -15,9 +15,9 @@ const ShippingAddress: React.FC<AddressProps> = ({
   phone,
 }) => {
   return (
-    <div className='address-container'>
+    <div className='oc-shipping-address-container'>
       <span>Shipping Address</span>
-      <div className='address-text'>
+      <div className='oc-shipping-address-text'>
       <span>{name}</span>
       <span>{address}</span>
       <span>{cityStateZip}</span>

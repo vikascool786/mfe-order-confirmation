@@ -1,4 +1,4 @@
-.product-container {
+.oc-ps-container {
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -7,13 +7,13 @@
   cursor: pointer;
 }
 
-.product-container img {
+.oc-ps-container img {
   width: 8.32rem;
   height: 7.77rem;
   object-fit: cover;
 }
 
-.product-price-container {
+.oc-ps-price-container {
   display: flex;
   gap: 0.5rem;
   align-items: start;
@@ -21,7 +21,7 @@
   width: 100%;
 }
 
-.product-content {
+.oc-ps-content {
   display: flex;
   gap: 0.5rem;
   align-items: start;
@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 
-.product-content-price {
+.oc-ps-content-price {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -40,7 +40,7 @@
   letter-spacing: 0;
 }
 
-.product-name {
+.oc-ps-name {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -48,7 +48,7 @@
   letter-spacing: 0;
 }
 
-.product-description-summary {
+.oc-ps-description-summary {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -59,13 +59,13 @@
   letter-spacing: 0;
 }
 
-.product-cashback {
+.oc-ps-cashback {
   display: flex;
   align-items: center;
   flex-direction: row;
 }
 
-.cashback-amount {
+.oc-ps-cashback-amount {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 14px;
@@ -73,7 +73,7 @@
   letter-spacing: 0;
 }
 
-.product-quantity {
+.oc-ps-quantity {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -81,7 +81,7 @@
   letter-spacing: 0;
 }
 
-.cashback-icon-text {
+.oc-ps-cashback-icon-text {
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -1,4 +1,4 @@
-.order-container {
+.oc-summary-order-container {
   display: flex;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
@@ -10,40 +10,38 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.order-text {
+.oc-summary-order-text {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.pt {
+.oc-summary-pt {
   padding-top: 1rem;
 }
 
-.item-price {
+.oc-summary-item-price {
   font-family: Roboto;
   font-weight: 400;
-
   font-style: Medium;
   font-size: 1rem;
   line-height: 100%;
-  
-
-  .cashback {
-    font-family: Roboto;
-    
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 20px;
-    
-  }
-
-  .green {
-    color: rgba(17, 136, 99, 1);
-  }
 }
 
-.item-row-total {
+.oc-summary-cashback {
+  font-family: Roboto;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 20px;
+
+}
+
+.oc-summary-green {
+  color: rgba(17, 136, 99, 1);
+}
+
+
+.oc-summary-item-row-total {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -51,24 +49,24 @@
   font-family: Roboto;
   font-size: 20px;
   line-height: 23px;
-  
-
-  .single {
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .multiple {
-    padding-top: 1rem;
-    font-weight: 500;
-  }
 }
 
-.top-border {
+.oc-summary-single {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.oc-summary-multiple {
+  padding-top: 1rem;
+  font-weight: 500;
+}
+
+
+.oc-summary-top-border {
   border-top: 0.5px solid rgba(147, 147, 147, 1);
 }
 
-.cashback-container {
+.oc-summary-cashback-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,54 +82,54 @@
   letter-spacing: 0;
 }
 
-.cashback-text {
+.oc-summary-cashback-text {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.vift-icon {
+.oc-summary-vift-icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.item-container {
+.oc-summary-item-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.item-row {
+.oc-summary-item-row {
   flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-family: Roboto;
   font-weight: 400;
-  
+
   font-size: 1rem;
   line-height: 20px;
-  
+
 }
 
-.item-header {
+.oc-summary-item-header {
   font-family: Roboto;
   font-weight: 500;
   font-size: 1rem;
   line-height: 20px;
-  
+
   margin-top: 20px;
 }
 
-.bold {
+.oc-summary-bold {
   font-weight: 500;
 }
 
-.normal {
+.oc-summary-normal {
   font-weight: 400;
 }
 
-.background {
+.oc-summary-background {
   background-color: rgba(240, 241, 247, 1);
 }

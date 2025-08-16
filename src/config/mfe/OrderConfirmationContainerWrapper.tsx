@@ -161,7 +161,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const rightContent = (
     <>
       {hasCore3Subscription && (
-        <SectionCard title="Refer and Earn $25 - $30" extraClass="no-padding">
+        <SectionCard title="Refer and Earn $25 - $30" extraClass="oc-no-padding">
           <ReferEarn />
         </SectionCard>
       )}
@@ -187,9 +187,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
       {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
         <SectionCard title="VIFT Balance" gradient>
-          <div className="vift-tag">
+          <div className="oc-vift-tag">
             <VText />
-            <span className="vift-cb">${cashback?.cashbackAvail}</span>
+            <span className="oc-vift-cb">${cashback?.cashbackAvail}</span>
           </div>
         </SectionCard>
       )}
@@ -222,13 +222,13 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   }
 
   return (
-    <div className="app-container">
-      <div className="app-container-wrapper">
+    <div className="oc-app-container">
+      <div className="oc-app-container-wrapper">
         {/* Show order total mobile only on mobile screens */}
         {isMobile && (
-          <div className="order-total-mobile">
+          <div className="oc-order-total-mobile">
             <span>Order Total</span>
-            <span className="order-total-amount">
+            <span className="oc-order-total-amount">
               {orderDetails?.orderTotal &&
               orderDetails.orderTotal.toString().trim() !== ""
                 ? orderDetails.currencySymbol +
@@ -257,7 +257,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               />
               {/* SHOW WHEN HERE DESKTOP VIEW */}
               {!isMobile && (
-                <div className="order-notifications">
+                <div className="oc-order-notifications">
                   <Notification
                     icon="ChangeCircle"
                     title="Subscribe & Save 10%"
@@ -285,7 +285,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               />
             )}
             {isMobile && (
-              <div className="order-notifications">
+              <div className="oc-order-notifications">
                 <Notification
                   icon="ChangeCircle"
                   title="Subscribe & Save 10%"
@@ -299,15 +299,15 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 />
               </div>
             )}
-            <SectionCard title="Health Quiz" extraClass="no-padding">
+            <SectionCard title="Health Quiz" extraClass="oc-no-padding">
               <HealthQuiz />
             </SectionCard>
             {recommendations && (
               <>
-                <div className="recommended-products-header">
+                <div className="oc-recommended-products-header">
                   <SectionCard title="Our Top Product Recommendations" />
                 </div>
-                <div className="recommended-products-container">
+                <div className="oc-recommended-products-container">
                   {recommendations.map((product) => (
                     <RecommendedProduct
                       product={product}

@@ -11,14 +11,14 @@ const SocialShareButtons: React.FC = () => {
   );
 
   return (
-    <div className="qa-social-share social-pdp social-order-confirmation social-pdp--wrap">
+    <div className="oc-re-qa-social-share oc-re-social-pdp oc-re-social-order-confirmation oc-re-social-pdp--wrap">
       {/* Email */}
       <a
-        className="qa-email js-email-share social-pdp__button button-plain"
+        className="oc-re-qa-email js-email-share oc-re-social-pdp__button oc-re-button-plain"
         href={`mailto:?subject=I think you’ll love this product from SHOP.COM!&body=${emailBody}`}
         title="Share via Email"
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {/* Email SVG */}
           <svg
             style={{ fill: "#000" }}
@@ -32,12 +32,12 @@ const SocialShareButtons: React.FC = () => {
 
       {/* TikTok */}
       <button
-        className="qa-tiktok js-page-link-share-btn social-pdp__button button-plain"
+        className="oc-re-qa-tiktok js-page-link-share-btn oc-re-social-pdp__button oc-re-button-plain"
         title="Share on TikTok!"
         type="button"
         data-href={`${SOCIAL_URL}TikTok`}
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {/* TikTok SVG */}
           <svg
             style={{ fill: "#000" }}
@@ -51,12 +51,12 @@ const SocialShareButtons: React.FC = () => {
 
       {/* Instagram */}
       <button
-        className="qa-instagram js-page-link-share-btn social-pdp__button button-plain"
+        className="oc-re-qa-instagram js-page-link-share-btn oc-re-social-pdp__button oc-re-button-plain"
         title="Share on Instagram!"
         type="button"
         data-href={`${SOCIAL_URL}Instagram`}
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {" "}
           <svg
             style={{ fill: "#000" }}
@@ -72,12 +72,12 @@ const SocialShareButtons: React.FC = () => {
 
       {/* Facebook */}
       <button
-        className="qa-facebook js-facebook-share social-pdp__button button-plain"
+        className="oc-re-qa-facebook js-facebook-share oc-re-social-pdp__button oc-re-button-plain"
         title="Share via Facebook"
         type="button"
         data-href={`${SOCIAL_URL}Facebook`}
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {/* Facebook SVG */}
           <svg
             style={{ fill: "#000" }}
@@ -91,11 +91,11 @@ const SocialShareButtons: React.FC = () => {
 
       {/* Twitter */}
       <button
-        className="qa-twitter js-twitter-share social-pdp__button button-plain"
+        className="oc-re-qa-twitter js-twitter-share oc-re-social-pdp__button oc-re-button-plain"
         title="Share via Twitter"
         type="button"
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {/* Twitter SVG */}
           <svg
             style={{ fill: "#000" }}
@@ -109,11 +109,11 @@ const SocialShareButtons: React.FC = () => {
 
       {/* Pinterest */}
       <button
-        className="qa-pinterest js-pinterest-share social-pdp__button button-plain"
+        className="oc-re-qa-pinterest js-pinterest-share oc-re-social-pdp__button oc-re-button-plain"
         title="Share via Pinterest"
         type="button"
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {/* Pinterest SVG */}
           <svg
             style={{ fill: "#000" }}
@@ -127,12 +127,12 @@ const SocialShareButtons: React.FC = () => {
 
       {/* Copy Link */}
       <button
-        className="qa-page-share js-page-link-share-btn social-pdp__button button-plain"
+        className="oc-re-qa-page-share js-page-link-share-btn oc-re-social-pdp__button oc-re-button-plain"
         title="Share this product!"
         type="button"
         data-href={pageUrl}
       >
-        <span className="social-pdp__icon-svg social-pdp__icon-svg--blue-black">
+        <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           <svg
             style={{ fill: "#000" }}
             version="1.1"
@@ -147,14 +147,14 @@ const SocialShareButtons: React.FC = () => {
             <style type="text/css">
               {`.st0{fill-rule:evenodd;clip-rule:evenodd;fill:none;}`}
             </style>
-            <rect className="st0" width="2040" height="2040"></rect>
+            <rect className="oc-re-st0" width="2040" height="2040"></rect>
             <g>
               {" "}
               <path d="M541.7,1938c-117.5-0.1-227.9-45.9-311-129c-83.1-83-128.8-193.5-128.8-310.9s45.8-227.9,128.8-310.9l270.6-270.6 c16.8-16.8,39.1-26,62.8-26s46,9.2,62.8,26s26,39.1,26,62.8s-9.3,46-26,62.8l-270.6,270.6c-49.5,49.5-76.8,115.3-76.8,185.3 s27.3,135.8,76.8,185.2c49.5,49.5,115.4,76.9,185.5,76.9c70.2,0,135.9-27.2,185.3-76.6l350.9-350.9 c49.6-49.6,76.8-115.4,76.5-185.2c0-70.2-27.3-136-76.8-185.6c-9.3-9.3-20.3-18.4-34.7-28.5c-19.4-13.7-32.2-34.1-36.3-57.5 c-4-23.4,1.3-46.9,15-66.3c16.6-23.5,43.8-37.5,72.6-37.5c18.4,0,36.2,5.6,51.3,16.3c22.9,16.2,41.2,31.4,57.7,48 c83.1,83.1,128.9,193.5,128.9,310.9c0.4,117.3-45.3,227.9-128.6,311.2l-350.9,350.9c-83,83-193.4,128.7-310.8,128.7L541.7,1938 L541.7,1938z"></path>{" "}
               <path d="M945.5,1268c-18.4,0-36.1-5.6-51.2-16.3c-22.9-16.2-41.2-31.4-57.7-48c0,0-3.5-3.7-4-4.4c-9.4-9.8-17.9-19-25.7-28.6 c-2-2.5-3.9-5-5.7-7.6l-2.5-3.4c-6.7-8.7-12.6-16.5-18-24.6c-1.2-1.8-2.3-3.6-3.3-5.4c-7.5-11.9-13.6-22-19.1-32.5 c-33.3-63.9-50.4-134.1-50.4-204.5c-0.4-117.3,45.3-227.9,128.6-311.2l350.9-350.9c83-83,193.4-128.7,310.8-128.7 c117.9,0.1,228.3,45.9,311.4,129c83.1,83,128.8,193.5,128.8,310.9s-45.8,227.9-128.8,310.9L1539,1123.3c-16.8,16.8-39.1,26-62.8,26 c-23.7,0-46-9.2-62.8-26s-26-39.1-26-62.8c0-23.7,9.3-46,26-62.8L1684,727.1c49.5-49.5,76.8-115.3,76.8-185.3 S1733.5,406,1684,356.6c-49.5-49.5-115.4-76.9-185.5-76.9c-69.4,0-134.6,26.7-183.9,75.2L962,707.3 c-74.1,74.1-96.8,185.1-57.9,282.8c3.2,7.9,6.2,14.3,9.5,20.7l1.6,3.4c2.8,5.5,5.7,10,8.5,14.6l5.1,8.6c2.2,3.3,4.6,6.4,7.1,9.6 l5.2,7c1.1,1.5,2.1,3,3.3,4.4c4.3,5.2,9,10.2,13.7,15.2l2.9,3.2c10.4,10.6,21.4,19.6,35.8,29.7c40,28.3,49.5,83.9,21.2,123.9 C1001.5,1253.9,974.4,1268,945.5,1268z"></path>{" "}
             </g>
           </svg>
-           
+          
         </span>
       </button>
     </div>

@@ -1,11 +1,11 @@
-.order-header-container {
+.oc-order-header-container {
   display: flex;
   flex: 2.5;
   gap: 16px;
   flex-direction: column;
 }
 
-.order-id {
+.oc-order-id {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 20px;
@@ -14,7 +14,7 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.order-heading {
+.oc-order-heading {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 40px;
@@ -23,7 +23,7 @@
   color: #000;
 }
 
-.order-estimated-delivery {
+.oc-order-estimated-delivery {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 20px;
@@ -32,7 +32,7 @@
   color: #2a876a;
 }
 
-.order-confirmation {
+.oc-order-confirmation {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 19px;
@@ -41,7 +41,7 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.order-confirmation-print {
+.oc-order-confirmation-print {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: normal;
@@ -55,13 +55,13 @@
 }
 
 @media (max-width: 768px) {
-  .order-header-container {
+  .oc-order-header-container {
     display: flex;
     flex: 2.5;
     gap: 12px;
     flex-direction: column;
   }
-  .order-id {
+  .oc-order-id {
     font-family: Roboto;
     font-weight: 300;
     font-style: Light;
@@ -71,7 +71,7 @@
     margin-bottom: 8px;
   }
 
-  .order-heading {
+  .oc-order-heading {
     font-family: Roboto;
     font-weight: 300;
     font-style: Light;
@@ -81,7 +81,7 @@
     margin-bottom: 11px;
   }
 
-  .order-estimated-delivery {
+  .oc-order-estimated-delivery {
     font-family: Roboto;
     font-weight: 400;
     
@@ -90,7 +90,7 @@
     
   }
 
-  .order-confirmation {
+  .oc-order-confirmation {
     font-family: Roboto;
     font-weight: 300;
     font-style: Light;
@@ -99,7 +99,7 @@
     
   }
 
-  .order-confirmation-print {
+  .oc-order-confirmation-print {
     font-family: Roboto;
     font-weight: 300;
     font-style: Light;

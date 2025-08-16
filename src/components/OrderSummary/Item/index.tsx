@@ -13,12 +13,12 @@ interface SummaryItemProps {
 export const Item: React.FC<SummaryItemProps> = ({ invoice, currencySymbol, multipleShipments, bordersForSummary }) => {
   const summaryItems = getOrderSummaryBreakdown(invoice);
   return (
-    <div className={`item-container ${bordersForSummary}`}>
-      {multipleShipments&& <p className="item-header">{invoice.storeName} Shipment</p>}
+    <div className={`oc-summary-item-container ${bordersForSummary}`}>
+      {multipleShipments&& <p className="oc-summary-item-header">{invoice.storeName} Shipment</p>}
       {Object.entries(summaryItems).map((item) => (
-        <div className="item-row">
-          <span className={`item-price`}>{item[0]}</span>
-          <span className={`item-price`}>{currencySymbol}{item[1].toFixed(2)}</span>
+        <div className="oc-summary-item-row">
+          <span className={`oc-summary-item-price`}>{item[0]}</span>
+          <span className={`oc-summary-item-price`}>{currencySymbol}{item[1].toFixed(2)}</span>
         </div>
       ))}
     </div>

@@ -1,4 +1,4 @@
-.notification-container {
+.oc-notification-container {
   border-radius: 1.25rem;
   display: flex;
   flex-direction: row;
@@ -8,7 +8,7 @@
   border: 0.2px solid #79787833;
 }
 
-.notification-border {
+.oc-notification-border {
   padding: 18.77px 9px;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
   background-color: rgba(83, 166, 198, 1);
 }
 
-.notification-content {
+.oc-notification-content {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -33,7 +33,7 @@
 }
 
 /* Add this class to elements that need underline styling */
-.notification-content-underline {
+.oc-notification-content-underline {
   font-weight: 300;
   font-style: normal;
   font-size: 17px;
@@ -45,7 +45,7 @@
 }
 
 @media (max-width: 768px) {
-  .notification-content {
+  .oc-notification-content {
     flex-direction: column;
     justify-content: space-between;
     font-family: Roboto;
@@ -55,7 +55,7 @@
     line-height: 23px;
     
   }
-  .notification-content-underline {
+  .oc-notification-content-underline {
     font-family: Roboto;
     font-weight: 300;
     font-style: Light;

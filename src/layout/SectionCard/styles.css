@@ -1,15 +1,15 @@
-.section-card {
+.oc-section-card {
   margin-bottom: 1.5rem;
 }
 
-.section-card-right-text {
+.oc-section-card-right-text {
   font-size: 14px;
   color: #333;
   align-self: flex-start;
   padding-bottom: 1rem;
 }
 
-.section-card-header {
+.oc-section-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,7 @@
   letter-spacing: 0;
 }
 
-.section-card-title {
+.oc-section-card-title {
   margin: 12px 0;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -29,7 +29,7 @@
   letter-spacing: 0;
 }
 
-.section-card-header span {
+.oc-section-card-header span {
   font-size: 0.95rem;
   color: #333;
   font-family: "Roboto", sans-serif;
@@ -39,7 +39,7 @@
   letter-spacing: 0;
 }
 
-.section-card-body {
+.oc-section-card-body {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -49,7 +49,7 @@
   box-shadow: 0px 0px 5px 1px #79787840;
 }
 
-.section-card-gradient {
+.oc-section-card-gradient {
   border: 1px solid transparent;
   background-image: linear-gradient(white, white),
     linear-gradient(to right, rgba(114, 188, 129, 1), rgba(9, 167, 157, 1));
@@ -57,7 +57,7 @@
   background-clip: padding-box, border-box;
 }
 
-.estimated-shipping-date {
+.oc-estimated-shipping-date {
   font-family: Roboto;
   font-weight: 400;
   font-size: 14px;
@@ -66,12 +66,12 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.estimated-shipping-date-color {
+.oc-estimated-shipping-date-color {
   color: rgba(17, 139, 44, 1);
 }
 
 @media (max-width: 768px) {
-  .section-card-header {
+  .oc-section-card-header {
     flex-direction: column;
     align-items: flex-start;
     font-family: Roboto;
@@ -79,22 +79,19 @@
     font-style: Medium;
     font-size: 20px;
     line-height: 23px;
-    
     margin-bottom: 1rem;
   }
 
-  .estimated-shipping-date {
+  .oc-estimated-shipping-date {
     color: #118B2C;
   }
 
-  .section-card-header span {
+  .oc-section-card-header span {
     font-family: Roboto;
     font-weight: 500;
     font-style: Medium;
     font-size: 20px;
     line-height: 23px;
-    
-
     align-self: flex-start;
     padding-bottom: 1rem;
   }

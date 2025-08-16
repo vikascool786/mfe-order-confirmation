@@ -6,14 +6,14 @@ interface HealthQuizProps {}
 
 const HealthQuiz: React.FC<HealthQuizProps> = ({}) => {
   return (
-    <div className="health-quiz-container">
-      <div className="health-container">
-        <div className="heading">
+    <div className="oc-health-quiz-container">
+      <div className="oc-health-container">
+        <div className="oc-health-heading">
           CHANGE your health
-          <div className="subheading">in 60 seconds</div>
+          <div className="oc-health-subheading">in 60 seconds</div>
         </div>
         <div
-        className="button-text"
+        className="oc-health-button-text"
           onClick={() =>
             (window.location.href =
               "https://www.shop.com/assessment/health?hsh=4")
@@ -22,8 +22,8 @@ const HealthQuiz: React.FC<HealthQuizProps> = ({}) => {
           Take Quiz
         </div>
       </div>
-      <div className="health-image-container">
-        <img className="img" src={HealthQuizImage} alt="Health Quiz" />
+      <div className="oc-health-image-container">
+        <img className="oc-health-img" src={HealthQuizImage} alt="Health Quiz" />
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ interface PaymentMethodProps {
 
 const PaymentMethod: React.FC<PaymentMethodProps> = ({ methods }) => {
   return (
-    <div className="payment-container">
+    <div className="oc-payment-container">
       <span>Payment Method</span>
-      <div className="payment-text">
+      <div className="oc-payment-text">
        {Array.from(methods).map(method => <span>{method}</span>) }
       </div>
     </div>

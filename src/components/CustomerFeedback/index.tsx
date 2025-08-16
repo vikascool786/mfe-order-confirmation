@@ -61,7 +61,7 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
   };
 
   return (
-    <div className="feedback-form" ref={feedbackFormRef}>
+    <div className="oc-feedback-form" ref={feedbackFormRef}>
       {!isFeebbackSubmitted ? (
         <>
           <p className="feedback-form__text">

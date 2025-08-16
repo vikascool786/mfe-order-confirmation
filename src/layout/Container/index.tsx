@@ -7,9 +7,9 @@ interface ContainerProps {
 
 const Container = ({ left, right }: ContainerProps) => {
   return (
-    <div className="layout-grid">
-      <div className="left-column">{left}</div>
-      <div className="right-column">{right}</div>
+    <div className="oc-layout-grid">
+      <div className="oc-left-column">{left}</div>
+      <div className="oc-right-column">{right}</div>
     </div>
   );
 };

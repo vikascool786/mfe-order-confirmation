@@ -23,14 +23,14 @@ const Notification: React.FC<NotificationProps> = ({
   );
 
   return (
-    <div className="notification-container">
-      <div className="notification-border">
+    <div className="oc-notification-container">
+      <div className="oc-notification-border">
         <React.Suspense fallback={<span />}>
           <IconComponent />
         </React.Suspense>
       </div>
       <div
-        className="notification-content"
+        className="oc-notification-content"
         onClick={() => {
           if (email) {
             window.location.href = `mailto:${email}`;
@@ -42,7 +42,7 @@ const Notification: React.FC<NotificationProps> = ({
         }}
       >
         <span>{title}</span>
-        <span className="notification-content-underline">{message}</span>
+        <span className="oc-notification-content-underline">{message}</span>
       </div>
     </div>
   );

@@ -15,22 +15,22 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
 }) => {
   const {baseUrl, AltText, title, description, price, rating, department} = product;
   return (
-    <div className="recommended-product-card">
-      <img src={baseUrl} alt={AltText} className="product-image" />
-      <div className="product-info">
-        <h4 className="product-title">{sanitize(title)}</h4>
-        <p className="product-subtitle">{sanitize(department)}</p>
-        <p className="product-description">{sanitize(description)}</p>
-        <div className="product-footer">
-          <span className="product-price">{currency}{price.toFixed(2)}</span>
-          <span className="product-rating">
+    <div className="oc-recom-product-card">
+      <img src={baseUrl} alt={AltText} className="oc-recom-product-image" />
+      <div className="oc-recom-product-info">
+        <h4 className="oc-recom-product-title">{sanitize(title)}</h4>
+        <p className="oc-recom-product-subtitle">{sanitize(department)}</p>
+        <p className="oc-recom-product-description">{sanitize(description)}</p>
+        <div className="oc-recom-product-footer">
+          <span className="oc-recom-product-price">{currency}{price.toFixed(2)}</span>
+          <span className="oc-recom-product-rating">
             {[...Array(5)].map((_, index) => {
               const filledPercent = Math.min(Math.max((parseFloat(rating) - index) * 100, 0), 100);
               return (
-                <span key={index} className="star-wrapper">
+                <span key={index} className="oc-recom-star-wrapper">
                   <Star />
                   <span
-                    className="star-fill"
+                    className="oc-recom-star-fill"
                     style={{
                       width: `${filledPercent}%`,
                       position: 'absolute',

@@ -1,4 +1,4 @@
-.field-item-container {
+.oc-field-item-container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,63 +8,79 @@
   font-weight: 400;
 }
 
-.required-field::after {
+.oc-required-field::after {
   content: "*";
-  color: #f44336; /* Use a brighter red for visibility */
+  color: #f44336;
+  /* Use a brighter red for visibility */
   margin-left: 4px;
   font-weight: bold;
 }
 
-.input-wrapper {
+.oc-input-wrapper {
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
-
-  .error-icon {
-    position: absolute;
-    right: 10px;
-    color: #dd1f1f;
-    font-size: 20px;
-    line-height: 23px;
-  }
 }
 
-.input-container {
-  padding: 0 8px; /* Increased padding for better usability */
+.oc-input-wrapper .oc-error-icon {
+  position: absolute;
+  right: 10px;
+  color: #dd1f1f;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+
+.oc-input-container {
+  padding: 0 8px;
+  /* Increased padding for better usability */
   vertical-align: middle;
-  border-radius: 4px; /* Slightly increased border-radius for modern UI */
+  border-radius: 4px;
+  /* Slightly increased border-radius for modern UI */
   background-color: #ffffff;
   border: 1px solid #000000;
   font-size: 1rem;
   min-height: 46px;
   line-height: 18px;
   font-weight: normal;
-
-  &:focus {
-    border-color: #4a90e2; /* Highlight border on focus */
-    outline: none;
-    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5); /* Subtle focus glow */
-  }
-
-  &.error-border {
-    border-color: #dd1f1f !important;
-  }
 }
 
-.error-message {
+.oc-input-container :focus {
+  border-color: #4a90e2;
+  /* Highlight border on focus */
+  outline: none;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+  /* Subtle focus glow */
+}
+
+.oc-input-container .error-border {
+  border-color: #dd1f1f !important;
+}
+
+
+.oc-error-message {
   display: flex;
   align-items: center;
-  background-color: #f0f1f7; /* Light red background */
-  border: 1px solid #79787880; /* Subtle red border */
-  border-radius: 8px; /* Rounded corners for modern look */
-  padding: 8px 12px; /* Add padding for better spacing */
-  color: black; /* Dark red text color for contrast */
+  background-color: #f0f1f7;
+  /* Light red background */
+  border: 1px solid #79787880;
+  /* Subtle red border */
+  border-radius: 8px;
+  /* Rounded corners for modern look */
+  padding: 8px 12px;
+  /* Add padding for better spacing */
+  color: black;
+  /* Dark red text color for contrast */
   font-family: "Inter", sans-serif;
-  font-size: 14px; /* Adjust text size */
-  font-weight: 400; /* Regular weight for readability */
-  margin-top: 8px; /* Add spacing above the message */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+  font-size: 14px;
+  /* Adjust text size */
+  font-weight: 400;
+  /* Regular weight for readability */
+  margin-top: 8px;
+  /* Add spacing above the message */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for elevation */
   position: relative;
   min-height: 1.8rem;
   line-height: 18px;
@@ -75,29 +91,34 @@
   font-size: 1rem;
   line-height: 20px;
   font-weight: 400;
-  color: #000000; /* Neutral color for password manager text */
+  color: #000000;
+  /* Neutral color for password manager text */
 }
 
-.error-message::before {
+.oc-error-message::before {
   content: "";
   display: block;
-  width: 6px; /* Width of the left red bar */
+  width: 6px;
+  /* Width of the left red bar */
   height: 100%;
-  background-color: #d32f2f; /* Red bar color */
-  border-radius: 4px 0 0 4px; /* Round the left side of the bar */
+  background-color: #d32f2f;
+  /* Red bar color */
+  border-radius: 4px 0 0 4px;
+  /* Round the left side of the bar */
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.field-extra-label {
+.oc-field-extra-label {
   font-family: "Inter", sans-serif;
   font-size: 1rem;
   line-height: 20px;
   font-weight: 300;
   margin-top: 4px;
   margin-bottom: 4px;
-  color: #666666; /* Neutral color for extra labels */
+  color: #666666;
+  /* Neutral color for extra labels */
 }
 
 @font-face {

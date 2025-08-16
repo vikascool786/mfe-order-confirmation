@@ -10,12 +10,12 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
   image,
 }) => {
   return (
-    <div className="product-container">
+    <div className="oc-ps-container">
       <img src={image} />
-      <div className="product-price-container">
-        <div className="product-content" onClick={() => (window.location.href = product.productURL)}>
-          <span className="product-name">{sanitize(product.description)}</span>
-          <span className="product-description-summary">
+      <div className="oc-ps-price-container">
+        <div className="oc-ps-content" onClick={() => (window.location.href = product.productURL)}>
+          <span className="oc-ps-name">{sanitize(product.description)}</span>
+          <span className="oc-ps-description-summary">
             {product?.specialInstructionList?.map((instruction) => (
               <span>
                 {`${getSpecialInstructionMessage(
@@ -25,15 +25,15 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
               </span>
             ))}
           </span>
-          <span className="product-cashback">
-             <span className="cashback-amount">+ {product.cashback}</span>
-            <span className="cashback-icon-text">
+          <span className="oc-ps-cashback">
+             <span className="oc-ps-cashback-amount">+ {product.cashback}</span>
+            <span className="oc-ps-cashback-icon-text">
               <Vift /> Cashback
             </span>
           </span>
-          <span className="product-quantity">Quantity: {product.quantity}</span>
+          <span className="oc-ps-quantity">Quantity: {product.quantity}</span>
         </div>
-        <div className="product-content-price">${product.price.toFixed(2)}</div>
+        <div className="oc-ps-content-price">${product.price.toFixed(2)}</div>
       </div>
     </div>
   );

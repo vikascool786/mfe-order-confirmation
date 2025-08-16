@@ -39,10 +39,10 @@ export const FormField: React.FC<IFormFieldProps> = ({
   ...props
 }) => {
   const shouldAddInputContainer =
-    type !== "checkbox" && !className?.includes("input-container");
+    type !== "checkbox" && !className?.includes("oc-input-container");
   const baseClasses = [
     qaTag,
-    shouldAddInputContainer ? "input-container" : "",
+    shouldAddInputContainer ? "oc-input-container" : "",
     errorMessage ? "error-border" : "",
     props.disablePasswordManager ? "disable-password-manager" : "",
     className,
@@ -51,13 +51,13 @@ export const FormField: React.FC<IFormFieldProps> = ({
     .join(" ");
 
   return (
-    <div className="field-item-container">
+    <div className="oc-field-item-container">
       {label && (
-        <label htmlFor={formName} className={required ? "required-field" : ""}>
+        <label htmlFor={formName} className={required ? "oc-required-field" : ""}>
           {label}
         </label>
       )}
-      <div className="input-wrapper">
+      <div className="oc-input-wrapper">
         <input
           className={baseClasses}
           type={type}
@@ -76,11 +76,11 @@ export const FormField: React.FC<IFormFieldProps> = ({
           }}
         />
         {errorMessage && (
-          <span className="material-symbols-outlined error-icon">error</span>
+          <span className="oc-material-symbols-outlined oc-error-icon">error</span>
         )}
       </div>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
-      {extraLabel && <div className="field-extra-label">{extraLabel}</div>}
+      {errorMessage && <div className="oc-error-message">{errorMessage}</div>}
+      {extraLabel && <div className="oc-field-extra-label">{extraLabel}</div>}
       {renderCheckBox}
     </div>
   );

@@ -2,11 +2,11 @@ import React from "react";
 import "./styles.css";
 
 export const Spinner = () => (
-  <div className="checkout-spinner-wrapper">
-    <svg className="checkout-spinner" viewBox="0 0 50 50">
+  <div className="oc-spinner-wrapper">
+    <svg className="oc-spinner" viewBox="0 0 50 50">
       <defs>
         <linearGradient
-          id="checkout-spinner-gradient"
+          id="oc-spinner-gradient"
           x1="0%"
           y1="0%"
           x2="100%"
@@ -17,12 +17,12 @@ export const Spinner = () => (
         </linearGradient>
       </defs>
       <circle
-        className="checkout-spinner-path"
+        className="oc-spinner-path"
         cx="25"
         cy="25"
         r="20"
         fill="none"
-        stroke="url(#checkout-spinner-gradient)"
+        stroke="url(#oc-spinner-gradient)"
       />
     </svg>
   </div>

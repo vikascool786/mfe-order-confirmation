@@ -1,4 +1,4 @@
-.checkout-spinner-wrapper {
+.oc-spinner-wrapper {
   position: fixed;
   inset: 0;
   background: rgba(255, 255, 255, 0.6);
@@ -8,13 +8,13 @@
   justify-content: center;
 }
 
-.checkout-spinner {
+.oc-spinner {
   width: 69px;
   height: 69px;
   animation: checkout-spin 0.75s linear infinite;
 }
 
-.checkout-spinner-path {
+.oc-spinner-path {
   stroke-width: 4;
   stroke-linecap: round;
   stroke-dasharray: 90, 150;

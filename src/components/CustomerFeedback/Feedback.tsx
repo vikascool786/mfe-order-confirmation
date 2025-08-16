@@ -12,7 +12,7 @@ const Feedback: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
   const [isFormDisplayed, setFromDisplayed] = React.useState<boolean>(false);
   return (
     <>
-      <div className="feedback-container">
+      <div className="oc-feedback-container">
         <h2>Want to Provide Feedback?</h2>
         <p>We are constantly looking for ways to improve.</p>
         <button

@@ -1,4 +1,4 @@
-.rounded-button {
+.oc-rounded-button {
   background-color: #40426c;
   color: white;
   border: none;
@@ -13,6 +13,6 @@
   margin: 0 auto;
 }
 
-.rounded-button:hover {
+.oc-rounded-button:hover {
   opacity: 0.9;
 }

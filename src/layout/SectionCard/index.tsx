@@ -18,15 +18,15 @@ const SectionCard: React.FC<SectionCardProps> = ({
   extraClass = "",
   rightTextExtraClass = "",
 }) => {
-  const isGradient = gradient ? "section-card-gradient" : "";
+  const isGradient = gradient ? "oc-section-card-gradient" : "";
   return (
-    <div className={`section-card-wrapper`}>
-      <div className="section-card-header">
-        <p className="section-card-title">{title}</p>
-        {rightText && <p className={`estimated-shipping-date ${rightTextExtraClass}`}>{rightText}</p>}
+    <div className={`oc-section-card-wrapper`}>
+      <div className="oc-section-card-header">
+        <p className="oc-section-card-title">{title}</p>
+        {rightText && <p className={`oc-estimated-shipping-date ${rightTextExtraClass}`}>{rightText}</p>}
       </div>
       {children && (
-        <section className={`section-card-body ${extraClass} ${isGradient}`}>
+        <section className={`oc-section-card-body ${extraClass} ${isGradient}`}>
           {children}
         </section>
       )}

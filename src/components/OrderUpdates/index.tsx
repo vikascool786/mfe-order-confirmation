@@ -96,33 +96,33 @@ export const OrderUpdates = (appConfig: {
 
   if (isSubmitted) {
     return (
-      <div className="confirmation-message">
+      <div className="oc-updates-confirmation-message">
         You will receive updates at {values.phone}
       </div>
     );
   }
 
   return (
-    <form className="order-updates-container" onSubmit={formik.handleSubmit}>
-      <div className="text-updates-header">
+    <form className="oc-updates-order-updates-container" onSubmit={formik.handleSubmit}>
+      <div className="oc-updates-text-updates-header">
         <input
           type="checkbox"
           name="boxChecked"
-          className="checkbox"
+          className="oc-updates-checkbox"
           checked={values.boxChecked}
           onChange={handleCheckboxChange}
         />
-        <div className="text-updates-instructions">
-          <span className="m-heading">
+        <div className="oc-updates-text-updates-instructions">
+          <span className="oc-updates-m-heading">
             Want to receive text messages on this order?
           </span>
-          <span className="s-heading">Message and data rates may apply.</span>
+          <span className="oc-updates-s-heading">Message and data rates may apply.</span>
         </div>
       </div>
 
       {showOrderUpdates && (
-        <div className="text-updates-content">
-          <label className="mobile-label" htmlFor="phone">
+        <div className="oc-updates-text-updates-content">
+          <label className="oc-updates-mobile-label" htmlFor="phone">
             Mobile Phone<span>*</span>
           </label>
           <input
@@ -130,15 +130,15 @@ export const OrderUpdates = (appConfig: {
             name="phone"
             type="text"
             maxLength={14}
-            className="mobile-input"
+            className="oc-updates-mobile-input"
             value={values.phone}
             required
             onChange={handlePhoneChange}
           />
           {touched.phone && typeof errors.phone === "string" && (
-            <div className="error">{errors.phone}</div>
+            <div className="oc-updates-error">{errors.phone}</div>
           )}
-          <div className="extra-label">10 digits</div>
+          <div className="oc-updates-extra-label">10 digits</div>
         </div>
       )}
     </form>
