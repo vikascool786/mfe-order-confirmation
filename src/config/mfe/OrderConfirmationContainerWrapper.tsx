@@ -35,9 +35,6 @@ import {
 import FeedbackForm from "../../components/CustomerFeedback";
 import Feedback from "../../components/CustomerFeedback/Feedback";
 import { GuestCheckout } from "../../components/GuestCheckout";
-import { ORDER } from "../../mocks/Order";
-import { CUSTOMER_DETAILS } from "../../mocks/CustomerDetails";
-import { SHOPPER_PORTAL } from "../../mocks/ShopperPortal";
 
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
@@ -50,9 +47,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   countrycode: string;
   portalid: string;
 }) => {
-  const [orderDetails, setOrderDetails] = useState<IOrder>(ORDER);
-  const [customerDetails, setCustomerDetails] = useState<CustomerDetails>(CUSTOMER_DETAILS);
-  const [shopperPortalData, setShopperPortalData] = useState<ShopperPortal>(SHOPPER_PORTAL);
+  const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
+  const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
+  const [shopperPortalData, setShopperPortalData] = useState<ShopperPortal>();
   const [recommendations, setRecommendations] =
     useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
@@ -66,47 +63,47 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     invoice.items?.some((item) => item.subscriptionOption === "CORE3")
   );
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const customerDetails = await getCustomerProfileAlt(appConfig.pcid);
-  //       const microShopperDetails = await getMicroShopperPortalDetails(
-  //         appConfig.shopperId
-  //       );
-  //       setShopperPortalData(microShopperDetails.data);
-  //       setCustomerDetails(customerDetails.data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const customerDetails = await getCustomerProfileAlt(appConfig.pcid);
+        const microShopperDetails = await getMicroShopperPortalDetails(
+          appConfig.shopperId
+        );
+        setShopperPortalData(microShopperDetails.data);
+        setCustomerDetails(customerDetails.data);
 
-  //       const orderResponse = await getOrderDetails(
-  //         appConfig.shopperId,
-  //         appConfig.orderId
-  //       );
-  //       setOrderDetails(orderResponse.data);
+        const orderResponse = await getOrderDetails(
+          appConfig.shopperId,
+          appConfig.orderId
+        );
+        setOrderDetails(orderResponse.data);
 
-  //       const recResponse = await getOrderConfirmationRecommendations(
-  //         appConfig.pcid,
-  //         appConfig.siteId
-  //       );
-  //       setRecommendations(recResponse.data[0].products);
+        const recResponse = await getOrderConfirmationRecommendations(
+          appConfig.pcid,
+          appConfig.siteId
+        );
+        setRecommendations(recResponse.data[0].products);
 
-  //       const cashbackResponse = await getEwalletCustomerInfo(
-  //         appConfig.pcid,
-  //         appConfig.siteId,
-  //         shopperPortalData?.merchantCountry,
-  //         appConfig.languagecode,
-  //         appConfig.countrycode,
-  //         appConfig.sitetype
-  //       );
-  //       setCashback(cashbackResponse.data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+        const cashbackResponse = await getEwalletCustomerInfo(
+          appConfig.pcid,
+          appConfig.siteId,
+          shopperPortalData?.merchantCountry,
+          appConfig.languagecode,
+          appConfig.countrycode,
+          appConfig.sitetype
+        );
+        setCashback(cashbackResponse.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   const productSummaryPerStore = getProductsPerStore(
     orderDetails?.invoices ?? []
