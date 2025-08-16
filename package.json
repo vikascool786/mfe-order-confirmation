@@ -26,8 +26,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanitize-html": "^2.17.0",
-    "sass": "^1.89.2",
-    "styled-components": "^6.1.19"
+    "sass": "^1.89.2"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
