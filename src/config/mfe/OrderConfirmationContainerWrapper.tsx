@@ -69,13 +69,17 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         setLoading(true);
         const customerDetails = await getCustomerProfileAlt(appConfig.pcid);
         const microShopperDetails = await getMicroShopperPortalDetails(
-          appConfig.shopperId
+          appConfig.shopperId.length > 0
+            ? appConfig.shopperId
+            : customerDetails.data.data.shopper_cid
         );
         setShopperPortalData(microShopperDetails.data);
         setCustomerDetails(customerDetails.data);
 
         const orderResponse = await getOrderDetails(
-          appConfig.shopperId,
+          appConfig.shopperId.length > 0
+            ? appConfig.shopperId
+            : customerDetails.data.data.shopper_cid,
           appConfig.orderId
         );
         setOrderDetails(orderResponse.data);
@@ -161,7 +165,10 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const rightContent = (
     <>
       {hasCore3Subscription && (
-        <SectionCard title="Refer and Earn $25 - $30" extraClass="oc-no-padding">
+        <SectionCard
+          title="Refer and Earn $25 - $30"
+          extraClass="oc-no-padding"
+        >
           <ReferEarn />
         </SectionCard>
       )}
@@ -174,16 +181,29 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       <SectionCard title="Order Updates">
         <OrderUpdates
           orderId={orderDetails?.invoices?.map((invoice) => invoice.attributes)}
-          shopperId="UmkepZWVzmqqVzhVqkzZmwqzWeXVYVWXWZZpzxhemz"
-          pcid="2637612996"
-          siteId={222}
-          sessionId="3055555192"
-          languagecode="ENG"
-          sitetype="SHP"
-          countrycode="USA"
-          portalid="2245355.COM"
+          shopperId={appConfig.shopperId}
+          pcid={appConfig.pcid}
+          siteId={appConfig.siteId}
+          sessionId={appConfig.sessionId}
+          languagecode={appConfig.languagecode}
+          sitetype={appConfig.sitetype}
+          countrycode={appConfig.countrycode}
+          portalid={appConfig.portalid}
         />
       </SectionCard>
+
+      {orderDetails &&
+        customerDetails?.data.pc_types.find(
+          (pcType) => pcType.pc_type == "isEZ"
+        )?.enabled && (
+          <GuestCheckout
+            email={customerDetails?.data.email_address ?? ""}
+            orderDetails={orderDetails}
+            sessionId={appConfig.sessionId}
+            customerDetails={customerDetails as CustomerDetails}
+            setCustomerDetails={setCustomerDetails}
+          />
+        )}
 
       {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
         <SectionCard title="VIFT Balance" gradient>
@@ -274,16 +294,18 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               )}
             </div>
             <Container left={leftContent} right={rightContent} />
-            {customerDetails?.data.pc_types.find(
-              (pcType) => pcType.pc_type == "isEZ"
-            )?.enabled && (
-              <GuestCheckout
-                email={customerDetails?.data.email_address ?? ""}
-                sessionId={appConfig.sessionId}
-                customerDetails={customerDetails as CustomerDetails}
-                setCustomerDetails={setCustomerDetails}
-              />
-            )}
+            {isMobile &&
+              customerDetails?.data.pc_types.find(
+                (pcType) => pcType.pc_type == "isEZ"
+              )?.enabled && (
+                <GuestCheckout
+                  email={customerDetails?.data.email_address ?? ""}
+                  sessionId={appConfig.sessionId}
+                  customerDetails={customerDetails as CustomerDetails}
+                  orderDetails={orderDetails}
+                  setCustomerDetails={setCustomerDetails}
+                />
+              )}
             {isMobile && (
               <div className="oc-order-notifications">
                 <Notification

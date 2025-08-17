@@ -17,7 +17,7 @@ class OrderConfirmationContainerElement extends HTMLElement {
     const props = {
       shopperId: this.getAttribute("shopperid") || "",
       orderId: this.getAttribute("orderid") || "",
-      pcid: this.getAttribute("pcid") || "2637612996",
+      pcid: this.getAttribute("pcid") || "",
       siteId: this.getAttribute("siteid") || "",
       sessionId: this.getAttribute("sessionid") || "",
       languagecode: this.getAttribute("languagecode") || "",

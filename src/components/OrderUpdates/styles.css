@@ -46,7 +46,6 @@
 
   font-size: 1rem;
   line-height: 20px;
-
 }
 
 .oc-updates-extra-label {
@@ -55,7 +54,6 @@
   font-style: Light;
   font-size: 15px;
   line-height: 100%;
-
 }
 
 .oc-updates-order-updates-container {
@@ -128,7 +126,6 @@
   font-style: normal;
   font-size: 1rem;
   line-height: 20px;
-
 }
 
 .oc-updates-s-heading {
@@ -137,9 +134,16 @@
   font-style: Italic;
   font-size: 13px;
   line-height: 18px;
-
 }
 
+.oc-updates-email-label {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 20px;
+  padding-bottom: 22px;
+}
 
 .oc-updates-mobile-label {
   font-family: Roboto;
@@ -153,7 +157,7 @@
   color: rgba(231, 57, 57, 1);
 }
 
-@oc-updates-media (max-width: 768px) {
+@media (max-width: 768px) {
   .oc-updates-mobile-input {
     width: 16.328rem;
     /* ~261px */
@@ -172,4 +176,37 @@
     display: none;
     /* Safari and Chrome */
   }
+}
+
+.oc-guest-account-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.oc-guest-account-text {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.oc-guest-account-text-subtitle {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.oc-password-rules {
+  font-family: Roboto;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0%;
+  padding-bottom: 14px;
 }

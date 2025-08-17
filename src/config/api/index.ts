@@ -60,7 +60,7 @@ export const getEwalletCustomerInfo = (
 // Get Customer Profile Alt
 export const getCustomerProfileAlt = (pcid: string) => {
   return apiClient.get(
-    `/customer-profile-alt-service/v1/profiles/customers/${pcid || "2637612996"}`,
+    `/customer-profile-alt-service/v1/profiles/customers/${pcid}`,
     {
       params: {
         api_key: GET_API_KEY(),
