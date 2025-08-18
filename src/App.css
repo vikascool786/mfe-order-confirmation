@@ -79,6 +79,10 @@ body {
   gap: 1.5rem;
 }
 
+.oc-border-top {
+  border-top: 1px solid rgba(159, 159, 159, 1);
+}
+
 @media (max-width: 1080px) {
   .oc-app-container {
     display: flex;
@@ -91,6 +95,10 @@ body {
   .order-confirmation-container {
     flex-direction: column;
     margin-bottom: 2rem;
+  }
+
+  .add-gap {
+    gap: 1rem;
   }
 
   .oc-order-notifications {
@@ -109,7 +117,7 @@ body {
     align-items: flex-start;
   }
 
-  .oc-recommended-products-container>* {
+  .oc-recommended-products-container > * {
     scroll-snap-align: start;
     flex-shrink: 0;
   }
@@ -147,7 +155,6 @@ body {
   font-weight: 300;
   font-size: 27px;
   line-height: 100%;
-
 }
 
 /* Order Total section for mobile view */
@@ -161,8 +168,7 @@ body {
     font-weight: 300;
     font-size: 18px;
     line-height: 100%;
-
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(149, 149, 149, 1);
     margin-bottom: 2rem;
   }
 

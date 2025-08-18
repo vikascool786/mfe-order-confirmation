@@ -1,7 +1,7 @@
 .oc-shipping-address-container {
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   gap: 1rem;
   font-weight: 500;
   font-size: 18px;
@@ -10,9 +10,22 @@
 .oc-shipping-address-text {
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   gap: 0.5rem;
   font-size: 18px;
   letter-spacing: 0;
+}
+
+@media (max-width: 768px) {
+  .oc-shipping-address-text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    gap: 0.5rem;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
 }

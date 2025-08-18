@@ -1,5 +1,5 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
+import "./styles.css";
 
 interface AddressProps {
   name: string;
@@ -15,14 +15,14 @@ const ShippingAddress: React.FC<AddressProps> = ({
   phone,
 }) => {
   return (
-    <div className='oc-shipping-address-container'>
+    <div className="oc-shipping-address-container">
       <span>Shipping Address</span>
-      <div className='oc-shipping-address-text'>
-      <span>{name}</span>
-      <span>{address}</span>
-      <span>{cityStateZip}</span>
-      <span>{phone}</span>
+      <div className="oc-shipping-address-text">
+        <span>{name}</span>
+        <span>{address}</span>
+        <span>{cityStateZip}</span>
       </div>
+      <span className="oc-shipping-address-text">{phone}</span>
     </div>
   );
 };

@@ -35,6 +35,7 @@ import {
 import FeedbackForm from "../../components/CustomerFeedback";
 import Feedback from "../../components/CustomerFeedback/Feedback";
 import { GuestCheckout } from "../../components/GuestCheckout";
+import { PRODUCTS } from "../../mocks/RecommendedProducts";
 
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
@@ -120,12 +121,34 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       : getFormattedDate(parsedDate.toDateString());
   };
 
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches);
+    };
+
+    // Set initial value
+    handleResize(mediaQuery);
+
+    // Add listener
+    mediaQuery.addEventListener("change", handleResize);
+
+    // Cleanup
+    return () => {
+      mediaQuery.removeEventListener("change", handleResize);
+    };
+  }, []);
+
   const leftContent = (
     <>
       {productSummaryPerStore.map((section, index) => (
         <SectionCard
           title={section.storeName}
           extraClass="add-gap"
+          borderTop={isMobile}
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
@@ -149,16 +172,37 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         </SectionCard>
       ))}
 
-      <SectionCard title="Shipping Summary">
-        {address && (
-          <ShippingAddress
-            name={address?.first + " " + address?.last}
-            address={address?.address1}
-            cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
-            phone={address?.phone}
-          />
-        )}
-      </SectionCard>
+      {isMobile ? (
+        <>
+          {orderDetails?.id && (
+            <SectionCard title="Order Summary">
+              <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} />
+              <OrderSummary order={orderDetails} />
+            </SectionCard>
+          )}
+          <SectionCard title="Shipping Summary">
+            {address && (
+              <ShippingAddress
+                name={address?.first + " " + address?.last}
+                address={address?.address1}
+                cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
+                phone={address?.phone}
+              />
+            )}
+          </SectionCard>
+        </>
+      ) : (
+        <SectionCard title="Shipping Summary">
+          {address && (
+            <ShippingAddress
+              name={address?.first + " " + address?.last}
+              address={address?.address1}
+              cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
+              phone={address?.phone}
+            />
+          )}
+        </SectionCard>
+      )}
     </>
   );
 
@@ -172,7 +216,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           <ReferEarn />
         </SectionCard>
       )}
-      {orderDetails?.id && (
+      {!isMobile && orderDetails?.id && (
         <SectionCard title="Order Summary">
           <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} />
           <OrderSummary order={orderDetails} />
@@ -215,27 +259,6 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       )}
     </>
   );
-
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(e.matches);
-    };
-
-    // Set initial value
-    handleResize(mediaQuery);
-
-    // Add listener
-    mediaQuery.addEventListener("change", handleResize);
-
-    // Cleanup
-    return () => {
-      mediaQuery.removeEventListener("change", handleResize);
-    };
-  }, []);
 
   if (loading) {
     return <Spinner />;

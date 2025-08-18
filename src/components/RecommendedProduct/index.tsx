@@ -28,12 +28,10 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
               const filledPercent = Math.min(Math.max((parseFloat(rating) - index) * 100, 0), 100);
               return (
                 <span key={index} className="oc-recom-star-wrapper">
-                  <Star />
                   <span
                     className="oc-recom-star-fill"
                     style={{
                       width: `${filledPercent}%`,
-                      position: 'absolute',
                       top: 0,
                       left: 0,
                       height: '100%',

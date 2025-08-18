@@ -24,11 +24,14 @@
 @media (max-width: 768px) {
   .oc-layout-grid {
     flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .left-column,
+
+  .oc-left-column,
   .oc-right-column {
     flex: 1;
     width: 100%;
+    gap: 1rem;
   }
 }
