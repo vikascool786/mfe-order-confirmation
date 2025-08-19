@@ -35,7 +35,7 @@ import {
 import FeedbackForm from "../../components/CustomerFeedback";
 import Feedback from "../../components/CustomerFeedback/Feedback";
 import { GuestCheckout } from "../../components/GuestCheckout";
-import { PRODUCTS } from "../../mocks/RecommendedProducts";
+import { setAllDataObjectProperty } from "../../utils/setDataObjectProperty";
 
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
@@ -47,6 +47,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   sitetype: string;
   countrycode: string;
   portalid: string;
+  optInStatus: string;
 }) => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
@@ -84,12 +85,16 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           appConfig.orderId
         );
         setOrderDetails(orderResponse.data);
+        setAllDataObjectProperty(orderResponse.data, appConfig.optInStatus);
 
         const recResponse = await getOrderConfirmationRecommendations(
           appConfig.pcid,
           appConfig.siteId
         );
-        setRecommendations(recResponse.data[0].products);
+
+        if ((recResponse && recResponse.data && recResponse.data, length > 0)) {
+          setRecommendations(recResponse.data[0].products);
+        }
 
         const cashbackResponse = await getEwalletCustomerInfo(
           appConfig.pcid,
@@ -320,15 +325,14 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             {isMobile &&
               customerDetails?.data.pc_types.find(
                 (pcType) => pcType.pc_type == "isEZ"
-              )?.enabled && (
-                <GuestCheckout
-                  email={customerDetails?.data.email_address ?? ""}
-                  sessionId={appConfig.sessionId}
-                  customerDetails={customerDetails as CustomerDetails}
-                  orderDetails={orderDetails}
-                  setCustomerDetails={setCustomerDetails}
-                />
-              )}
+              )?.enabled && (<GuestCheckout
+                email={customerDetails?.data.email_address ?? ""}
+                sessionId={appConfig.sessionId}
+                customerDetails={customerDetails as CustomerDetails}
+                orderDetails={orderDetails}
+                setCustomerDetails={setCustomerDetails}
+              />
+            )}
             {isMobile && (
               <div className="oc-order-notifications">
                 <Notification

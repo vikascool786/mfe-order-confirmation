@@ -5,6 +5,7 @@ export interface IOrder {
   shopperID: string;
   countryCode: string;
   languageCode: string;
+  couponCode: string;
   signatureRequired: number;
   invoices: Invoice[];
   currencySymbol: string;
@@ -337,34 +338,36 @@ export interface Meta {
   svrLsTime: string;
 }
 
-
 export interface ShopperPortal {
-  id: number
-  portalId: string
-  name: string
-  consultantName: string
-  ownerCompanyName: string
-  ownerEmail: string
-  ownerPhone: string
-  repId: string
-  distId: string
-  guaAccountId: string
-  imageName: string
-  hasFreeShipping: boolean
-  autoShipDiscount: number
-  hasItransact: boolean
-  webCenterEnabled: boolean
-  webCenterName: string
-  isSiteBranded: boolean
-  isPayPalDisabled: boolean
-  hasAmex: boolean
-  hasDiscover: boolean
-  error: string
-  minShipPercent: number
-  minShipChange: number
-  global: boolean
-  merchantCountry: string
-  npo: boolean
-  productCountry: string
-  active: boolean
+  id: number;
+  portalId: string;
+  name: string;
+  consultantName: string;
+  ownerCompanyName: string;
+  ownerEmail: string;
+  ownerPhone: string;
+  repId: string;
+  distId: string;
+  guaAccountId: string;
+  imageName: string;
+  hasFreeShipping: boolean;
+  autoShipDiscount: number;
+  hasItransact: boolean;
+  webCenterEnabled: boolean;
+  webCenterName: string;
+  isSiteBranded: boolean;
+  isPayPalDisabled: boolean;
+  hasAmex: boolean;
+  hasDiscover: boolean;
+  error: string;
+  minShipPercent: number;
+  minShipChange: number;
+  global: boolean;
+  merchantCountry: string;
+  npo: boolean;
+  productCountry: string;
+  active: boolean;
 }
+export type DataObject = {
+  [key: string]: any;
+};

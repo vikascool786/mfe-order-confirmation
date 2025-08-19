@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import OrderConfirmationContainerWrapper from './OrderConfirmationContainerWrapper';
+import OrderConfirmationContainerWrapper from "./OrderConfirmationContainerWrapper";
 
 // Registers component as a custom element
 class OrderConfirmationContainerElement extends HTMLElement {
@@ -24,6 +24,7 @@ class OrderConfirmationContainerElement extends HTMLElement {
       sitetype: this.getAttribute("sitetype") || "",
       countrycode: this.getAttribute("countrycode") || "",
       portalid: this.getAttribute("portalid") || "",
+      optInStatus: this.getAttribute("optinstatus") || "",
     };
 
     this.root = createRoot(this.mountPoint);

@@ -61,33 +61,8 @@ module.exports = (env, argv) => {
           resolve: { fullySpecified: false },
         },
         {
-          test: /\.css$/,
-          use: [
-            "style-loader",
-            "css-loader",
-            {
-              loader: "postcss-loader",
-              options: {
-                postcssOptions: {
-                  plugins: [
-                    require("postcss-prefix-selector")({
-                      prefix: ".mfe-order-confirmation",
-                      transform: (prefix, selector, prefixedSelector) => {
-                        if (selector.startsWith("body")) {
-                          return selector;
-                        }
-                        return prefixedSelector;
-                      },
-                    }),
-                  ],
-                },
-              },
-            },
-          ],
-        },
-        {
-          test: /\.scss$/,
-          use: ["style-loader", "css-loader", "sass-loader"],
+          test: /\.(css|s[ac]ss)$/i,
+          use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
         },
         {
           test: /\.(js|jsx)$/,
