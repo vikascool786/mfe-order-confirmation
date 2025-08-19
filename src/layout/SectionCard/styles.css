@@ -81,7 +81,10 @@
   }
 
   .oc-section-card-title {
-    margin: 16px 0 12px 0;
+    margin: 30px 0 12px 0;
+  }
+  .oc-mobile-product-summary .oc-section-card-title{
+    margin-bottom: 5px;
   }
 
   .oc-estimated-shipping-date {

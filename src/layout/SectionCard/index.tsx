@@ -23,7 +23,10 @@ const SectionCard: React.FC<SectionCardProps> = ({
   const isGradient = gradient ? "oc-section-card-gradient" : "";
   const isBorder = borderTop ? 'oc-border-top' : ""
   return (
-    <div className={`oc-section-card-wrapper`}>
+    <div
+      className={`oc-section-card-wrapper ${title === "Product Summary" ? "oc-mobile-product-summary" : ""
+        }`}
+    >
       <div className={`oc-section-card-header ${isBorder}`}>
         <div className="oc-section-card-title">{title}</div>
         {rightText && <div className={`oc-estimated-shipping-date ${rightTextExtraClass}`}>{rightText}</div>}
