@@ -5,9 +5,14 @@ import Vift from "../../../assets/svgs/Vift";
 import "../styles.css";
 import { getSpecialInstructionMessage } from "../../../utils/getSpecialInstructionMessage";
 
-const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
+interface ExtendedProductSummaryItemProps extends ProductSummaryItemProps {
+  contentStrings?: any;
+}
+
+const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
   product,
   image,
+  contentStrings,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -51,10 +56,10 @@ const ProductSummaryItem: React.FC<ProductSummaryItemProps> = ({
           <span className="oc-ps-cashback">
             <span className="oc-ps-cashback-amount">+ {product.cashback}</span>
             <span className="oc-ps-cashback-icon-text">
-              <Vift /> Cashback
+              <Vift /> {contentStrings?.response?.cashBack || "Cashback"}
             </span>
           </span>
-          <span className="oc-ps-quantity">Quantity: {product.quantity}</span>
+          <span className="oc-ps-quantity">{contentStrings?.response?.quantity || "Quantity"}: {product.quantity}</span>
           {isMobile && (
             <div className="oc-ps-content-price">
               ${product.price.toFixed(2)}

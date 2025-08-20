@@ -3,10 +3,11 @@ import "./styles.css";
 
 interface NotificationProps {
   icon: "Person" | "ChangeCircle";
-  title: string;
+  title?: string;
   email?: string;
   link?: string;
-  message: string;
+  message?: string;
+  contentStrings?: any;
 }
 
 const Notification: React.FC<NotificationProps> = ({
@@ -15,6 +16,7 @@ const Notification: React.FC<NotificationProps> = ({
   link,
   email,
   message,
+  contentStrings,
 }) => {
   const IconComponent = React.lazy(() =>
     import(`../../assets/svgs/${icon}`).then((module) => ({
@@ -41,8 +43,8 @@ const Notification: React.FC<NotificationProps> = ({
           }
         }}
       >
-        <span>{title}</span>
-        <span className="oc-notification-content-underline">{message}</span>
+        <span>{title || contentStrings?.response?.subscribeAndSave}</span>
+        <span className="oc-notification-content-underline">{message || contentStrings?.response?.explore}</span>
       </div>
     </div>
   );

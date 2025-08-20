@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import SocialShareButtons from "./Social";
-export const ReferEarn = () => (
+export const ReferEarn = ({ contentStrings }: { contentStrings?: any }) => (
   <div className="oc-re-container">
     <div className="oc-re-cash-people-container">
       <img
@@ -15,17 +15,16 @@ export const ReferEarn = () => (
           <img src="https://images.marketamerica.com/creative/2023/shop-pq4921-core3-health-campaign/usa/lp/c3-primary-logo-white-health.svg?v=1" />
         </div>
         <p className="oc-re-core-text">
-          Share Core 3 Health with your friends and family and EARN $25-$30 CASH
-          when they purchase it!
+          {contentStrings?.response?.shareCore3WithFamily || "Share Core 3 Health with your friends and family and EARN $25-$30 CASH when they purchase it!"}
         </p>
-        <SocialShareButtons />
+        <SocialShareButtons contentStrings={contentStrings} />
       </div>
       <a
         className="oc-re-social-core__terms-link"
         target="_blank"
         href="/core-3-health-referral-promotion-k.xhtml"
       >
-        Terms &amp; Conditions apply
+        {contentStrings?.response?.termsAndConditionsApply || "Terms & Conditions apply"}
       </a>
     </div>
   </div>

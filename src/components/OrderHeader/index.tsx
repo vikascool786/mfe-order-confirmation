@@ -6,6 +6,7 @@ interface OrderHeaderProps {
   name: string;
   deliveryDate?: string;
   email: string;
+  contentStrings?: any;
 }
 
 const OrderHeader: React.FC<OrderHeaderProps> = ({
@@ -13,18 +14,19 @@ const OrderHeader: React.FC<OrderHeaderProps> = ({
   name,
   deliveryDate,
   email,
+  contentStrings,
 }) => {
   return (
     <div className="oc-order-header-container">
-      <span className="oc-order-id">Order #{orderId}</span>
-      <span className="oc-order-heading">{name}, thank you for shopping with us!</span>
+      <span className="oc-order-id">{contentStrings?.response?.["order-pound"]}{orderId}</span>
+      <span className="oc-order-heading">{name}, {contentStrings?.response?.["orders-thankYouForShoppingWithUs"]}</span>
       {deliveryDate && <span className="oc-order-estimated-delivery">
-        Estimated Delivery Date {deliveryDate}
+        {contentStrings?.response?.estimatedDeliveryDate} {deliveryDate}
       </span>}
       <span className="oc-order-confirmation">
-        We sent a confirmation email to {email}
+        {contentStrings?.response?.confirmationEmailSentTo} {email}
       </span>
-      <span className="oc-order-confirmation-print" onClick={() => window.print()}>Print Order Confirmation</span>
+      <span className="oc-order-confirmation-print" onClick={() => window.print()}>{contentStrings?.response?.printOrderConfirmation}</span>
     </div>
   );
 };

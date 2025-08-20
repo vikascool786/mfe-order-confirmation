@@ -33,7 +33,7 @@ module.exports = (env, argv) => {
       // filename: "[name].[contenthash].js",
       clean: true,
     },
-    devtool: isDev ? "source-map" : false,
+    devtool: isDev ? 'cheap-module-source-map' : 'source-map',
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },

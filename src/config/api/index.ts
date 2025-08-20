@@ -1,8 +1,12 @@
 import axios from "axios";
 import {
+  GET_API_ENDPOINT_BASE_URL_FOR_GUEST,
+  GET_API_ENDPOINT_BASE_URL_FOR_TRANSLATIONS,
   GET_API_ENDPOINT_BASE_URL_ONLY,
   GET_API_KEY,
+  GET_API_MODE,
 } from "../../utils/urlResolver";
+import { IBluePrintResponse, IShopperInfo } from "../../types";
 
 // Extend Window interface to include FS property
 declare global {
@@ -21,8 +25,8 @@ const apiClient = axios.create({
 });
 
 // Get Order Details
-export const getOrderDetails = (orderId: string, orderNumber: string) => {
-  return apiClient.get(`/store-orders/v1/Order/${orderId}/${orderNumber}`);
+export const getOrderDetails = (shopperId: string, orderNumber: string) => {
+  return apiClient.get(`/store-orders/v1/Order/${shopperId}/${orderNumber}`);
 };
 
 // Get Order Confirmation Recommendations
@@ -85,15 +89,11 @@ export const postOrderSMSPhone = (data: {
   temp_order_id: string;
   sms_phone: string;
 }) => {
-  return apiClient.post(
-    `/etrans-order-service/v1/order-sms-phone`,
-    data,
-    {
-      params: {
-        api_key: GET_API_KEY(),
-      },
-    }
-  );
+  return apiClient.post(`/etrans-order-service/v1/order-sms-phone`, data, {
+    params: {
+      api_key: GET_API_KEY(),
+    },
+  });
 };
 
 // Put PrePC
@@ -109,18 +109,14 @@ export const updatePrePC = (data: {
   userSessionId: string;
   email: string;
 }) => {
-  return apiClient.put(
-    `/shoppers/v1/PrePC`,
-    new URLSearchParams(data as any),
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;v=2",
-      },
-      params: {
-        api_key: GET_API_KEY(),
-      },
-    }
-  );
+  return apiClient.put(`/shoppers/v1/PrePC`, new URLSearchParams(data as any), {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;v=2",
+    },
+    params: {
+      api_key: GET_API_KEY(),
+    },
+  });
 };
 
 const getFeedbackPath = (pcId: string | null | undefined) =>
@@ -160,6 +156,58 @@ export const postFeedback = async (
       }
     );
     return res;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+export const getValidShopperId = async (
+  emailId: string
+): Promise<IShopperInfo> => {
+  const shopperIdEndpoint = `${GET_API_ENDPOINT_BASE_URL_FOR_GUEST(
+    GET_API_MODE()
+  )}/Directory/${emailId}`;
+  const shopperDataResponse = await axios.get(shopperIdEndpoint, {
+    params: {
+      api_key: GET_API_KEY(),
+    },
+  });
+
+  const pcIdEndpoint = `${GET_API_ENDPOINT_BASE_URL_FOR_GUEST(
+    GET_API_MODE()
+  )}/${shopperDataResponse.data.shopperID}/?details=true`;
+
+  const pcIdDataResponse = await axios.get(pcIdEndpoint, {
+    params: {
+      api_key: GET_API_KEY(),
+    },
+  });
+
+  return {
+    shopperId: shopperDataResponse.data.shopperID,
+    pcId: pcIdDataResponse.data.pcid,
+  };
+};
+
+// Get Order Confirmation Content
+export const getOrderConfirmationContentStrings = async (
+  country: string = "USA",
+  language: string = "ENG"
+): Promise<IBluePrintResponse> => {
+  const baseUrl = `${GET_API_ENDPOINT_BASE_URL_FOR_TRANSLATIONS(
+    GET_API_MODE()
+  )}`;
+  const apiEndpoint = baseUrl.replace("{{path}}", "/content/v1/data");
+  try {
+    const res = await axios.get(apiEndpoint, {
+      params: {
+        collection: "orderConfirmation",
+        country,
+        language,
+      },
+    });
+    return res.data;
   } catch (err) {
     console.log(err);
     throw err;

@@ -2,15 +2,17 @@ import React from "react";
 import HealthQuizImage from "../../assets/images/HealthQuiz.png";
 import "./styles.css";
 
-interface HealthQuizProps {}
+interface HealthQuizProps {
+  contentStrings?: any;
+}
 
-const HealthQuiz: React.FC<HealthQuizProps> = ({}) => {
+const HealthQuiz: React.FC<HealthQuizProps> = ({ contentStrings }) => {
   return (
     <div className="oc-health-quiz-container">
       <div className="oc-health-container">
         <div className="oc-health-heading">
-          CHANGE your health
-          <div className="oc-health-subheading">in 60 seconds</div>
+          {contentStrings?.response?.changeYourHealth}
+          <div className="oc-health-subheading">{contentStrings?.response?.in60Seconds}</div>
         </div>
         <div
         className="oc-health-button-text"
@@ -19,7 +21,7 @@ const HealthQuiz: React.FC<HealthQuizProps> = ({}) => {
               "https://www.shop.com/assessment/health?hsh=4")
           }
         >
-          Take Quiz
+          {contentStrings?.response?.takeQuiz}
         </div>
       </div>
       <div className="oc-health-image-container">

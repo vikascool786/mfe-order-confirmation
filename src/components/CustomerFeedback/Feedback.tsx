@@ -6,20 +6,21 @@ export type IFeedback = {
   sessionId: string;
   siteId: string;
   pcId: string;
+  contentStrings?: any;
 };
 
-const Feedback: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
+const Feedback: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings }) => {
   const [isFormDisplayed, setFromDisplayed] = React.useState<boolean>(false);
   return (
     <>
       <div className="oc-feedback-container">
-        <h2>Want to Provide Feedback?</h2>
-        <p>We are constantly looking for ways to improve.</p>
+        <h2>{contentStrings?.response?.wantToProvideFeedback}</h2>
+        <p>{contentStrings?.response?.constantlyLookingToImprove}</p>
         <button
           className="feedback-button"
           onClick={() => setFromDisplayed(true)}
         >
-          Give Feedback
+          {contentStrings?.response?.giveFeedback}
         </button>
       </div>
       {isFormDisplayed && (

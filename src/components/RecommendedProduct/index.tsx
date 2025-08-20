@@ -7,11 +7,13 @@ import Star from "../../assets/svgs/Star";
 interface RecommendedProductProps {
   product: IRecommendedProduct;
   currency: string;
+  contentStrings?: any;
 }
 
 const RecommendedProduct: React.FC<RecommendedProductProps> = ({
   product,
-  currency
+  currency,
+  contentStrings
 }) => {
   const {baseUrl, AltText, title, description, price, rating, department} = product;
   return (
@@ -21,6 +23,9 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
         <h4 className="oc-recom-product-title">{sanitize(title)}</h4>
         <p className="oc-recom-product-subtitle">{sanitize(department)}</p>
         <p className="oc-recom-product-description">{sanitize(description)}</p>
+        <p className="oc-recom-product-share">
+          {contentStrings?.response?.shareThisProduct || "Share This Product"}
+        </p>
         <div className="oc-recom-product-footer">
           <span className="oc-recom-product-price">{currency}{price.toFixed(2)}</span>
           <span className="oc-recom-product-rating">

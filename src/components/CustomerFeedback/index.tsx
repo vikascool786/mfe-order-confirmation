@@ -8,11 +8,12 @@ export type IFeedback = {
   sessionId: string;
   siteId: string;
   pcId: string;
+  contentStrings?: any;
 };
 
 
 
-const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
+const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings }) => {
   const [isloading, setLoading] = useState(false);
   const [isFeebbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [feedback, setFeedback] = useState("");
@@ -38,7 +39,7 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!feedback.trim()) {
-      const errorString = 'Please enter comment';
+      const errorString = contentStrings?.response?.pleaseEnterComment;
       setError(errorString);
     } else {
       setLoading(true);
@@ -65,32 +66,32 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId }) => {
       {!isFeebbackSubmitted ? (
         <>
           <p className="feedback-form__text">
-            We constantly strive to improve the customer experience and greatly appreciate your feedback.
+            {contentStrings?.response?.weConstantlyStriveAndGreatly}
           </p>
           <p className="feedback-form__email-prompt">
-            Please provide your email if you would like to be contacted.
+            {contentStrings?.response?.provideEmailForContact}
           </p>
           <form onSubmit={handleSubmit}>
             <div className="feedback-form__input-group">
-              <label className="feedback_label">Feedback</label>
+              <label className="feedback_label">{contentStrings?.response?.feedback}</label>
               <textarea
                 id="feedback"
                 className={"feedback-form__textarea"}
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Enter feedback here."
+                placeholder={contentStrings?.response?.["enterFeedbackHere-placeholder"]}
               />
               {error && <p className="feedback-form__error">{error}</p>}
             </div>
             <button className="feedback-form__submit-button" type="submit">
-              Submit Feedback
+              {contentStrings?.response?.submitFeedback}
             </button>
           </form>
         </>
       ) : (
         <>
           <p className="feedback-form__thanks">
-            Thanks for Feedback
+            {contentStrings?.response?.giveFeedback}
           </p>
         </>
       )}

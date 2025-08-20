@@ -13,6 +13,7 @@ interface IGuestCheckout {
   orderDetails: IOrder;
   customerDetails: CustomerDetails;
   setCustomerDetails: (details: CustomerDetails) => void;
+  contentStrings?: any;
 }
 
 const PASSWORD_RULES = [
@@ -28,6 +29,7 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
   orderDetails,
   sessionId,
   setCustomerDetails,
+  contentStrings,
 }) => {
   const [isAccountCreated, setIsAccountCreated] = useState(true);
 
@@ -98,13 +100,14 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
   const invalidChars = /[@%<>$]/.test(values.password);
 
   return (
-    <SectionCard title="Finish Creating your Account">
+    <SectionCard title={contentStrings?.response?.finishAccount}>
       {isAccountCreated ? (
         <form onSubmit={handleSubmit}>
           <div className="oc-updates-text-updates-content">
             <label className="oc-updates-email-label">{email}</label>
             <label className="oc-updates-mobile-label" htmlFor="password">
-              Create Password<span>*</span>
+              {contentStrings?.response?.createPassword}
+              <span>*</span>
             </label>
             <input
               id="password"
@@ -120,25 +123,24 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
               <div className="oc-password-rules">
                 Password Rules:
                 <div style={{ color: hasUpper ? "inherit" : "red" }}>
-                  • 1 Uppercase
+                  {contentStrings?.response?.passwordUppercase}
                 </div>
                 <div style={{ color: hasLower ? "inherit" : "red" }}>
-                  • 1 Lowercase
+                  {contentStrings?.response?.passwordLowercase}
                 </div>
                 <div style={{ color: hasNumber ? "inherit" : "red" }}>
-                  • 1 Number
+                  {contentStrings?.response?.passwordNumber}
                 </div>
                 <div style={{ color: validLength ? "inherit" : "red" }}>
-                  • 7-25 Characters
+                  {contentStrings?.response?.passwordLength}
                 </div>
                 <div style={{ color: !invalidChars ? "inherit" : "red" }}>
-                  • Optional: Special characters except for &gt;, &lt;, %, @,
-                  and $
+                  {contentStrings?.response?.passwordSpecialChars}
                 </div>
               </div>
             }
 
-            <RoundedButton onClick={handleSubmit} text="Create Account" />
+            <RoundedButton onClick={handleSubmit} text={contentStrings?.response?.createAccount} />
           </div>
         </form>
       ) : (
@@ -147,9 +149,9 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
             <Checked />
           </div>
           <div className="oc-guest-account-text">
-            <p className="oc-guest-account-text"> Account Created</p>
+            <p className="oc-guest-account-text"> {contentStrings?.response?.accountCreated}</p>
             <p className="oc-guest-account-text-subtitle">
-              Welcome to Shop.com!
+              {contentStrings?.response?.welcomeMessage}
             </p>
           </div>
         </div>

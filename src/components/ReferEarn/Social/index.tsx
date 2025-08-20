@@ -4,7 +4,11 @@ import "../styles.css"; // Optional: place shared styling here
 const SOCIAL_URL =
   "https://staging.shop.com/7052764/1981669486-p.xhtml?refpromocode=6565841-CORE3&utm_medium=Sharefeature&credituser=C6565841&utm_source=ConfirmationPage&utm_campaign=";
 
-const SocialShareButtons: React.FC = () => {
+interface SocialShareButtonsProps {
+  contentStrings?: any;
+}
+
+const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ contentStrings }) => {
   const pageUrl = encodeURIComponent(SOCIAL_URL + "Link");
   const emailBody = encodeURIComponent(
     `I love this product on SHOP.COM and thought you might too! ${SOCIAL_URL}Email`
@@ -16,7 +20,7 @@ const SocialShareButtons: React.FC = () => {
       <a
         className="oc-re-qa-email js-email-share oc-re-social-pdp__button oc-re-button-plain"
         href={`mailto:?subject=I think you’ll love this product from SHOP.COM!&body=${emailBody}`}
-        title="Share via Email"
+        title={contentStrings?.response?.shareViaEmail || "Share via Email"}
       >
         <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
           {/* Email SVG */}
@@ -33,7 +37,7 @@ const SocialShareButtons: React.FC = () => {
       {/* TikTok */}
       <button
         className="oc-re-qa-tiktok js-page-link-share-btn oc-re-social-pdp__button oc-re-button-plain"
-        title="Share on TikTok!"
+        title={contentStrings?.response?.shareOnTiktok || "Share on TikTok!"}
         type="button"
         data-href={`${SOCIAL_URL}TikTok`}
       >
@@ -52,7 +56,7 @@ const SocialShareButtons: React.FC = () => {
       {/* Instagram */}
       <button
         className="oc-re-qa-instagram js-page-link-share-btn oc-re-social-pdp__button oc-re-button-plain"
-        title="Share on Instagram!"
+        title={contentStrings?.response?.shareOnInstagram || "Share on Instagram!"}
         type="button"
         data-href={`${SOCIAL_URL}Instagram`}
       >
@@ -73,7 +77,7 @@ const SocialShareButtons: React.FC = () => {
       {/* Facebook */}
       <button
         className="oc-re-qa-facebook js-facebook-share oc-re-social-pdp__button oc-re-button-plain"
-        title="Share via Facebook"
+        title={contentStrings?.response?.shareOnFacebook || "Share via Facebook"}
         type="button"
         data-href={`${SOCIAL_URL}Facebook`}
       >
@@ -92,7 +96,7 @@ const SocialShareButtons: React.FC = () => {
       {/* Twitter */}
       <button
         className="oc-re-qa-twitter js-twitter-share oc-re-social-pdp__button oc-re-button-plain"
-        title="Share via Twitter"
+        title={contentStrings?.response?.shareViaTwitter || "Share via Twitter"}
         type="button"
       >
         <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
@@ -110,7 +114,7 @@ const SocialShareButtons: React.FC = () => {
       {/* Pinterest */}
       <button
         className="oc-re-qa-pinterest js-pinterest-share oc-re-social-pdp__button oc-re-button-plain"
-        title="Share via Pinterest"
+        title={contentStrings?.response?.shareViaPinterest || "Share via Pinterest"}
         type="button"
       >
         <span className="oc-re-social-pdp__icon-svg oc-re-social-pdp__icon-svg--blue-black">
@@ -128,7 +132,7 @@ const SocialShareButtons: React.FC = () => {
       {/* Copy Link */}
       <button
         className="oc-re-qa-page-share js-page-link-share-btn oc-re-social-pdp__button oc-re-button-plain"
-        title="Share this product!"
+        title={contentStrings?.response?.shareThisProduct || "Share this product!"}
         type="button"
         data-href={pageUrl}
       >

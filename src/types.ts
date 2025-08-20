@@ -257,6 +257,11 @@ export interface ICashback {
   showNewCashOverlay: boolean;
 }
 
+export interface IShopperInfo {
+  shopperId: string;
+  pcId: string;
+}
+
 export interface CustomerDetails {
   data: Data;
 }
@@ -371,3 +376,77 @@ export interface ShopperPortal {
 export type DataObject = {
   [key: string]: any;
 };
+
+export interface IBluePrintResponse {
+  checksum: string;
+  metaData: MetaData;
+  response: Response;
+}
+
+export interface MetaData {
+  message: string[];
+  status: string;
+  code: string;
+  type: string;
+}
+
+export interface Response {
+  "order-pound": string;
+  pleaseEnterComment: string;
+  cashBack: string;
+  subscribeAndSave: string;
+  mobilePhone: string;
+  quantity: string;
+  changeYourHealth: string;
+  orderConfirmation: string;
+  estimatedDeliveryDate: string;
+  orderConfirmationNumber: string;
+  referAndEarn: string;
+  provideEmailForContact: string;
+  orderTotal: string;
+  shippingAddress: string;
+  in60Seconds: string;
+  takeQuiz: string;
+  shareOnInstagram: string;
+  mobilePhoneRequired: string;
+  orderSummary: string;
+  wantToProvideFeedback: string;
+  healthQuiz: string;
+  "orders-thankYouForShoppingWithUs": string;
+  finishAccount: string;
+  createPassword: string;
+  viftBalance: string;
+  viftCashbackEarned: string;
+  confirmationEmailSentTo: string;
+  explore: string;
+  "enterFeedbackHere-placeholder": string;
+  termsAndConditionsApply: string;
+  shareViaPinterest: string;
+  shareOnFacebook: string;
+  "orders-ourTopProductRecommendations": string;
+  submitFeedback: string;
+  feedback: string;
+  giveFeedback: string;
+  shareOnTiktok: string;
+  orderUpdates: string;
+  shareCore3WithFamily: string;
+  errPhone: string;
+  paymentMethod: string;
+  createAccount: string;
+  subTotal: string;
+  orderNumber: string;
+  printOrderConfirmation: string;
+  tenDigits: string;
+  dataRatesApply: string;
+  total: string;
+  weConstantlyStriveAndGreatly: string;
+  shareThisProduct: string;
+  vift: string;
+  wantToReceiveTextMessage: string;
+  orderConfirmationSubscribeAndSave: string;
+  yourShopConsultantIs: string;
+  constantlyLookingToImprove: string;
+  willReceiveUpdatesAt: string;
+  shareViaTwitter: string;
+  "orders-shippingSummary": string;
+}

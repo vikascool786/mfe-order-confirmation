@@ -16,9 +16,11 @@ import SectionCard from "../../layout/SectionCard";
 import { Spinner } from "../../layout/Spinner";
 import {
   CustomerDetails,
+  IBluePrintResponse,
   ICashback,
   Invoice,
   IOrder,
+  IShopperInfo,
   ShopperPortal,
 } from "../../types";
 import { getFormattedDate } from "../../utils/getDateFormat";
@@ -29,19 +31,24 @@ import {
   getCustomerProfileAlt,
   getEwalletCustomerInfo,
   getMicroShopperPortalDetails,
+  getOrderConfirmationContentStrings,
   getOrderConfirmationRecommendations,
   getOrderDetails,
+  getValidShopperId,
 } from "../api";
 import FeedbackForm from "../../components/CustomerFeedback";
 import Feedback from "../../components/CustomerFeedback/Feedback";
 import { GuestCheckout } from "../../components/GuestCheckout";
 import { setAllDataObjectProperty } from "../../utils/setDataObjectProperty";
 
+
+
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
   shopperId: string;
   siteId: number;
   pcid: string;
+  email: string;
   sessionId: string;
   languagecode: string;
   sitetype: string;
@@ -52,6 +59,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
   const [shopperPortalData, setShopperPortalData] = useState<ShopperPortal>();
+  const [contentStrings, setContentStrings] = useState<IBluePrintResponse>({} as IBluePrintResponse)
   const [recommendations, setRecommendations] =
     useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
@@ -69,19 +77,21 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const customerDetails = await getCustomerProfileAlt(appConfig.pcid);
+        const contentStringResponse = await getOrderConfirmationContentStrings();
+        setContentStrings(contentStringResponse)
+        const shopperData: IShopperInfo =
+          appConfig.shopperId && appConfig.shopperId.length > 1
+            ? {shopperId: appConfig.shopperId , pcId: appConfig.pcid}
+            : await getValidShopperId(appConfig.email);
+        const customerDetails = await getCustomerProfileAlt(shopperData.pcId);
         const microShopperDetails = await getMicroShopperPortalDetails(
-          appConfig.shopperId.length > 0
-            ? appConfig.shopperId
-            : customerDetails.data.data.shopper_cid
+          shopperData.shopperId
         );
         setShopperPortalData(microShopperDetails.data);
         setCustomerDetails(customerDetails.data);
 
         const orderResponse = await getOrderDetails(
-          appConfig.shopperId.length > 0
-            ? appConfig.shopperId
-            : customerDetails.data.data.shopper_cid,
+          shopperData.shopperId,
           appConfig.orderId
         );
         setOrderDetails(orderResponse.data);
@@ -97,7 +107,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         }
 
         const cashbackResponse = await getEwalletCustomerInfo(
-          appConfig.pcid,
+        shopperData.pcId,
           appConfig.siteId,
           shopperPortalData?.merchantCountry,
           appConfig.languagecode,
@@ -157,7 +167,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `Estimated Delivery Date ${getValidShippingDate(
+              ? `${contentStrings?.response.estimatedDeliveryDate} ${getValidShippingDate(
                   section.shippingDate
                 )}`
               : undefined
@@ -180,30 +190,32 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       {isMobile ? (
         <>
           {orderDetails?.id && (
-            <SectionCard title="Order Summary">
-              <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} />
-              <OrderSummary order={orderDetails} />
+            <SectionCard title={contentStrings?.response.orderSummary}>
+              <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} contentStrings={contentStrings} />
+              <OrderSummary order={orderDetails} contentStrings={contentStrings} />
             </SectionCard>
           )}
-          <SectionCard title="Shipping Summary">
+          <SectionCard title={contentStrings?.response?.["orders-shippingSummary"]}>
             {address && (
               <ShippingAddress
                 name={address?.first + " " + address?.last}
                 address={address?.address1}
                 cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
                 phone={address?.phone}
+                contentStrings={contentStrings}
               />
             )}
           </SectionCard>
         </>
       ) : (
-        <SectionCard title="Shipping Summary">
+        <SectionCard title={contentStrings?.response?.["orders-shippingSummary"]}>
           {address && (
             <ShippingAddress
               name={address?.first + " " + address?.last}
               address={address?.address1}
               cityStateZip={`${address?.city}, ${address?.state} ${address?.zip}`}
               phone={address?.phone}
+              contentStrings={contentStrings}
             />
           )}
         </SectionCard>
@@ -215,19 +227,19 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     <>
       {hasCore3Subscription && (
         <SectionCard
-          title="Refer and Earn $25 - $30"
+          title={contentStrings?.response.referAndEarn}
           extraClass="oc-no-padding"
         >
-          <ReferEarn />
+          <ReferEarn contentStrings={contentStrings} />
         </SectionCard>
       )}
       {!isMobile && orderDetails?.id && (
-        <SectionCard title="Order Summary">
-          <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} />
-          <OrderSummary order={orderDetails} />
+        <SectionCard title={contentStrings?.response.orderSummary}>
+          <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} contentStrings={contentStrings} />
+          <OrderSummary order={orderDetails} contentStrings={contentStrings} />
         </SectionCard>
       )}
-      <SectionCard title="Order Updates">
+      <SectionCard title={contentStrings?.response?.orderUpdates}>
         <OrderUpdates
           orderId={orderDetails?.invoices?.map((invoice) => invoice.attributes)}
           shopperId={appConfig.shopperId}
@@ -238,6 +250,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           sitetype={appConfig.sitetype}
           countrycode={appConfig.countrycode}
           portalid={appConfig.portalid}
+          contentStrings={contentStrings}
         />
       </SectionCard>
 
@@ -251,11 +264,12 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             sessionId={appConfig.sessionId}
             customerDetails={customerDetails as CustomerDetails}
             setCustomerDetails={setCustomerDetails}
+            contentStrings={contentStrings}
           />
         )}
 
       {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
-        <SectionCard title="VIFT Balance" gradient>
+        <SectionCard title={contentStrings?.response.viftBalance} gradient>
           <div className="oc-vift-tag">
             <VText />
             <span className="oc-vift-cb">${cashback?.cashbackAvail}</span>
@@ -275,7 +289,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         {/* Show order total mobile only on mobile screens */}
         {isMobile && (
           <div className="oc-order-total-mobile">
-            <span>Order Total</span>
+            <span>{contentStrings?.response.orderTotal}</span>
             <span className="oc-order-total-amount">
               {orderDetails?.orderTotal &&
               orderDetails.orderTotal.toString().trim() !== ""
@@ -302,6 +316,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                   orderDetails.invoices.find((invoice) => invoice.billingEmail)
                     ?.billingEmail || ""
                 }
+                contentStrings={contentStrings}
               />
               {/* SHOW WHEN HERE DESKTOP VIEW */}
               {!isMobile && (
@@ -331,6 +346,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 customerDetails={customerDetails as CustomerDetails}
                 orderDetails={orderDetails}
                 setCustomerDetails={setCustomerDetails}
+                contentStrings={contentStrings}
               />
             )}
             {isMobile && (
@@ -348,13 +364,13 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 />
               </div>
             )}
-            <SectionCard title="Health Quiz" extraClass="oc-no-padding">
-              <HealthQuiz />
+            <SectionCard title={contentStrings?.response.healthQuiz} extraClass="oc-no-padding">
+              <HealthQuiz contentStrings={contentStrings} />
             </SectionCard>
             {recommendations && (
               <>
                 <div className="oc-recommended-products-header">
-                  <SectionCard title="Our Top Product Recommendations" />
+                  <SectionCard title={contentStrings?.response["orders-ourTopProductRecommendations"]} />
                 </div>
                 <div className="oc-recommended-products-container">
                   {recommendations.map((product) => (
@@ -362,6 +378,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                       product={product}
                       currency={orderDetails?.currencySymbol}
                       key={product.prodID}
+                      contentStrings={contentStrings}
                     />
                   ))}
                 </div>
@@ -372,6 +389,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               sessionId={appConfig.sessionId}
               siteId={appConfig.siteId.toString()}
               pcId={appConfig.pcid}
+              contentStrings={contentStrings}
             />
           </>
         )}

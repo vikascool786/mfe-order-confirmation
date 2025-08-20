@@ -19,6 +19,7 @@ class OrderConfirmationContainerElement extends HTMLElement {
       orderId: this.getAttribute("orderid") || "",
       pcid: this.getAttribute("pcid") || "",
       siteId: this.getAttribute("siteid") || "",
+      email: this.getAttribute("email") || "",
       sessionId: this.getAttribute("sessionid") || "",
       languagecode: this.getAttribute("languagecode") || "",
       sitetype: this.getAttribute("sitetype") || "",

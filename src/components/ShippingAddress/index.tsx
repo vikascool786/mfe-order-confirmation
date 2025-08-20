@@ -6,6 +6,7 @@ interface AddressProps {
   address: string;
   cityStateZip: string;
   phone: string;
+  contentStrings?: any;
 }
 
 const ShippingAddress: React.FC<AddressProps> = ({
@@ -13,10 +14,11 @@ const ShippingAddress: React.FC<AddressProps> = ({
   address,
   cityStateZip,
   phone,
+  contentStrings,
 }) => {
   return (
     <div className="oc-shipping-address-container">
-      <span>Shipping Address</span>
+      <span>{contentStrings?.response?.shippingAddress || "Shipping Address"}</span>
       <div className="oc-shipping-address-text">
         <span>{name}</span>
         <span>{address}</span>

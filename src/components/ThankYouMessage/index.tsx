@@ -3,15 +3,16 @@ import React from "react";
 interface ThankYouMessageProps {
   name: string;
   email: string;
+  contentStrings?: any;
 }
 
-const ThankYouMessage: React.FC<ThankYouMessageProps> = ({ name, email }) => {
+const ThankYouMessage: React.FC<ThankYouMessageProps> = ({ name, email, contentStrings }) => {
   return (
     <section>
       <p>
-        {name}, thank you for shopping with us!
+        {name}, {contentStrings?.response?.["orders-thankYouForShoppingWithUs"] || "thank you for shopping with us"}
         <br />
-        We sent a confirmation email to {email}
+        {contentStrings?.response?.confirmationEmailSentTo || "We sent a confirmation email to"} {email}
       </p>
     </section>
   );

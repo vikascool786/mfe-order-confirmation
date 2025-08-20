@@ -14,6 +14,7 @@ export const OrderUpdates = (appConfig: {
   sitetype: string;
   countrycode: string;
   portalid: string;
+  contentStrings?: any;
 }) => {
   const formik = useFormik({
     initialValues: {
@@ -97,7 +98,7 @@ export const OrderUpdates = (appConfig: {
   if (isSubmitted) {
     return (
       <div className="oc-updates-confirmation-message">
-        You will receive updates at {values.phone}
+        {appConfig.contentStrings?.response?.willReceiveUpdatesAt?.replace("{{0}}", values.phone) || `You will receive updates at ${values.phone}`}
       </div>
     );
   }
@@ -114,16 +115,16 @@ export const OrderUpdates = (appConfig: {
         />
         <div className="oc-updates-text-updates-instructions">
           <span className="oc-updates-m-heading">
-            Want to receive text messages on this order?
+            {appConfig.contentStrings?.response?.wantToReceiveTextMessage || "Want to receive text messages on this order?"}
           </span>
-          <span className="oc-updates-s-heading">Message and data rates may apply.</span>
+          <span className="oc-updates-s-heading">{appConfig.contentStrings?.response?.dataRatesApply || "Message and data rates may apply."}</span>
         </div>
       </div>
 
       {showOrderUpdates && (
         <div className="oc-updates-text-updates-content">
           <label className="oc-updates-mobile-label" htmlFor="phone">
-            Mobile Phone<span>*</span>
+            {appConfig.contentStrings?.response?.mobilePhone || "Mobile Phone"}<span>*</span>
           </label>
           <input
             id="phone"
@@ -138,7 +139,7 @@ export const OrderUpdates = (appConfig: {
           {touched.phone && typeof errors.phone === "string" && (
             <div className="oc-updates-error">{errors.phone}</div>
           )}
-          <div className="oc-updates-extra-label">10 digits</div>
+          <div className="oc-updates-extra-label">{appConfig.contentStrings?.response?.tenDigits || "10 digits"}</div>
         </div>
       )}
     </form>

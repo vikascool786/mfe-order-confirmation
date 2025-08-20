@@ -17,6 +17,8 @@
     "noEmit": false,
     "jsx": "react-jsx",
     "typeRoots": ["node_modules/@types"],
+    "sourceMap": true,
+    "inlineSources": true
   },
   "include": ["src"]
 }
