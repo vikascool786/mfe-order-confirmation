@@ -123,24 +123,28 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
               <div className="oc-password-rules">
                 Password Rules:
                 <div style={{ color: hasUpper ? "inherit" : "red" }}>
-                  {contentStrings?.response?.passwordUppercase}
+                  • 1 Uppercase
                 </div>
                 <div style={{ color: hasLower ? "inherit" : "red" }}>
-                  {contentStrings?.response?.passwordLowercase}
+                  • 1 Lowercase
                 </div>
                 <div style={{ color: hasNumber ? "inherit" : "red" }}>
-                  {contentStrings?.response?.passwordNumber}
+                  • 1 Number
                 </div>
                 <div style={{ color: validLength ? "inherit" : "red" }}>
-                  {contentStrings?.response?.passwordLength}
+                  • 7-25 Characters
                 </div>
                 <div style={{ color: !invalidChars ? "inherit" : "red" }}>
-                  {contentStrings?.response?.passwordSpecialChars}
+                  • Optional: Special characters except for &gt;, &lt;, %, @,
+                  and $
                 </div>
               </div>
             }
 
-            <RoundedButton onClick={handleSubmit} text={contentStrings?.response?.createAccount} />
+            <RoundedButton
+              onClick={handleSubmit}
+              text={contentStrings?.response?.createAccount}
+            />
           </div>
         </form>
       ) : (
@@ -149,7 +153,10 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
             <Checked />
           </div>
           <div className="oc-guest-account-text">
-            <p className="oc-guest-account-text"> {contentStrings?.response?.accountCreated}</p>
+            <p className="oc-guest-account-text">
+              {" "}
+              {contentStrings?.response?.accountCreated}
+            </p>
             <p className="oc-guest-account-text-subtitle">
               {contentStrings?.response?.welcomeMessage}
             </p>

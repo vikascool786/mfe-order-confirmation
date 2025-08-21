@@ -99,7 +99,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         setAllDataObjectProperty(orderResponse.data, appConfig.optInStatus);
 
         const recResponse = await getOrderConfirmationRecommendations(
-          appConfig.pcid,
+          shopperData.pcId,
           appConfig.siteId
         );
 
@@ -268,7 +268,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         />
       </SectionCard>
 
-      {orderDetails &&
+      {orderDetails && !isMobile &&
         customerDetails?.data.pc_types.find(
           (pcType) => pcType.pc_type == "isEZ"
         )?.enabled && (
