@@ -10,11 +10,11 @@ export const GET_API_MODE = () =>
 export const GET_API_ENDPOINT_BASE_URL_FOR_GUEST = (mode: APIMODE) => {
   switch (mode) {
     case "localhost":
-      return `http://devapi2.shop.com/shoppers/v1`;
+      return `https://devapi2.shop.com/shoppers/v1`;
     case "dev":
-      return `http://devapi2.shop.com/shoppers/v1`;
+      return `https://devapi2.shop.com/shoppers/v1`;
     case "staging":
-      return `http://stagingapi2.shop.com/shoppers/v1`;
+      return `https://stagingapi2.shop.com/shoppers/v1`;
     case "prod":
     default:
       return `https://api2.shop.com/shoppers/v1`;
