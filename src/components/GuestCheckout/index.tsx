@@ -134,11 +134,10 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
               {PASSWORD_RULES.map((rule, index) => (
                 <div
                   key={index}
-                  className={`oc-password-rule ${
-                    hasSubmitted && !isRuleValid(rule)
+                  className={`oc-password-rule ${hasSubmitted && !isRuleValid(rule)
                       ? "oc-password-rule--invalid"
                       : ""
-                  }`}
+                    }`}
                 >
                   {rule.text}
                 </div>
@@ -156,13 +155,13 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
           <div>
             <Checked />
           </div>
-          <div className="oc-guest-account-text">
-            <p className="oc-guest-account-text">
+          <div className="oc-guest-account-created">
+            <p className="oc-guest-account-p-title">
               {" "}
-              {contentStrings?.response?.accountCreated}
+              {contentStrings?.response?.accountCreated ? contentStrings?.response?.accountCreated : 'Account Created'}
             </p>
-            <p className="oc-guest-account-text-subtitle">
-              {contentStrings?.response?.welcomeMessage}
+            <p className="oc-guest-account-p-subtitle">
+              {contentStrings?.response?.welcomeMessage ? contentStrings?.response?.welcomeMessage : 'Welcome to Shop.com!'}
             </p>
           </div>
         </div>

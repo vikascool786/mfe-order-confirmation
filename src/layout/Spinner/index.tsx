@@ -12,8 +12,8 @@ export const Spinner = () => (
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stop-color="rgba(65, 153, 228, 1)" />
-          <stop offset="100%" stop-color="rgba(42, 80, 112, 1)" />
+          <stop offset="0%" stopColor="rgba(65, 153, 228, 1)" />
+          <stop offset="100%" stopColor="rgba(42, 80, 112, 1)" />
         </linearGradient>
       </defs>
       <circle
