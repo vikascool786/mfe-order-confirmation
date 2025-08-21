@@ -165,7 +165,6 @@
 
   .oc-updates-text-updates-content {
     overflow-x: hidden;
-    gap: 1.5rem;
     scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
@@ -209,4 +208,8 @@
   line-height: 19px;
   letter-spacing: 0%;
   padding-bottom: 14px;
+}
+
+.oc-password-rule--invalid {
+  color: red;
 }

@@ -17,11 +17,15 @@ interface IGuestCheckout {
 }
 
 const PASSWORD_RULES = [
-  "• 1 Uppercase",
-  "• 1 Lowercase",
-  "• 1 Number",
-  "• 7-25 Characters",
-  "• Optional: Special characters except for >, <, %, @, and $",
+  { text: "• 1 Uppercase", regex: /[A-Z]/ },
+  { text: "• 1 Lowercase", regex: /[a-z]/ },
+  { text: "• 1 Number", regex: /\d/ },
+  { text: "• 7-25 Characters", regex: /^.{7,25}$/ },
+  {
+    text: "• Optional: Special characters except for >, <, %, @, and $",
+    regex: /^[A-Za-z\d@%<>$]*$/,
+    exclude: /[><%@\$]/,
+  },
 ];
 export const GuestCheckout: React.FC<IGuestCheckout> = ({
   email,
@@ -32,6 +36,7 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
   contentStrings,
 }) => {
   const [isAccountCreated, setIsAccountCreated] = useState(true);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const firstName =
     customerDetails.data?.first_name?.length > 0
@@ -55,17 +60,15 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
       password: "",
     },
     validate: (values) => {
-      // Formik expects errors to be of type { password?: string }
       const errors: { password?: string } = {};
-      const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,25}$/;
-      const PASSWORD_REGEX_EXCLUDE_CHARS = /^[^/@/%/</>/$]{7,25}$/;
+      const PASSWORD_REGEX =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@%<>$]{7,25}$/;
+
       if (!values.password) {
         errors.password = "Password is required";
       } else if (!PASSWORD_REGEX.test(values.password)) {
         errors.password =
-          "Password must be 7-25 characters and include uppercase, lowercase, and a number";
-      } else if (!PASSWORD_REGEX_EXCLUDE_CHARS.test(values.password)) {
-        errors.password = "Password contains invalid special characters";
+          "Password must be 7-25 characters, include uppercase, lowercase, a number, and only allowed special characters: >, <, %, @, $";
       }
       return errors;
     },
@@ -92,12 +95,19 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
     },
   });
 
-  const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,25}$/;
-  const hasUpper = /[A-Z]/.test(values.password);
-  const hasLower = /[a-z]/.test(values.password);
-  const hasNumber = /\d/.test(values.password);
-  const validLength = /^.{7,25}$/.test(values.password);
-  const invalidChars = /[@%<>$]/.test(values.password);
+  const onSubmitClick = () => {
+    setHasSubmitted(true);
+    submitForm();
+  };
+
+  const isRuleValid = (rule: { regex: RegExp; exclude?: RegExp }) => {
+    if (rule.exclude) {
+      return (
+        rule.regex.test(values.password) && !rule.exclude.test(values.password)
+      );
+    }
+    return rule.regex.test(values.password);
+  };
 
   return (
     <SectionCard title={contentStrings?.response?.finishAccount}>
@@ -119,30 +129,24 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
               onChange={handleChange}
             />
 
-            {
-              <div className="oc-password-rules">
-                Password Rules:
-                <div style={{ color: hasUpper ? "inherit" : "red" }}>
-                  • 1 Uppercase
+            <div className="oc-password-rules">
+              Password Rules:
+              {PASSWORD_RULES.map((rule, index) => (
+                <div
+                  key={index}
+                  className={`oc-password-rule ${
+                    hasSubmitted && !isRuleValid(rule)
+                      ? "oc-password-rule--invalid"
+                      : ""
+                  }`}
+                >
+                  {rule.text}
                 </div>
-                <div style={{ color: hasLower ? "inherit" : "red" }}>
-                  • 1 Lowercase
-                </div>
-                <div style={{ color: hasNumber ? "inherit" : "red" }}>
-                  • 1 Number
-                </div>
-                <div style={{ color: validLength ? "inherit" : "red" }}>
-                  • 7-25 Characters
-                </div>
-                <div style={{ color: !invalidChars ? "inherit" : "red" }}>
-                  • Optional: Special characters except for &gt;, &lt;, %, @,
-                  and $
-                </div>
-              </div>
-            }
+              ))}
+            </div>
 
             <RoundedButton
-              onClick={handleSubmit}
+              onClick={onSubmitClick}
               text={contentStrings?.response?.createAccount}
             />
           </div>
