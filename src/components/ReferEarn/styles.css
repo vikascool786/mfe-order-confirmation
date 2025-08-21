@@ -83,8 +83,18 @@
   border-bottom-left-radius: 12px;
 }
 
+/* Ensure images scale responsively */
+.oc-re-image-container img,
+.oc-re-cash-people-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+}
+
 .oc-re-core-image {
   width: 152.10548400878906px;
+  height: auto;
 }
 
 .oc-re-core-text {
@@ -104,7 +114,7 @@
   justify-content: space-between;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .oc-re-cash-people-container {
     display: none;
   }
@@ -155,6 +165,24 @@
     padding: 12px 8px;
     width: 100%;
   }
+
+  /* Ensure images are visible and responsive on mobile */
+  .oc-re-cash-people-container {
+    display: block;
+  }
+
+  .oc-re-image-container,
+  .oc-re-cash-people-container {
+    width: 100%;
+  }
+
+  .oc-re-image-container img,
+  .oc-re-cash-people-container img,
+  .oc-re-core-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
 }
 
 /* Responsive adjustments */
@@ -173,4 +201,83 @@
     width: 24px;
     height: 24px;
   }
+}
+
+/* Share Modal */
+.oc-share-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.oc-share-modal__content {
+  background: #f5f6fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.oc-share-modal__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.oc-share-modal__link-box {
+  border: 2px dashed #333;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  word-break: break-all;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.oc-share-modal__text {
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+  color: #444;
+}
+
+.oc-share-modal__button {
+  background: #3b3b61;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.oc-share-modal__button:hover {
+  background: #2a2a4d;
+}
+
+.oc-share-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #3b3b61;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

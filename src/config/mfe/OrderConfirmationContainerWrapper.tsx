@@ -41,14 +41,12 @@ import Feedback from "../../components/CustomerFeedback/Feedback";
 import { GuestCheckout } from "../../components/GuestCheckout";
 import { setAllDataObjectProperty } from "../../utils/setDataObjectProperty";
 
-
-
 const OrderConfirmationContainerWrapper = (appConfig: {
   orderId: string;
   shopperId: string;
   siteId: number;
   pcid: string;
-  email: string;
+  email?: string;
   sessionId: string;
   languagecode: string;
   sitetype: string;
@@ -59,7 +57,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
   const [shopperPortalData, setShopperPortalData] = useState<ShopperPortal>();
-  const [contentStrings, setContentStrings] = useState<IBluePrintResponse>({} as IBluePrintResponse)
+  const [contentStrings, setContentStrings] = useState<IBluePrintResponse>(
+    {} as IBluePrintResponse
+  );
   const [recommendations, setRecommendations] =
     useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
@@ -77,12 +77,13 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const contentStringResponse = await getOrderConfirmationContentStrings();
-        setContentStrings(contentStringResponse)
+        const contentStringResponse =
+          await getOrderConfirmationContentStrings();
+        setContentStrings(contentStringResponse);
         const shopperData: IShopperInfo =
           appConfig.shopperId && appConfig.shopperId.length > 1
-            ? {shopperId: appConfig.shopperId , pcId: appConfig.pcid}
-            : await getValidShopperId(appConfig.email);
+            ? { shopperId: appConfig.shopperId, pcId: appConfig.pcid }
+            : await getValidShopperId(appConfig.email as string);
         const customerDetails = await getCustomerProfileAlt(shopperData.pcId);
         const microShopperDetails = await getMicroShopperPortalDetails(
           shopperData.shopperId
@@ -107,7 +108,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         }
 
         const cashbackResponse = await getEwalletCustomerInfo(
-        shopperData.pcId,
+          shopperData.pcId,
           appConfig.siteId,
           shopperPortalData?.merchantCountry,
           appConfig.languagecode,
@@ -167,9 +168,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `${contentStrings?.response.estimatedDeliveryDate} ${getValidShippingDate(
-                  section.shippingDate
-                )}`
+              ? `${
+                  contentStrings?.response.estimatedDeliveryDate
+                } ${getValidShippingDate(section.shippingDate)}`
               : undefined
           }
           rightTextExtraClass={
@@ -191,11 +192,19 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         <>
           {orderDetails?.id && (
             <SectionCard title={contentStrings?.response.orderSummary}>
-              <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} contentStrings={contentStrings} />
-              <OrderSummary order={orderDetails} contentStrings={contentStrings} />
+              <PaymentMethod
+                methods={getPaymentMethod(orderDetails) ?? {}}
+                contentStrings={contentStrings}
+              />
+              <OrderSummary
+                order={orderDetails}
+                contentStrings={contentStrings}
+              />
             </SectionCard>
           )}
-          <SectionCard title={contentStrings?.response?.["orders-shippingSummary"]}>
+          <SectionCard
+            title={contentStrings?.response?.["orders-shippingSummary"]}
+          >
             {address && (
               <ShippingAddress
                 name={address?.first + " " + address?.last}
@@ -208,7 +217,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           </SectionCard>
         </>
       ) : (
-        <SectionCard title={contentStrings?.response?.["orders-shippingSummary"]}>
+        <SectionCard
+          title={contentStrings?.response?.["orders-shippingSummary"]}
+        >
           {address && (
             <ShippingAddress
               name={address?.first + " " + address?.last}
@@ -235,7 +246,10 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       )}
       {!isMobile && orderDetails?.id && (
         <SectionCard title={contentStrings?.response.orderSummary}>
-          <PaymentMethod methods={getPaymentMethod(orderDetails) ?? {}} contentStrings={contentStrings} />
+          <PaymentMethod
+            methods={getPaymentMethod(orderDetails) ?? {}}
+            contentStrings={contentStrings}
+          />
           <OrderSummary order={orderDetails} contentStrings={contentStrings} />
         </SectionCard>
       )}
@@ -271,7 +285,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
         <SectionCard title={contentStrings?.response.viftBalance} gradient>
           <div className="oc-vift-tag">
-            <VText />
+            <div>
+              <VText />
+            </div>
             <span className="oc-vift-cb">${cashback?.cashbackAvail}</span>
           </div>
         </SectionCard>
@@ -340,15 +356,16 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             {isMobile &&
               customerDetails?.data.pc_types.find(
                 (pcType) => pcType.pc_type == "isEZ"
-              )?.enabled && (<GuestCheckout
-                email={customerDetails?.data.email_address ?? ""}
-                sessionId={appConfig.sessionId}
-                customerDetails={customerDetails as CustomerDetails}
-                orderDetails={orderDetails}
-                setCustomerDetails={setCustomerDetails}
-                contentStrings={contentStrings}
-              />
-            )}
+              )?.enabled && (
+                <GuestCheckout
+                  email={customerDetails?.data.email_address ?? ""}
+                  sessionId={appConfig.sessionId}
+                  customerDetails={customerDetails as CustomerDetails}
+                  orderDetails={orderDetails}
+                  setCustomerDetails={setCustomerDetails}
+                  contentStrings={contentStrings}
+                />
+              )}
             {isMobile && (
               <div className="oc-order-notifications">
                 <Notification
@@ -364,13 +381,22 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 />
               </div>
             )}
-            <SectionCard title={contentStrings?.response.healthQuiz} extraClass="oc-no-padding">
+            <SectionCard
+              title={contentStrings?.response.healthQuiz}
+              extraClass="oc-no-padding"
+            >
               <HealthQuiz contentStrings={contentStrings} />
             </SectionCard>
             {recommendations && (
               <>
                 <div className="oc-recommended-products-header">
-                  <SectionCard title={contentStrings?.response["orders-ourTopProductRecommendations"]} />
+                  <SectionCard
+                    title={
+                      contentStrings?.response[
+                        "orders-ourTopProductRecommendations"
+                      ]
+                    }
+                  />
                 </div>
                 <div className="oc-recommended-products-container">
                   {recommendations.map((product) => (
