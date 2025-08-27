@@ -1,14 +1,13 @@
 .oc-recom-product-card {
   padding: 1.5rem;
-  min-width: 16.328rem;
+  width: 16.328rem;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  height: 32.625rem;
+  height: 34.625rem;
   overflow: hidden;
 }
 
@@ -19,7 +18,7 @@
 }
 
 .oc-recom-product-image {
-  width: 100%;
+  height: 14rem;
   object-fit: contain;
 }
 
@@ -35,10 +34,17 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 19.92px;
-  line-height: 100%;
+  line-height: 1.2;
   letter-spacing: 0;
   white-space: normal;
   word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: calc(1.2em * 1); /* space for at least 1 line */
+  max-height: calc(1.2em * 3); /* clamp to 3 lines */
 }
 
 .oc-recom-product-subtitle {
