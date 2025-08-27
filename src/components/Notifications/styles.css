@@ -30,6 +30,7 @@
   letter-spacing: 0;
   padding: 0.563rem;
   padding-left: 11.41px;
+  cursor: pointer;
 }
 
 /* Add this class to elements that need underline styling */
@@ -42,6 +43,7 @@
   text-decoration: underline solid;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
