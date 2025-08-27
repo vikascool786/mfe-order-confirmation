@@ -103,7 +103,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           appConfig.siteId
         );
 
-        if ((recResponse && recResponse.data && recResponse.data, length > 0)) {
+        if ((recResponse && recResponse.data && recResponse.data.length > 0)) {
           setRecommendations(recResponse.data[0].products);
         }
 
@@ -169,7 +169,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           rightText={
             section.shippingDate
               ? `${
-                  contentStrings?.response.estimatedDeliveryDate
+                  contentStrings?.response?.estimatedDeliveryDate
                 } ${getValidShippingDate(section.shippingDate)}`
               : undefined
           }
@@ -191,7 +191,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       {isMobile ? (
         <>
           {orderDetails?.id && (
-            <SectionCard title={contentStrings?.response.orderSummary}>
+            <SectionCard title={contentStrings?.response?.orderSummary}>
               <PaymentMethod
                 methods={getPaymentMethod(orderDetails) ?? {}}
                 contentStrings={contentStrings}
@@ -238,14 +238,14 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     <>
       {hasCore3Subscription && (
         <SectionCard
-          title={contentStrings?.response.referAndEarn}
+          title={contentStrings?.response?.referAndEarn}
           extraClass="oc-no-padding"
         >
           <ReferEarn contentStrings={contentStrings} />
         </SectionCard>
       )}
       {!isMobile && orderDetails?.id && (
-        <SectionCard title={contentStrings?.response.orderSummary}>
+        <SectionCard title={contentStrings?.response?.orderSummary}>
           <PaymentMethod
             methods={getPaymentMethod(orderDetails) ?? {}}
             contentStrings={contentStrings}
@@ -283,7 +283,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         )}
 
       {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
-        <SectionCard title={contentStrings?.response.viftBalance} gradient>
+        <SectionCard title={contentStrings?.response?.viftBalance} gradient>
           <div className="oc-vift-tag">
             <div>
               <VText />
@@ -305,7 +305,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         {/* Show order total mobile only on mobile screens */}
         {isMobile && (
           <div className="oc-order-total-mobile">
-            <span>{contentStrings?.response.orderTotal}</span>
+            <span>{contentStrings?.response?.orderTotal}</span>
             <span className="oc-order-total-amount">
               {orderDetails?.orderTotal &&
               orderDetails.orderTotal.toString().trim() !== ""
@@ -382,7 +382,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
               </div>
             )}
             <SectionCard
-              title={contentStrings?.response.healthQuiz}
+              title={contentStrings?.response?.healthQuiz}
               extraClass="oc-no-padding"
             >
               <HealthQuiz contentStrings={contentStrings} />
@@ -392,9 +392,10 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 <div className="oc-recommended-products-header">
                   <SectionCard
                     title={
-                      contentStrings?.response[
+                      contentStrings?.response && contentStrings?.response[
                         "orders-ourTopProductRecommendations"
                       ]
+                      // 'Our Top Product Recommendations'
                     }
                   />
                 </div>

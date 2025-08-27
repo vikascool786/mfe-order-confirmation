@@ -11,7 +11,7 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({ methods, contentStrings }
     <div className="oc-payment-container">
       <span>{contentStrings?.response?.paymentMethod || "Payment Method"}</span>
       <div className="oc-payment-text">
-       {Array.from(methods).map(method => <span>{method}</span>) }
+       {Array.from(methods).map((method, index) => <span key={index}>{method}</span>) }
       </div>
     </div>
   );

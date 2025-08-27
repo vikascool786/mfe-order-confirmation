@@ -202,7 +202,7 @@ export const getOrderConfirmationContentStrings = async (
   try {
     const res = await axios.get(apiEndpoint, {
       params: {
-        collection: "orderConfirmation",
+        collection: "ng.orderConfirmation",
         country,
         language,
       },

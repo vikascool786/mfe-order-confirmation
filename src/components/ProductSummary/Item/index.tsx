@@ -44,8 +44,8 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
         >
           <span className="oc-ps-name">{sanitize(product.description)}</span>
           <span className="oc-ps-description-summary">
-            {product?.specialInstructionList?.map((instruction) => (
-              <span>
+            {product?.specialInstructionList?.map((instruction, index) => (
+              <span key={index}>
                 {`${getSpecialInstructionMessage(
                   instruction.specialInstructionTypeID
                 )}
