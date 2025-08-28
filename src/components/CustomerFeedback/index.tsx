@@ -65,32 +65,32 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStr
     <div className="oc-feedback-form" ref={feedbackFormRef}>
       {!isFeebbackSubmitted ? (
         <>
-          <p className="feedback-form__text">
+          <p className="oc-feedback-form__text">
             {contentStrings?.response?.weConstantlyStriveAndGreatly}
           </p>
-          <p className="feedback-form__email-prompt">
+          <p className="oc-feedback-form__email-prompt">
             {contentStrings?.response?.provideEmailForContact}
           </p>
           <form onSubmit={handleSubmit}>
-            <div className="feedback-form__input-group">
+            <div className="oc-feedback-form__input-group">
               <label className="feedback_label">{contentStrings?.response?.feedback}</label>
               <textarea
                 id="feedback"
-                className={"feedback-form__textarea"}
+                className={"oc-feedback-form__textarea"}
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder={contentStrings?.response?.["enterFeedbackHere-placeholder"]}
               />
-              {error && <p className="feedback-form__error">{error}</p>}
+              {error && <p className="oc-feedback-form__error">{error}</p>}
             </div>
-            <button className="feedback-form__submit-button" type="submit">
+            <button className="oc-feedback-form__submit-button" type="submit">
               {contentStrings?.response?.submitFeedback}
             </button>
           </form>
         </>
       ) : (
         <>
-          <p className="feedback-form__thanks">
+          <p className="oc-feedback-form__thanks">
             {contentStrings?.response?.giveFeedback}
           </p>
         </>
