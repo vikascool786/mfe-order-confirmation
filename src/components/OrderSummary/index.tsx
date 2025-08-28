@@ -3,6 +3,7 @@ import Vift from "../../assets/svgs/Vift";
 import { IOrder } from "../../types";
 import { Item } from "./Item";
 import "./styles.css";
+import sanitize from "sanitize-html";
 
 interface SummaryProps {
   order: IOrder;
@@ -29,7 +30,7 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
       </div>}
 
       <div className="oc-summary-item-row oc-summary-item-price">
-        <span className={`oc-summary-cashback`}>{contentStrings?.response?.vift || "VIFT"} <span className="oc-summary-green">{contentStrings?.response?.cashBack || "Cashback"}</span></span>
+        <span className={`oc-summary-cashback`}>{sanitize(contentStrings?.response?.vift) || "VIFT"} <span className="oc-summary-green">{contentStrings?.response?.cashBack || "Cashback"}</span></span>
         <span className={`oc-summary-cashback oc-summary-green`}>{order.currencySymbol}{order.cashbackTotal.toFixed(2)}</span>
       </div>
 
