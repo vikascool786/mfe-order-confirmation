@@ -3,6 +3,7 @@ import "./styles.css";
 import sanitize from 'sanitize-html'
 import { IRecommendedProduct } from "./types";
 import Star from "../../assets/svgs/Star";
+import { GET_BASE_URL, GET_SHOP_CART_URL } from "../../utils/urlResolver";
 
 interface RecommendedProductProps {
   product: IRecommendedProduct;
@@ -17,7 +18,7 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
 }) => {
   const {baseUrl, AltText, title, description, price, rating, department} = product;
   return (
-    <div className="oc-recom-product-card">
+    <div className="oc-recom-product-card" onClick={() => window.open(`${GET_BASE_URL}/${product.prodContainerID}-p.xhtml`, "_blank")}>
       <img src={baseUrl} alt={AltText} className="oc-recom-product-image" />
       <div className="oc-recom-product-info">
         <h4 className="oc-recom-product-title">{sanitize(title)}</h4>
