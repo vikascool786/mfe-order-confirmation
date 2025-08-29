@@ -24,7 +24,7 @@ const Feedback: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings
         </button>
       </div>
       {isFormDisplayed && (
-        <FeedbackForm pcId={pcId} siteId={siteId} sessionId={sessionId} contentStrings={contentStrings} />
+        <FeedbackForm pcId={pcId} siteId={siteId} sessionId={sessionId} contentStrings={contentStrings} setFromDisplayed={setFromDisplayed}/>
       )}
     </>
   );

@@ -9,11 +9,12 @@ export type IFeedback = {
   siteId: string;
   pcId: string;
   contentStrings?: any;
+  setFromDisplayed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 
 
-const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings }) => {
+const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings, setFromDisplayed }) => {
   const [isloading, setLoading] = useState(false);
   const [isFeebbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [feedback, setFeedback] = useState("");
@@ -33,6 +34,19 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStr
       });
     }
   }, []);
+
+  //reset form after submission after 3 seconds
+  useEffect(() => {
+    if (isFeebbackSubmitted) {
+      const timer = setTimeout(() => {
+        setFeedback("");
+        setFeedbackSubmitted(false);
+        setFromDisplayed(false);
+      }, 3000); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [isFeebbackSubmitted]);
 
   if (isloading) return <Spinner />;
 

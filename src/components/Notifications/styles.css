@@ -44,6 +44,7 @@
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
   cursor: pointer;
+  color: #000;
 }
 
 @media (max-width: 768px) {

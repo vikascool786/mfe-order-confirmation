@@ -214,6 +214,7 @@ export interface Item {
   id: number;
   autoShipFrequency: number;
   subscriptionOption?: string;
+  recommendedFrequency?: string;
   onSale: boolean;
   isPurchaseable: boolean;
 }
@@ -373,9 +374,6 @@ export interface ShopperPortal {
   productCountry: string;
   active: boolean;
 }
-export type DataObject = {
-  [key: string]: any;
-};
 
 export interface IBluePrintResponse {
   checksum: string;
@@ -450,3 +448,6 @@ export interface Response {
   shareViaTwitter: string;
   "orders-shippingSummary": string;
 }
+export type DataObject = {
+  [key: string]: any;
+};

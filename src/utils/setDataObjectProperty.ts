@@ -1,6 +1,6 @@
 import { DataObject, IOrder } from "../types";
 
-const dataObject: string = "dataObject";
+const dataObject: string = "data_layer";
 
 export function setDataObjectProperty(property: string, value: any) {
   if (

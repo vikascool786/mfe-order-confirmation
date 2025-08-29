@@ -24,7 +24,10 @@ const OrderHeader: React.FC<OrderHeaderProps> = ({
         {contentStrings?.response?.estimatedDeliveryDate} {deliveryDate}
       </span>}
       <span className="oc-order-confirmation">
-        {contentStrings?.response?.confirmationEmailSentTo} {email}
+        {contentStrings?.response?.confirmationEmailSentTo} 
+        <a href={`mailto:${email}`}>
+          {email}
+        </a>
       </span>
       <span className="oc-order-confirmation-print" onClick={() => window.print()}>{contentStrings?.response?.printOrderConfirmation}</span>
     </div>
