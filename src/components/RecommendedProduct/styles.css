@@ -12,6 +12,7 @@
   cursor: pointer;
 }
 
+
 @media (max-width: 768px) {
   .oc-recom-product-card {
     width: 16.328rem;
@@ -46,6 +47,10 @@
   text-overflow: ellipsis;
   min-height: calc(1.2em * 1); /* space for at least 1 line */
   max-height: calc(1.2em * 3); /* clamp to 3 lines */
+}
+
+.oc-recom-product-title:hover {
+  color: rgb(73, 166, 198);
 }
 
 .oc-recom-product-subtitle {
