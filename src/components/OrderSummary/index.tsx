@@ -36,7 +36,7 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
 
       <div className={`oc-summary-item-row-total ${bordersForSummary}`}>
         <span className={totalStyle}>{totalString}</span>
-        <span className={`oc-summary-item-price ${totalStyle}`}>{order.currencySymbol}{order.orderTotal.toFixed(2)}</span>
+        <span className={`oc-summary-item-price ${totalStyle}`}>{order.currencySymbol}{order.grandTotal.toFixed(2)}</span>
       </div>
 
       <div className="oc-summary-cashback-container">

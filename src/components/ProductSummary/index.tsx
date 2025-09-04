@@ -14,7 +14,7 @@ const ProductSummary: React.FC<ProductSummaryProps> = ({ invoice }) => {
             tax={invoice.salesTaxRate.toFixed(2)}
             shipping={invoice.shippingCharge.toFixed(2)}
             cashback={invoice.cashbackEarned.toFixed(2)}
-            total={invoice.total.toFixed(2)}
+            total={invoice.subTotal.toFixed(2)}
             product={product}
           />
       ))}
