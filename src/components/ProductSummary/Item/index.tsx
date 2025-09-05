@@ -62,13 +62,15 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
           <span className="oc-ps-quantity">{contentStrings?.response?.quantity || "Quantity"}: {product.quantity}</span>
           {isMobile && (
             <div className="oc-ps-content-price">
-              ${product.price.toFixed(2)}
+              ${product.extendedPrice.toFixed(2)} 
             </div>
           )}
         </div>
+
         {!isMobile && (
-          <div className="oc-ps-content-price">${product.price.toFixed(2)}</div>
+          <div className="oc-ps-content-price">${product.extendedPrice.toFixed(2)}</div>
         )}
+
       </div>
     </div>
   );

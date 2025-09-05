@@ -12,7 +12,6 @@
   cursor: pointer;
 }
 
-
 @media (max-width: 768px) {
   .oc-recom-product-card {
     width: 16.328rem;
@@ -51,7 +50,7 @@
 
 .oc-recom-product-title:hover {
   color: rgb(73, 166, 198);
-}
+} 
 
 .oc-recom-product-subtitle {
   font-family: 'Roboto', sans-serif;
