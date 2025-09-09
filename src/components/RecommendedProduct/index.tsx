@@ -18,7 +18,7 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
 }) => {
   const {baseUrl, AltText, title, description, price, rating, department} = product;
   return (
-    <div className="oc-recom-product-card" onClick={() => window.open(`${GET_BASE_URL}/${product.prodContainerID}-p.xhtml`, "_blank")}>
+    <div className="oc-recom-product-card" onClick={() => window.open(`${GET_BASE_URL}/${product.prodContainerID}-p.xhtml`)}>
       <img src={baseUrl} alt={AltText} className="oc-recom-product-image" />
       <div className="oc-recom-product-info">
         <h4 className="oc-recom-product-title">{sanitize(title)}</h4>
