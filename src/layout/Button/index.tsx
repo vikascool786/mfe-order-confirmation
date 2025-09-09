@@ -8,7 +8,7 @@ interface RoundedButtonProps {
 
 const RoundedButton: React.FC<RoundedButtonProps> = ({ text, onClick }) => {
   return (
-    <button className="oc-rounded-button" onClick={onClick}>
+    <button className="qa-button oc-rounded-button" onClick={onClick}>
       {text}
     </button>
   );

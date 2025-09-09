@@ -122,16 +122,89 @@ const App: React.FC = () => {
     //   portalid="2245355.COM"
     // />
     // Coral 3 Health Product
-     <OrderConfirmationContainerWrapper
-      orderId="7249899"
-      shopperId="hmUhkqpzzezhXzhhVqzZmxWzqeYXkUjzqXjpzpqqm"
+    //  <OrderConfirmationContainerWrapper
+    //   orderId="7249899"
+    //   shopperId="hmUhkqpzzezhXzhhVqzZmxWzqeYXkUjzqXjpzpqqm"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="1947765337"
+    //   siteId={66}
+    //   sessionId="3055612713"
+    //   portalid="AZXCXLL3SE3WS3DDTOO8I9.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+    
+    // single vift payment
+    // <OrderConfirmationContainerWrapper
+    //   orderId="7252090"
+    //   shopperId="wjZzYhzpzejjezhqxqzqwmVzxYqVzqmqhXjYzxhkh"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="1310279719"
+    //   siteId={66}
+    //   sessionId="3055621590"
+    //   portalid="311779680.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+
+    // multiple vift payment MA _ MOR
+    // <OrderConfirmationContainerWrapper
+    //   orderId="7252093"
+    //   shopperId="wjZzYhzpzejjezhqxqzqwmVzxYqVzqmqhXjYzxhkh"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="1310279719"
+    //   siteId={66}
+    //   sessionId="3055621590"
+    //   portalid="311779680.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+
+    // without VIFT payment
+    // <OrderConfirmationContainerWrapper
+    //   orderId="7252328"
+    //   shopperId="wjZzYhzpzejjezhqxqzqwmVzxYqVzqmqhXjYzxhkh"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="1310279719"
+    //   siteId={66}
+    //   sessionId="3055621590"
+    //   portalid="311779680.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+    // with VIFT + coupon payment
+    // <OrderConfirmationContainerWrapper
+    //   orderId="7252867"
+    //   shopperId="qXjXhwhYzWZWWzhVeZzqmmezYZmXhUZXxVwhzxqeqm"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="1276680871"
+    //   siteId={66}
+    //   sessionId="3055624454"
+    //   portalid="SHOPMARKET.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+    // with text updates
+    <OrderConfirmationContainerWrapper
+      orderId="7252868"
+      shopperId="qXjXhwhYzWZWWzhVeZzqmmezYZmXhUZXxVwhzxqeqm"
       countrycode="USA"
       languagecode="ENG"
       sitetype="SHP"
-      pcid="1947765337"
+      pcid="1276680871"
       siteId={66}
-      sessionId="3055612713"
-      portalid="AZXCXLL3SE3WS3DDTOO8I9.COM"
+      sessionId="3055624454"
+      portalid="SHOPMARKET.COM"
       optInStatus="y"
       email=""
     />

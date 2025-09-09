@@ -32,13 +32,14 @@ export const OrderUpdates = (appConfig: {
       return errors;
     },
     onSubmit: () => {
-
-      const typeId = appConfig.orderId.find(attr => attr.find(att => att.typeId == 16));
+      const typeId = appConfig.orderId.find((attr) =>
+        attr.find((att) => att.typeId == 16)
+      );
       const payload = {
         site_type: appConfig.sitetype,
         siteCountry: appConfig.countrycode,
         langCode: appConfig.languagecode,
-        temp_order_id: typeId?.find(t => t.value)?.value ?? "",
+        temp_order_id: typeId?.find((t) => t.value)?.value ?? "",
         sms_phone: formik.values.phone.replace(/-/g, ""),
       };
       postOrderSMSPhone(payload).then(() => {
@@ -57,19 +58,26 @@ export const OrderUpdates = (appConfig: {
       !formik.errors.phone &&
       !isSubmitted
     ) {
-      const typeId = appConfig.orderId.find(attr => attr.find(att => att.typeId == 16));
+      const typeId = appConfig.orderId.find((attr) =>
+        attr.find((att) => att.typeId == 16)
+      );
       const payload = {
         site_type: appConfig.sitetype,
         siteCountry: appConfig.countrycode,
         langCode: appConfig.languagecode,
-        temp_order_id: typeId?.find(t => t.typeId == 16)?.value ?? "",
+        temp_order_id: typeId?.find((t) => t.typeId == 16)?.value ?? "",
         sms_phone: formik.values.phone.replace(/-/g, ""),
       };
       postOrderSMSPhone(payload).then(() => {
         setIsSubmitted(true);
       });
     }
-  }, [formik.values.phone, formik.values.boxChecked, formik.errors.phone, isSubmitted]);
+  }, [
+    formik.values.phone,
+    formik.values.boxChecked,
+    formik.errors.phone,
+    isSubmitted,
+  ]);
 
   const { values, touched, errors, handleChange, handleBlur, setFieldValue } =
     formik;
@@ -81,57 +89,68 @@ export const OrderUpdates = (appConfig: {
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      let raw = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    let raw = e.target.value.replace(/\D/g, ""); // Remove non-digits
 
-      if (raw.length > 11) raw = raw.slice(0, 11);
+    if (raw.length > 11) raw = raw.slice(0, 11);
 
-      let formatted = raw;
-      if (raw.length > 6) {
-        formatted = `${raw.slice(0, 3)}-${raw.slice(3, 6)}-${raw.slice(6)}`;
-      } else if (raw.length > 3) {
-        formatted = `${raw.slice(0, 3)}-${raw.slice(3)}`;
-      }
+    let formatted = raw;
+    if (raw.length > 6) {
+      formatted = `${raw.slice(0, 3)}-${raw.slice(3, 6)}-${raw.slice(6)}`;
+    } else if (raw.length > 3) {
+      formatted = `${raw.slice(0, 3)}-${raw.slice(3)}`;
+    }
 
-      setFieldValue("phone", formatted);
+    setFieldValue("phone", formatted);
   };
 
   if (isSubmitted) {
     return (
       <div className="oc-updates-confirmation-message">
-        {appConfig.contentStrings?.response?.willReceiveUpdatesAt?.replace("{{0}}", values.phone) || `You will receive updates at ${values.phone}`}
+        {appConfig.contentStrings?.response?.willReceiveUpdatesAt?.replace(
+          "{{0}}",
+          values.phone
+        ) || `You will receive updates at ${values.phone}`}
       </div>
     );
   }
 
   return (
-    <form className="oc-updates-order-updates-container" onSubmit={formik.handleSubmit}>
+    <form
+      className="qa-order-updates oc-updates-order-updates-container"
+      onSubmit={formik.handleSubmit}
+    >
       <div className="oc-updates-text-updates-header">
         <input
           type="checkbox"
           name="boxChecked"
-          className="oc-updates-checkbox"
+          className="qa-input oc-updates-checkbox"
           checked={values.boxChecked}
           onChange={handleCheckboxChange}
         />
         <div className="oc-updates-text-updates-instructions">
           <span className="oc-updates-m-heading">
-            {appConfig.contentStrings?.response?.wantToReceiveTextMessage || "Want to receive text messages on this order?"}
+            {appConfig.contentStrings?.response?.wantToReceiveTextMessage ||
+              "Want to receive text messages on this order?"}
           </span>
-          <span className="oc-updates-s-heading">{appConfig.contentStrings?.response?.dataRatesApply || "Message and data rates may apply."}</span>
+          <span className="oc-updates-s-heading">
+            {appConfig.contentStrings?.response?.dataRatesApply ||
+              "Message and data rates may apply."}
+          </span>
         </div>
       </div>
 
       {showOrderUpdates && (
         <div className="oc-updates-text-updates-content">
-          <label className="oc-updates-mobile-label" htmlFor="phone">
-            {appConfig.contentStrings?.response?.mobilePhone || "Mobile Phone"}<span>*</span>
+          <label className="qa-label oc-updates-mobile-label" htmlFor="phone">
+            {appConfig.contentStrings?.response?.mobilePhone || "Mobile Phone"}
+            <span>*</span>
           </label>
           <input
             id="phone"
             name="phone"
             type="text"
             maxLength={14}
-            className="oc-updates-mobile-input"
+            className="qa-input oc-updates-mobile-input"
             value={values.phone}
             required
             onChange={handlePhoneChange}
@@ -139,7 +158,9 @@ export const OrderUpdates = (appConfig: {
           {touched.phone && typeof errors.phone === "string" && (
             <div className="oc-updates-error">{errors.phone}</div>
           )}
-          <div className="oc-updates-extra-label">{appConfig.contentStrings?.response?.tenDigits || "10 digits"}</div>
+          <div className="oc-updates-extra-label">
+            {appConfig.contentStrings?.response?.tenDigits || "10 digits"}
+          </div>
         </div>
       )}
     </form>

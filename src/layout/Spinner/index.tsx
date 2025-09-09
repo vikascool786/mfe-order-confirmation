@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 
 export const Spinner = () => (
-  <div className="oc-spinner-wrapper">
+  <div className="qa-spinner oc-spinner-wrapper">
     <svg className="oc-spinner" viewBox="0 0 50 50">
       <defs>
         <linearGradient

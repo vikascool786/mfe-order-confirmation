@@ -20,9 +20,9 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, link }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className="oc-share-modal">
+    <div className="qa-modal oc-share-modal">
       <div className="oc-share-modal__content">
-        <button className="oc-share-modal__close" onClick={onClose}>
+        <button className="qa-button oc-share-modal__close" onClick={onClose}>
           ×
         </button>
         <div className="oc-share-modal__title">Share</div>
@@ -31,7 +31,10 @@ const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, link }) => {
           Copy this link and paste the link in your story or in your profile
           bio.
         </p>
-        <button className="oc-share-modal__button" onClick={handleCopyLink}>
+        <button
+          className="qa-button oc-share-modal__button"
+          onClick={handleCopyLink}
+        >
           {text}
         </button>
       </div>

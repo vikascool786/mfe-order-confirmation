@@ -35,14 +35,16 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
     };
   }, []);
   return (
-    <div className="oc-ps-container">
-      <img src={image} />
+    <div className="qa-product-summary oc-ps-container">
+      <img src={image} className="qa-image" />
       <div className="oc-ps-price-container">
         <div
           className="oc-ps-content"
           onClick={() => (window.location.href = product.productURL)}
         >
-          <span className="oc-ps-name">{sanitize(product.description)}</span>
+          <span className="qa-item-name oc-ps-name">
+            {sanitize(product.description)}
+          </span>
           <span className="oc-ps-description-summary">
             {product?.specialInstructionList?.map((instruction, index) => (
               <span key={index}>
@@ -55,22 +57,26 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
           </span>
           <span className="oc-ps-cashback">
             <span className="oc-ps-cashback-amount">+ {product.cashback}</span>
-            <span className="oc-ps-cashback-icon-text">
+            <span className="qa-cashback oc-ps-cashback-icon-text">
               <Vift /> {contentStrings?.response?.cashBack || "Cashback"}
             </span>
           </span>
-          <span className="oc-ps-quantity">{contentStrings?.response?.quantity || "Quantity"}: {product.quantity}</span>
+          <span className="qa-item-quantity oc-ps-quantity">
+            {contentStrings?.response?.quantity || "Quantity"}:{" "}
+            {product.quantity}
+          </span>
           {isMobile && (
-            <div className="oc-ps-content-price">
-              ${product.extendedPrice.toFixed(2)} 
+            <div className="qa-item-price oc-ps-content-price">
+              ${product.extendedPrice.toFixed(2)}
             </div>
           )}
         </div>
 
         {!isMobile && (
-          <div className="oc-ps-content-price">${product.extendedPrice.toFixed(2)}</div>
+          <div className="qa-item-price oc-ps-content-price">
+            ${product.extendedPrice.toFixed(2)}
+          </div>
         )}
-
       </div>
     </div>
   );

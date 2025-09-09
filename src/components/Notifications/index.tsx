@@ -25,7 +25,7 @@ const Notification: React.FC<NotificationProps> = ({
   );
 
   return (
-    <div className="oc-notification-container">
+    <div className="qa-notification oc-notification-container">
       <div className="oc-notification-border">
         <React.Suspense fallback={<span />}>
           <IconComponent />
@@ -44,7 +44,9 @@ const Notification: React.FC<NotificationProps> = ({
         }}
       >
         <span>{title || contentStrings?.response?.subscribeAndSave}</span>
-        <span className="oc-notification-content-underline">{message || contentStrings?.response?.explore}</span>
+        <span className="oc-notification-content-underline">
+          {message || contentStrings?.response?.explore}
+        </span>
       </div>
     </div>
   );

@@ -113,9 +113,12 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
     <SectionCard title={contentStrings?.response?.finishAccount}>
       {isAccountCreated ? (
         <form onSubmit={handleSubmit}>
-          <div className="oc-updates-text-updates-content">
-            <label className="oc-updates-email-label">{email}</label>
-            <label className="oc-updates-mobile-label" htmlFor="password">
+          <div className="qa-order-updates oc-updates-text-updates-content">
+            <label className="qa-label oc-updates-email-label">{email}</label>
+            <label
+              className="qa-label oc-updates-mobile-label"
+              htmlFor="password"
+            >
               {contentStrings?.response?.createPassword}
               <span>*</span>
             </label>
@@ -123,21 +126,22 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
               id="password"
               name="password"
               type="password"
-              className="oc-updates-mobile-input "
+              className="qa-input oc-updates-mobile-input "
               value={values.password}
               required
               onChange={handleChange}
             />
 
-            <div className="oc-password-rules">
+            <div className="qa-password-rules oc-password-rules">
               Password Rules:
               {PASSWORD_RULES.map((rule, index) => (
                 <div
                   key={index}
-                  className={`oc-password-rule ${hasSubmitted && !isRuleValid(rule)
+                  className={`oc-password-rule ${
+                    hasSubmitted && !isRuleValid(rule)
                       ? "oc-password-rule--invalid"
                       : ""
-                    }`}
+                  }`}
                 >
                   {rule.text}
                 </div>
@@ -151,17 +155,21 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
           </div>
         </form>
       ) : (
-        <div className="oc-guest-account-container">
+        <div className="qa-guest-account oc-guest-account-container">
           <div>
             <Checked />
           </div>
           <div className="oc-guest-account-created">
             <p className="oc-guest-account-p-title">
               {" "}
-              {contentStrings?.response?.accountCreated ? contentStrings?.response?.accountCreated : 'Account Created'}
+              {contentStrings?.response?.accountCreated
+                ? contentStrings?.response?.accountCreated
+                : "Account Created"}
             </p>
             <p className="oc-guest-account-p-subtitle">
-              {contentStrings?.response?.welcomeMessage ? contentStrings?.response?.welcomeMessage : 'Welcome to Shop.com!'}
+              {contentStrings?.response?.welcomeMessage
+                ? contentStrings?.response?.welcomeMessage
+                : "Welcome to Shop.com!"}
             </p>
           </div>
         </div>

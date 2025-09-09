@@ -6,12 +6,17 @@ interface PaymentMethodProps {
   contentStrings?: any;
 }
 
-const PaymentMethod: React.FC<PaymentMethodProps> = ({ methods, contentStrings }) => {
+const PaymentMethod: React.FC<PaymentMethodProps> = ({
+  methods,
+  contentStrings,
+}) => {
   return (
-    <div className="oc-payment-container">
+    <div className="qa-payment-method oc-payment-container">
       <span>{contentStrings?.response?.paymentMethod || "Payment Method"}</span>
       <div className="oc-payment-text">
-       {Array.from(methods).map((method, index) => <span key={index}>{method}</span>) }
+        {Array.from(methods).map((method, index) => (
+          <span key={index}>{method}</span>
+        ))}
       </div>
     </div>
   );

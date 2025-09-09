@@ -70,7 +70,11 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   )[0];
 
   const hasCore3Subscription = orderDetails.invoices?.some((invoice) =>
-    invoice.items?.some((item) => (item.subscriptionOption === "CORE3" || item.subscriptionOption === "CORE3_B"))
+    invoice.items?.some(
+      (item) =>
+        item.subscriptionOption === "CORE3" ||
+        item.subscriptionOption === "CORE3_B"
+    )
   );
 
   useEffect(() => {
@@ -168,8 +172,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `${contentStrings?.response?.estimatedDeliveryDate
-              } ${getValidShippingDate(section.shippingDate)}`
+              ? `${
+                  contentStrings?.response?.estimatedDeliveryDate
+                } ${getValidShippingDate(section.shippingDate)}`
               : undefined
           }
           rightTextExtraClass={
@@ -237,37 +242,38 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     <>
       {hasCore3Subscription && (
         <SectionCard
-          title={
-            (() => {
-              // Flatten all items from all invoices
-              const allItems =
-                orderDetails?.invoices?.flatMap((invoice) => invoice.items || []) || [];
+          title={(() => {
+            // Flatten all items from all invoices
+            const allItems =
+              orderDetails?.invoices?.flatMap(
+                (invoice) => invoice.items || []
+              ) || [];
 
-              // Check which subscription exists
-              const beautyItem = allItems.find(
-                (item) => item.subscriptionOption === "CORE3_B"
-              );
-              const healthItem = allItems.find(
-                (item) => item.subscriptionOption === "CORE3"
-              );
+            // Check which subscription exists
+            const beautyItem = allItems.find(
+              (item) => item.subscriptionOption === "CORE3_B"
+            );
+            const healthItem = allItems.find(
+              (item) => item.subscriptionOption === "CORE3"
+            );
 
-              // Decide profit value
-              const profitValue = beautyItem
-                ? `$${beautyItem.flatRateRetailProfit || 0}`
-                : healthItem
-                  ? `$${healthItem.flatRateRetailProfit || 0} - $${healthItem.recommendedFrequency || 0}`
-                  : "";
+            // Decide profit value
+            const profitValue = beautyItem
+              ? `$${beautyItem.flatRateRetailProfit || 0}`
+              : healthItem
+              ? `$${healthItem.flatRateRetailProfit || 0} - $${
+                  healthItem.recommendedFrequency || 0
+                }`
+              : "";
 
-              return `${contentStrings?.response?.referAndEarn || "Refer & Earn"} ${profitValue}`;
-            })()
-          }
+            return `${
+              contentStrings?.response?.referAndEarn || "Refer & Earn"
+            } ${profitValue}`;
+          })()}
           extraClass="oc-no-padding"
         >
           <ReferEarn contentStrings={contentStrings} order={orderDetails} />
         </SectionCard>
-
-
-
       )}
       {!isMobile && orderDetails?.id && (
         <SectionCard title={contentStrings?.response?.orderSummary}>
@@ -326,7 +332,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   }
 
   return (
-    <div className="oc-app-container">
+    <div className="qa-order-confirmation-page oc-app-container">
       <div className="oc-app-container-wrapper">
         {/* Show order total mobile only on mobile screens */}
         {isMobile && (
@@ -334,9 +340,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             <span>{contentStrings?.response?.orderTotal}</span>
             <span className="oc-order-total-amount">
               {orderDetails?.orderTotal &&
-                orderDetails.orderTotal.toString().trim() !== ""
+              orderDetails.orderTotal.toString().trim() !== ""
                 ? orderDetails.currencySymbol +
-                orderDetails.orderTotal.toFixed(2)
+                  orderDetails.orderTotal.toFixed(2)
                 : "$0.00"}
             </span>
           </div>
@@ -350,8 +356,8 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 deliveryDate={
                   Object.keys(orderDetails?.invoices).length === 1
                     ? getFormattedDate(
-                      productSummaryPerStore[0]?.shippingDate as string
-                    )
+                        productSummaryPerStore[0]?.shippingDate as string
+                      )
                     : ""
                 }
                 email={
@@ -421,7 +427,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                     title={
                       contentStrings?.response &&
                       contentStrings?.response[
-                      "orders-ourTopProductRecommendations"
+                        "orders-ourTopProductRecommendations"
                       ]
                       // 'Our Top Product Recommendations'
                     }

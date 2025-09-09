@@ -53,13 +53,16 @@ export const FormField: React.FC<IFormFieldProps> = ({
   return (
     <div className="oc-field-item-container">
       {label && (
-        <label htmlFor={formName} className={required ? "oc-required-field" : ""}>
+        <label
+          htmlFor={formName}
+          className={`qa-label ${required ? "oc-required-field" : ""}`}
+        >
           {label}
         </label>
       )}
       <div className="oc-input-wrapper">
         <input
-          className={baseClasses}
+          className={`qa-input ${baseClasses}`}
           type={type}
           ref={(el) => {
             if (el && errorRefs?.current && name) {
@@ -76,11 +79,17 @@ export const FormField: React.FC<IFormFieldProps> = ({
           }}
         />
         {errorMessage && (
-          <span className="oc-material-symbols-outlined oc-error-icon">error</span>
+          <span className="qa-error oc-material-symbols-outlined oc-error-icon">
+            error
+          </span>
         )}
       </div>
-      {errorMessage && <div className="oc-error-message">{errorMessage}</div>}
-      {extraLabel && <div className="oc-field-extra-label">{extraLabel}</div>}
+      {errorMessage && (
+        <div className="qa-error oc-error-message">{errorMessage}</div>
+      )}
+      {extraLabel && (
+        <div className="qa-error-label oc-field-extra-label">{extraLabel}</div>
+      )}
       {renderCheckBox}
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import sanitize from 'sanitize-html'
+import sanitize from "sanitize-html";
 import { IRecommendedProduct } from "./types";
 import Star from "../../assets/svgs/Star";
 import { GET_BASE_URL, GET_SHOP_CART_URL } from "../../utils/urlResolver";
@@ -14,11 +14,12 @@ interface RecommendedProductProps {
 const RecommendedProduct: React.FC<RecommendedProductProps> = ({
   product,
   currency,
-  contentStrings
+  contentStrings,
 }) => {
-  const {baseUrl, AltText, title, description, price, rating, department} = product;
+  const { baseUrl, AltText, title, description, price, rating, department } =
+    product;
   return (
-    <div className="oc-recom-product-card" onClick={() => window.open(`${GET_BASE_URL}/${product.prodContainerID}-p.xhtml`)}>
+    <div className="oc-recom-product-card" onClick={() => window.open(`${GET_BASE_URL}/${product.prodContainerID}-p.xhtml`, "_self")}>
       <img src={baseUrl} alt={AltText} className="oc-recom-product-image" />
       <div className="oc-recom-product-info">
         <h4 className="oc-recom-product-title">{sanitize(title)}</h4>
@@ -28,10 +29,16 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
           {contentStrings?.response?.shareThisProduct || "Share This Product"}
         </p>
         <div className="oc-recom-product-footer">
-          <span className="oc-recom-product-price">{currency}{price.toFixed(2)}</span>
+          <span className="oc-recom-product-price">
+            {currency}
+            {price.toFixed(2)}
+          </span>
           <span className="oc-recom-product-rating">
             {[...Array(5)].map((_, index) => {
-              const filledPercent = Math.min(Math.max((parseFloat(rating) - index) * 100, 0), 100);
+              const filledPercent = Math.min(
+                Math.max((parseFloat(rating) - index) * 100, 0),
+                100
+              );
               return (
                 <span key={index} className="oc-recom-star-wrapper">
                   <span
@@ -40,9 +47,9 @@ const RecommendedProduct: React.FC<RecommendedProductProps> = ({
                       width: `${filledPercent}%`,
                       top: 0,
                       left: 0,
-                      height: '100%',
-                      overflow: 'hidden',
-                      pointerEvents: 'none'
+                      height: "100%",
+                      overflow: "hidden",
+                      pointerEvents: "none",
                     }}
                   >
                     <Star />

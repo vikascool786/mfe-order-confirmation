@@ -17,8 +17,10 @@ const ShippingAddress: React.FC<AddressProps> = ({
   contentStrings,
 }) => {
   return (
-    <div className="oc-shipping-address-container">
-      <span>{contentStrings?.response?.shippingAddress || "Shipping Address"}</span>
+    <div className="qa-shipping-address oc-shipping-address-container">
+      <span>
+        {contentStrings?.response?.shippingAddress || "Shipping Address"}
+      </span>
       <div className="oc-shipping-address-text">
         <span>{name}</span>
         <span>{address}</span>

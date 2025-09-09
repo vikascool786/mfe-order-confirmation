@@ -1,6 +1,9 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import "./styles.scss";
-import { GET_API_ENDPOINT_BASE_URL, GET_API_MODE } from "../../utils/urlResolver";
+import {
+  GET_API_ENDPOINT_BASE_URL,
+  GET_API_MODE,
+} from "../../utils/urlResolver";
 import { Spinner } from "../../layout/Spinner";
 import { postFeedback } from "../../config/api";
 
@@ -12,9 +15,13 @@ export type IFeedback = {
   setFromDisplayed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-
-
-const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings, setFromDisplayed }) => {
+const FeedbackForm: React.FC<IFeedback> = ({
+  pcId,
+  sessionId,
+  siteId,
+  contentStrings,
+  setFromDisplayed,
+}) => {
   const [isloading, setLoading] = useState(false);
   const [isFeebbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [feedback, setFeedback] = useState("");
@@ -42,7 +49,7 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStr
         setFeedback("");
         setFeedbackSubmitted(false);
         setFromDisplayed(false);
-      }, 3000); 
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -76,7 +83,7 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStr
   };
 
   return (
-    <div className="oc-feedback-form" ref={feedbackFormRef}>
+    <div className="qa-feedback-form oc-feedback-form" ref={feedbackFormRef}>
       {!isFeebbackSubmitted ? (
         <>
           <p className="oc-feedback-form__text">
@@ -87,17 +94,26 @@ const FeedbackForm: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStr
           </p>
           <form onSubmit={handleSubmit}>
             <div className="oc-feedback-form__input-group">
-              <label className="feedback_label">{contentStrings?.response?.feedback}</label>
+              <label className="qa-label feedback_label">
+                {contentStrings?.response?.feedback}
+              </label>
               <textarea
                 id="feedback"
-                className={"oc-feedback-form__textarea"}
+                className={"qa-textarea oc-feedback-form__textarea"}
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                placeholder={contentStrings?.response?.["enterFeedbackHere-placeholder"]}
+                placeholder={
+                  contentStrings?.response?.["enterFeedbackHere-placeholder"]
+                }
               />
-              {error && <p className="oc-feedback-form__error">{error}</p>}
+              {error && (
+                <p className="qa-error oc-feedback-form__error">{error}</p>
+              )}
             </div>
-            <button className="oc-feedback-form__submit-button" type="submit">
+            <button
+              className="qa-button oc-feedback-form__submit-button"
+              type="submit"
+            >
               {contentStrings?.response?.submitFeedback}
             </button>
           </form>

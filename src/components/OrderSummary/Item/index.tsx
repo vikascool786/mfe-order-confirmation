@@ -11,15 +11,39 @@ interface SummaryItemProps {
   bordersForSummary: string;
 }
 
-export const Item: React.FC<SummaryItemProps> = ({ invoice, index, currencySymbol, multipleShipments, bordersForSummary }) => {
+export const Item: React.FC<SummaryItemProps> = ({
+  invoice,
+  index,
+  currencySymbol,
+  multipleShipments,
+  bordersForSummary,
+}) => {
   const summaryItems = getOrderSummaryBreakdown(invoice);
+  const getQaTag = (key: string) => {
+    if(key === "Subtotal") {
+      return "qa-subtotal";
+    } else if(key === "Tax") {
+      return "qa-tax";
+    } else {
+      return "qa-shipping-total";
+    }
+  };
   return (
-    <div className={`oc-summary-item-container ${bordersForSummary}`}>
-      {multipleShipments&& <p className="oc-summary-item-header">{invoice.storeName} Shipment {index + 1}</p>}
+    <div
+      className={`qa-order-item oc-summary-item-container ${bordersForSummary}`}
+    >
+      {multipleShipments && (
+        <p className="oc-summary-item-header">
+          {invoice.storeName} Shipment {index + 1}
+        </p>
+      )}
       {Object.entries(summaryItems).map((item, index) => (
         <div className="oc-summary-item-row" key={index}>
           <span className={`oc-summary-item-price`}>{item[0]}</span>
-          <span className={`oc-summary-item-price`}>{currencySymbol}{item[1].toFixed(2)}</span>
+          <span className={`${getQaTag(item[0])} oc-summary-item-price`}>
+            {currencySymbol}
+            {item[1].toFixed(2)}
+          </span>
         </div>
       ))}
     </div>

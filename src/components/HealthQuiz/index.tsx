@@ -8,14 +8,16 @@ interface HealthQuizProps {
 
 const HealthQuiz: React.FC<HealthQuizProps> = ({ contentStrings }) => {
   return (
-    <div className="oc-health-quiz-container">
+    <div className="qa-health-quiz oc-health-quiz-container">
       <div className="oc-health-container">
         <div className="oc-health-heading">
           {contentStrings?.response?.changeYourHealth}
-          <div className="oc-health-subheading">{contentStrings?.response?.in60Seconds}</div>
+          <div className="oc-health-subheading">
+            {contentStrings?.response?.in60Seconds}
+          </div>
         </div>
         <div
-        className="oc-health-button-text"
+          className="oc-health-button-text"
           onClick={() =>
             (window.location.href =
               "https://www.shop.com/assessment/health?hsh=4")
@@ -24,8 +26,12 @@ const HealthQuiz: React.FC<HealthQuizProps> = ({ contentStrings }) => {
           {contentStrings?.response?.takeQuiz}
         </div>
       </div>
-      <div className="oc-health-image-container">
-        <img className="oc-health-img" src={HealthQuizImage} alt="Health Quiz" />
+      <div className="qa-health-quiz-image oc-health-image-container">
+        <img
+          className="qa-image oc-health-img"
+          src={HealthQuizImage}
+          alt="Health Quiz"
+        />
       </div>
     </div>
   );

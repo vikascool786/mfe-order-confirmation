@@ -26,7 +26,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   };
 
   return (
-    <div className="oc-re-qa-social-share oc-re-social-pdp oc-re-social-order-confirmation oc-re-social-pdp--wrap">
+    <div className="qa-social oc-re-qa-social-share oc-re-social-pdp oc-re-social-order-confirmation oc-re-social-pdp--wrap">
       {/* Email */}
       <a
         className="oc-re-qa-email js-email-share oc-re-social-pdp__button oc-re-button-plain"

@@ -9,22 +9,33 @@ export type IFeedback = {
   contentStrings?: any;
 };
 
-const Feedback: React.FC<IFeedback> = ({ pcId, sessionId, siteId, contentStrings }) => {
+const Feedback: React.FC<IFeedback> = ({
+  pcId,
+  sessionId,
+  siteId,
+  contentStrings,
+}) => {
   const [isFormDisplayed, setFromDisplayed] = React.useState<boolean>(false);
   return (
     <>
-      <div className="oc-feedback-container">
+      <div className="qa-feedback oc-feedback-container">
         <h2>{contentStrings?.response?.wantToProvideFeedback}</h2>
         <p>{contentStrings?.response?.constantlyLookingToImprove}</p>
         <button
-          className="feedback-button"
+          className="qa-button feedback-button"
           onClick={() => setFromDisplayed(true)}
         >
           {contentStrings?.response?.giveFeedback}
         </button>
       </div>
       {isFormDisplayed && (
-        <FeedbackForm pcId={pcId} siteId={siteId} sessionId={sessionId} contentStrings={contentStrings} setFromDisplayed={setFromDisplayed}/>
+        <FeedbackForm
+          pcId={pcId}
+          siteId={siteId}
+          sessionId={sessionId}
+          contentStrings={contentStrings}
+          setFromDisplayed={setFromDisplayed}
+        />
       )}
     </>
   );
