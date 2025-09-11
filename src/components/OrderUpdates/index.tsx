@@ -2,10 +2,11 @@ import React from "react";
 import { useFormik } from "formik";
 import "./styles.css";
 import { postOrderSMSPhone } from "../../config/api";
-import { Attribute } from "../../types";
+import { Attribute, OrderFlag } from "../../types";
 
 export const OrderUpdates = (appConfig: {
   orderId: Attribute[][];
+  orderFlagID?: OrderFlag[];
   shopperId: string;
   siteId: number;
   pcid: string;
@@ -16,6 +17,7 @@ export const OrderUpdates = (appConfig: {
   portalid: string;
   contentStrings?: any;
 }) => {
+
   const formik = useFormik({
     initialValues: {
       boxChecked: false,
@@ -50,6 +52,10 @@ export const OrderUpdates = (appConfig: {
 
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
+  // to check order update flag with phone number already exists
+  const flag = appConfig.orderFlagID?.find(f => f.orderFlagID === 1);
+  const isTrue = !!flag;
+  
   React.useEffect(() => {
     const phoneRegex = /^(\d{10}|\d{3}-\d{3}-\d{4}|\d{3}-\d{3}-\d{5})$/;
     if (
@@ -102,6 +108,25 @@ export const OrderUpdates = (appConfig: {
 
     setFieldValue("phone", formatted);
   };
+
+  if (isSubmitted || isTrue) {
+    let digitsFormatted = "";
+    let digits = "";
+    if (isTrue) {
+      digits = flag?.flagValue.replace(/\D/g, "");
+      // Apply US phone number format: XXX-XXX-XXXX
+      digitsFormatted = digits.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+    }
+
+    return (
+      <div className="oc-updates-confirmation-message">
+        {appConfig.contentStrings?.response?.willReceiveUpdatesAt?.replace(
+          "{{0}}",
+          isTrue ? digitsFormatted : values.phone
+        ) || `You will receive updates at ${isTrue ? digitsFormatted : values.phone}`}
+      </div>
+    );
+  }
 
   if (isSubmitted) {
     return (

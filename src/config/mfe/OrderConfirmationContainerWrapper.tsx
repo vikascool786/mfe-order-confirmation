@@ -287,6 +287,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
       <SectionCard title={contentStrings?.response?.orderUpdates}>
         <OrderUpdates
           orderId={orderDetails?.invoices?.map((invoice) => invoice.attributes)}
+          orderFlagID={orderDetails?.orderFlags?.map((flag) => flag)}
           shopperId={appConfig.shopperId}
           pcid={appConfig.pcid}
           siteId={appConfig.siteId}

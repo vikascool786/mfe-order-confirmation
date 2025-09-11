@@ -26,7 +26,8 @@ const apiClient = axios.create({
 
 // Get Order Details
 export const getOrderDetails = (shopperId: string, orderNumber: string) => {
-  return apiClient.get(`/store-orders/v1/Order/${shopperId}/${orderNumber}`);
+  // return apiClient.get(`/store-orders/v1/Order/${shopperId}/${orderNumber}`);
+  return apiClient.get(`https://devapi2.shop.com/store-orders/v1/Order/kXzVxpjpzpepwzhWZqzYhmezXxxpwxWjpVpezezxmh/3904783`);
 };
 
 // Get Order Confirmation Recommendations

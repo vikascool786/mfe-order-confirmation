@@ -37,10 +37,17 @@ export interface IOrder {
   eligibleForOrderReTryFailureReason: string;
   coupons: any[];
   trackingId: string;
+  orderFlags: OrderFlag[];
   orderDetails: OrderDetails;
   orderTrackingServiceInfo: OrderTrackingServiceInfo;
 }
 
+export interface OrderFlag {
+  orderFlagID: number;
+  orderFlagDescription: string;
+  flagValue: string;
+  lastUpdated: string; // ISO date string
+}
 export interface Invoice {
   storeName: string;
   invoiceID: number;
