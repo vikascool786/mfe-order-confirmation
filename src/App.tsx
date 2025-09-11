@@ -195,16 +195,30 @@ const App: React.FC = () => {
     //   email=""
     // />
     // with text updates
+    // <OrderConfirmationContainerWrapper
+    //   orderId="7252868"
+    //   shopperId="qXjXhwhYzWZWWzhVeZzqmmezYZmXhUZXxVwhzxqeqm"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="1276680871"
+    //   siteId={66}
+    //   sessionId="3055624454"
+    //   portalid="SHOPMARKET.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+    // with Gift Card
     <OrderConfirmationContainerWrapper
-      orderId="7252868"
-      shopperId="qXjXhwhYzWZWWzhVeZzqmmezYZmXhUZXxVwhzxqeqm"
+      orderId="7254755"
+      shopperId="ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz"
       countrycode="USA"
       languagecode="ENG"
       sitetype="SHP"
-      pcid="1276680871"
+      pcid="6565841"
       siteId={66}
-      sessionId="3055624454"
-      portalid="SHOPMARKET.COM"
+      sessionId="3055633431"
+      portalid="7052764.COM"
       optInStatus="y"
       email=""
     />

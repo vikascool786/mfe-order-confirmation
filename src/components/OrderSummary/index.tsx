@@ -88,6 +88,21 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
         </div>
       )}
 
+      {/* Gift discount */}
+      {order.giftCardApplied !== 0 && (
+        <div className="oc-summary-item-row oc-summary-item-price">
+          <span className={`oc-summary-cashback`}>
+            {contentStrings?.response?.giftCard || "Gift Card"}
+          </span>
+          <span
+            className={`qa-coupon-amount oc-summary-cashback oc-summary-green`}
+          >
+            -{order.currencySymbol}
+            {order?.giftCardApplied.toFixed(2)}
+          </span>
+        </div>
+      )}
+
       {/* order total  */}
       <div className={`oc-summary-item-row-total ${bordersForSummary}`}>
         <span className={totalStyle}>{totalString}</span>

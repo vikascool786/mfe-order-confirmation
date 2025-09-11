@@ -26,7 +26,7 @@ const ShippingAddress: React.FC<AddressProps> = ({
         <span>{address}</span>
         <span>{cityStateZip}</span>
       </div>
-      <span className="oc-shipping-address-text">{phone}</span>
+      <span className="oc-shipping-address-text main-top-n10">{phone}</span>
     </div>
   );
 };
