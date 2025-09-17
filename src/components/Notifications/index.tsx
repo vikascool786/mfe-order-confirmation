@@ -25,24 +25,21 @@ const Notification: React.FC<NotificationProps> = ({
   );
 
   return (
-    <div className="qa-notification oc-notification-container">
+    <div
+      className="qa-notification oc-notification-container"
+      onClick={() => {
+        if (link) {
+          // open link in the same tab
+          window.location.href = link;
+        }
+      }}
+    >
       <div className="oc-notification-border">
         <React.Suspense fallback={<span />}>
           <IconComponent />
         </React.Suspense>
       </div>
-      <div
-        className="oc-notification-content"
-        onClick={() => {
-          if (email) {
-            window.location.href = `mailto:${email}`;
-          }
-
-          if (link) {
-            window.open(link, "_blank");
-          }
-        }}
-      >
+      <div className="oc-notification-content">
         <span>{title || contentStrings?.response?.subscribeAndSave}</span>
         <span className="oc-notification-content-underline">
           {message || contentStrings?.response?.explore}

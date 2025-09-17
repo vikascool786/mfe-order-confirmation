@@ -373,14 +373,13 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                   <Notification
                     icon="ChangeCircle"
                     title="Subscribe & Save 10%"
-                    link="https://www.shop.com/nbts/account/autoship?ham=10"
+                    link="nbts/account/autoship?ham=10"
                     message="Explore Subscribe & Save"
                   />
                   <Notification
                     icon="Person"
                     title={`Your Shop Consultant is ${shopperPortalData?.consultantName}`}
                     link="/shop_consultant.xhtml"
-                    email={shopperPortalData?.ownerEmail}
                     message={`Contact ${shopperPortalData?.consultantName}`}
                   />
                 </div>
