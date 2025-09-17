@@ -10,6 +10,12 @@
   height: 34.625rem;
   overflow: hidden;
   cursor: pointer;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oc-recom-product-card:hover {
+  border: 2px solid rgb(73, 166, 198);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -48,9 +54,10 @@
   max-height: calc(1.2em * 3); /* clamp to 3 lines */
 }
 
-.oc-recom-product-title:hover {
+
+.oc-recom-product-card:hover .oc-recom-product-title {
   color: rgb(73, 166, 198);
-} 
+}
 
 .oc-recom-product-subtitle {
   font-family: 'Roboto', sans-serif;
