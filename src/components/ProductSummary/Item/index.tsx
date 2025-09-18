@@ -4,14 +4,18 @@ import { ProductSummaryItemProps } from "../types";
 import Vift from "../../../assets/svgs/Vift";
 import "../styles.css";
 import { getSpecialInstructionMessage } from "../../../utils/getSpecialInstructionMessage";
+import { AutoshipIcon } from "../../../assets/svgs/Autoship";
 
 interface ExtendedProductSummaryItemProps extends ProductSummaryItemProps {
   contentStrings?: any;
+  shopperPortalData: any;
+  shopperAttributes: any;
 }
 
 const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
   product,
   image,
+  shopperPortalData,
   contentStrings,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -36,7 +40,7 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
   }, []);
   return (
     <div className="qa-product-summary oc-ps-container">
-      <img src={image} className="qa-image" />
+      <img src={image} className="qa-image oc-ps-container-img" />
       <div className="oc-ps-price-container">
         <div
           className="oc-ps-content"
@@ -70,6 +74,22 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
               ${product.extendedPrice.toFixed(2)}
             </div>
           )}
+          {product.autoShipEnabled && (
+            <div className="item-autoship item-autoship-frequency-bold">
+              <AutoshipIcon />
+              {`Subscribe and Save${
+                shopperPortalData && shopperPortalData.autoShipDiscount > 0
+                  ? ` ${shopperPortalData.autoShipDiscount}%`
+                  : ""
+              }`}
+            </div>
+          )}
+          <div className="item-autoship-frequency-container">
+            Frequency:
+            <div className="item-autoship-frequency-bold">
+              {product.autoShipFrequency}
+            </div>
+          </div>
         </div>
 
         {!isMobile && (

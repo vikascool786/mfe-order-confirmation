@@ -3,7 +3,7 @@ import ProductSummaryItem from "./Item";
 import "./styles.css";
 import { ProductSummaryProps } from "./types";
 
-const ProductSummary: React.FC<ProductSummaryProps> = ({ invoice }) => {
+const ProductSummary: React.FC<ProductSummaryProps> = ({ invoice, shopperPortalData, shopperAttributes }) => {
   return (
     <>
       {invoice.items.map((product, index) => (
@@ -16,6 +16,8 @@ const ProductSummary: React.FC<ProductSummaryProps> = ({ invoice }) => {
             cashback={invoice.cashbackEarned.toFixed(2)}
             total={invoice.subTotal.toFixed(2)} 
             product={product}
+            shopperPortalData={shopperPortalData}
+            shopperAttributes={shopperAttributes}
           />
       ))}
     </>

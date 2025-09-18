@@ -7,12 +7,47 @@
   cursor: pointer;
 }
 
-.oc-ps-container img {
+.oc-ps-container-img {
   width: 8.32rem;
   height: 7.77rem;
   object-fit: cover;
 }
 
+.item-autoship-frequency-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 20px;
+  letter-spacing: 0;
+  padding: 5px 0;
+}
+
+.item-autoship {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 20px;
+  letter-spacing: 0;
+  padding: 5px 0;
+}
+
+.item-autoship-frequency {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.item-autoship-frequency-bold {
+  font-weight: bold;
+}
 .oc-ps-price-container {
   display: flex;
   gap: 0.5rem;
@@ -91,5 +126,4 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 100%;
-  
 }

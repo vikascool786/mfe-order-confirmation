@@ -188,6 +188,8 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             products={section.products}
             invoice={orderDetails.invoices[index] as Invoice}
             key={index}
+            shopperPortalData={shopperPortalData}
+            shopperAttributes={customerDetails?.data}
           />
         </SectionCard>
       ))}
