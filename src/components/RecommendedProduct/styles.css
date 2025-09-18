@@ -9,8 +9,9 @@
   flex-direction: column;
   height: 34.625rem;
   overflow: hidden;
-  cursor: pointer;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;transition: border 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .oc-recom-product-card:hover {
@@ -53,7 +54,6 @@
   min-height: calc(1.2em * 1); /* space for at least 1 line */
   max-height: calc(1.2em * 3); /* clamp to 3 lines */
 }
-
 
 .oc-recom-product-card:hover .oc-recom-product-title {
   color: rgb(73, 166, 198);
