@@ -1,5 +1,5 @@
 import React from "react";
-import HealthQuizImage from "../../assets/images/HealthQuiz.png";
+import HealthQuizImage from "../../assets/images/HealthQuiz.jpg";
 import "./styles.css";
 
 interface HealthQuizProps {

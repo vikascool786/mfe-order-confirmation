@@ -8,6 +8,7 @@ export interface ProductSummaryItemProps {
   cashback: string;
   total: string;
   product: Item;
+
 }
 
 export interface ProductSummaryProps {

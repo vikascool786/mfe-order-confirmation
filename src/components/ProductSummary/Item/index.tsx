@@ -60,9 +60,9 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
             ))}
           </span>
           <span className="oc-ps-cashback">
-            <span className="oc-ps-cashback-amount">+ {product.cashback}</span>
+            <span className="oc-ps-cashback-amount">+ ${product.cashback.toFixed(2)}</span>
             <span className="qa-cashback oc-ps-cashback-icon-text">
-              <Vift /> {contentStrings?.response?.cashBack || "Cashback"}
+              <Vift /> {contentStrings?.response?.cashBack || "Cashback"} {product.bv > 0 ? ` | ${product.bv.toFixed(2)} BV` : ''} {product.ibv > 0 ? ` | ${product.ibv.toFixed(2)} IBV` : ''}
             </span>
           </span>
           <span className="qa-item-quantity oc-ps-quantity">
@@ -74,22 +74,23 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
               ${product.extendedPrice.toFixed(2)}
             </div>
           )}
-          {product.autoShipEnabled && (
+          {product.autoShipEnabled && product.autoShipFrequency > 0 && (
             <div className="item-autoship item-autoship-frequency-bold">
               <AutoshipIcon />
-              {`Subscribe and Save${
-                shopperPortalData && shopperPortalData.autoShipDiscount > 0
+              {`Subscribe and Save${shopperPortalData && shopperPortalData.autoShipDiscount > 0
                   ? ` ${shopperPortalData.autoShipDiscount}%`
                   : ""
-              }`}
+                }`}
             </div>
           )}
-          <div className="item-autoship-frequency-container">
-            Frequency:
-            <div className="item-autoship-frequency-bold">
-              {product.autoShipFrequency}
+          {product.autoShipFrequency > 0 && (
+            <div className="item-autoship-frequency-container">
+              Frequency:
+              <div className="item-autoship-frequency-bold">
+                {product.autoShipFrequency} days
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {!isMobile && (

@@ -47,7 +47,10 @@
 
 .item-autoship-frequency-bold {
   font-weight: bold;
+  display: flex;
+  align-items: center;
 }
+
 .oc-ps-price-container {
   display: flex;
   gap: 0.5rem;

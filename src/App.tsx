@@ -209,17 +209,31 @@ const App: React.FC = () => {
     //   email=""
     // />
     // with Gift Card
+    // <OrderConfirmationContainerWrapper
+    //   orderId="7257619"
+    //   shopperId="ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz"
+    //   countrycode="USA"
+    //   languagecode="ENG"
+    //   sitetype="SHP"
+    //   pcid="6565841"
+    //   siteId={66}
+    //   sessionId="3055633431"
+    //   portalid="7052764.COM"
+    //   optInStatus="y"
+    //   email=""
+    // />
+    // BV and IBV product 
     <OrderConfirmationContainerWrapper
-      orderId="7254755"
-      shopperId="ZpXYpYwzzXVYUzhkZhzYpYmzYxpUmjmejWpqzjqzz"
+      orderId="7257621"
+      shopperId="xhzpWqkmzxmmxzhUWpzqjWUzhzkZjWXzUUjzzehjjp"
       countrycode="USA"
       languagecode="ENG"
       sitetype="SHP"
-      pcid="6565841"
+      pcid="1000091972"
       siteId={66}
-      sessionId="3055633431"
-      portalid="7052764.COM"
-      optInStatus="y"
+      sessionId="3055647283"
+      portalid="TESTMA44.COM"
+      optInStatus="n"
       email=""
     />
     // Coral 3 Beauty Product
