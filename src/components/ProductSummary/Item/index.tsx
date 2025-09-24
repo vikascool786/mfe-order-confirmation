@@ -78,7 +78,7 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
             <div className="item-autoship item-autoship-frequency-bold">
               <AutoshipIcon />
 {product.hasAutoShipDiscount === "0"
-  ? "Subscribe"
+  ? "Subscription"
   : `Subscribe and Save${
       shopperPortalData && shopperPortalData.autoShipDiscount > 0
         ? ` ${shopperPortalData.autoShipDiscount}%`
