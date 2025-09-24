@@ -180,6 +180,7 @@ export interface Item {
   brand: string;
   quantity: number;
   price: number;
+  hasAutoShipDiscount: string;
   extendedPrice: number;
   prodID: number;
   prodContainerID: number;
