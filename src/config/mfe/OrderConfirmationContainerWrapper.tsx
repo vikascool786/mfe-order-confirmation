@@ -15,6 +15,7 @@ import Container from "../../layout/Container";
 import SectionCard from "../../layout/SectionCard";
 import { Spinner } from "../../layout/Spinner";
 import {
+  AttributeList,
   CustomerDetails,
   IBluePrintResponse,
   ICashback,
@@ -22,12 +23,14 @@ import {
   IOrder,
   IShopperInfo,
   ShopperPortal,
+  ShopperResponse,
 } from "../../types";
 import { getFormattedDate } from "../../utils/getDateFormat";
 import { getPaymentMethod } from "../../utils/getPaymentMethod";
 import { getProductsPerStore } from "../../utils/getProductsPerStore";
 import "../../App.css";
 import {
+  getAttributeList,
   getCustomerProfileAlt,
   getEwalletCustomerInfo,
   getMicroShopperPortalDetails,
@@ -55,11 +58,13 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   optInStatus: string;
 }) => {
   const [orderDetails, setOrderDetails] = useState<IOrder>({} as IOrder);
-  const [customerDetails, setCustomerDetails] = useState<CustomerDetails>();
+  const [customerDetails, setCustomerDetails] = useState<ShopperResponse>();
   const [shopperPortalData, setShopperPortalData] = useState<ShopperPortal>();
   const [contentStrings, setContentStrings] = useState<IBluePrintResponse>(
     {} as IBluePrintResponse
   );
+  const [isEz, setIsEz] = useState<boolean>(false);
+
   const [recommendations, setRecommendations] =
     useState<IRecommendedProduct[]>();
   const [loading, setLoading] = useState(false);
@@ -76,6 +81,38 @@ const OrderConfirmationContainerWrapper = (appConfig: {
         item.subscriptionOption === "CORE3_B"
     )
   );
+
+  //check guest user already created account or not
+  useEffect(() => {
+    if (!orderDetails?.shopperID) return;
+    const getIsEz = async () => {
+      try {
+        setLoading(true);
+        const attributes = await getAttributeList(orderDetails?.shopperID);
+        const data = attributes.data;
+        // setAttributeList(data);
+
+        const prePcAttribute = data.find(
+          (attr: AttributeList) => attr.typeId === 214
+        );
+        // If typeId 214 exists and value === 0 → account created
+        if (prePcAttribute?.value === 0) {
+          setIsEz(false);
+        } else {
+          setIsEz(true);
+        }
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getIsEz();
+  }, [orderDetails?.shopperID]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -172,9 +209,8 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           // get shipping date in this format Tuesday, April 15
           rightText={
             section.shippingDate
-              ? `${
-                  contentStrings?.response?.estimatedDeliveryDate
-                } ${getValidShippingDate(section.shippingDate)}`
+              ? `${contentStrings?.response?.estimatedDeliveryDate
+              } ${getValidShippingDate(section.shippingDate)}`
               : undefined
           }
           rightTextExtraClass={
@@ -189,7 +225,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             invoice={orderDetails.invoices[index] as Invoice}
             key={index}
             shopperPortalData={shopperPortalData}
-            shopperAttributes={customerDetails?.data}
+            shopperAttributes={customerDetails}
           />
         </SectionCard>
       ))}
@@ -263,14 +299,12 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             const profitValue = beautyItem
               ? `$${beautyItem.flatRateRetailProfit || 0}`
               : healthItem
-              ? `$${healthItem.flatRateRetailProfit || 0} - $${
-                  healthItem.recommendedFrequency || 0
+                ? `$${healthItem.flatRateRetailProfit || 0} - $${healthItem.recommendedFrequency || 0
                 }`
-              : "";
+                : "";
 
-            return `${
-              contentStrings?.response?.referAndEarn || "Refer & Earn"
-            } ${profitValue}`;
+            return `${contentStrings?.response?.referAndEarn || "Refer & Earn"
+              } ${profitValue}`;
           })()}
           extraClass="oc-no-padding"
         >
@@ -304,18 +338,19 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
       {orderDetails &&
         !isMobile &&
-        customerDetails?.data.pc_types.find(
-          (pcType) => pcType.pc_type == "isEZ"
-        )?.enabled && (
+        customerDetails?.attributeList?.some(
+          (attr) => attr.typeId === 214 && attr.value === 1
+        ) && isEz && (
           <GuestCheckout
-            email={customerDetails?.data.email_address ?? ""}
+            email={customerDetails?.email ?? ""}
             orderDetails={orderDetails}
             sessionId={appConfig.sessionId}
-            customerDetails={customerDetails as CustomerDetails}
+            customerDetails={customerDetails as ShopperResponse}
             setCustomerDetails={setCustomerDetails}
             contentStrings={contentStrings}
           />
         )}
+
 
       {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
         <SectionCard title={contentStrings?.response?.viftBalance} gradient>
@@ -343,9 +378,9 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             <span>{contentStrings?.response?.orderTotal}</span>
             <span className="oc-order-total-amount">
               {orderDetails?.orderTotal &&
-              orderDetails.orderTotal.toString().trim() !== ""
+                orderDetails.orderTotal.toString().trim() !== ""
                 ? orderDetails.currencySymbol +
-                  orderDetails.orderTotal.toFixed(2)
+                orderDetails.orderTotal.toFixed(2)
                 : "$0.00"}
             </span>
           </div>
@@ -359,8 +394,8 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 deliveryDate={
                   Object.keys(orderDetails?.invoices).length === 1
                     ? getFormattedDate(
-                        productSummaryPerStore[0]?.shippingDate as string
-                      )
+                      productSummaryPerStore[0]?.shippingDate as string
+                    )
                     : ""
                 }
                 email={
@@ -389,18 +424,19 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             </div>
             <Container left={leftContent} right={rightContent} />
             {isMobile &&
-              customerDetails?.data.pc_types.find(
-                (pcType) => pcType.pc_type == "isEZ"
-              )?.enabled && (
+              customerDetails?.attributeList?.some(
+                (attr) => attr.typeId === 214 && attr.value === 1
+              ) && isEz && (
                 <GuestCheckout
-                  email={customerDetails?.data.email_address ?? ""}
+                  email={customerDetails?.email ?? ""}
                   sessionId={appConfig.sessionId}
-                  customerDetails={customerDetails as CustomerDetails}
+                  customerDetails={customerDetails as ShopperResponse}
                   orderDetails={orderDetails}
                   setCustomerDetails={setCustomerDetails}
                   contentStrings={contentStrings}
                 />
               )}
+
             {isMobile && (
               <div className="oc-order-notifications">
                 <Notification
@@ -429,7 +465,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                     title={
                       contentStrings?.response &&
                       contentStrings?.response[
-                        "orders-ourTopProductRecommendations"
+                      "orders-ourTopProductRecommendations"
                       ]
                       // 'Our Top Product Recommendations'
                     }

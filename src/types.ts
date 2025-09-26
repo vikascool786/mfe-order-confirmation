@@ -459,3 +459,81 @@ export interface Response {
 export type DataObject = {
   [key: string]: any;
 };
+
+//new shopper response types
+export interface ShopperLink {
+  rel: string;
+  href: string;
+  type: string;
+}
+
+export interface ShopperAddressLink {
+  rel: string;
+  href: string;
+  type: string;
+}
+
+export interface AttributeList {
+  desc: string;
+  value: number;
+  text?: string;
+  added: string;
+  typeId: number;
+  shopperAccountDisabled: number;
+}
+
+export interface UniversalCartError {
+  message: string;
+  collection_name: string;
+  code: number;
+  developer_message: string;
+  product_name: string;
+}
+
+export interface UniversalCartMetaData {
+  status: string;
+  status_code: number;
+  status_text: string;
+}
+
+export interface UniversalCart {
+  response: {
+    errors: UniversalCartError;
+  };
+  meta_data: UniversalCartMetaData;
+}
+
+export interface Rewards {
+  valid: boolean;
+  avail: string;
+  availAsRawValue: number;
+  awarded: string;
+  pending: string;
+  total: string;
+  ref_pending: string;
+  enroll_date: string;
+}
+
+export interface ShopperResponse {
+  firstName: string;
+  lastName: string;
+  email: string;
+  cid: string;
+  dateTimeCreated: string;
+  siteId: number;
+  shopperAccountDisabled: number;
+  country: string;
+  pcid: string;
+  hasShopComMasterCard: boolean;
+  hasOrders: boolean;
+  battingLineupValue: string;
+  sessionId: number;
+  staleAccount: boolean;
+  links: ShopperLink[];
+  billingAddress: BillingAddress;
+  attributeList: AttributeList[];
+  universalCart: UniversalCart;
+  rewards: Rewards;
+  creditUser: string;
+  portal: ShopperPortal;
+}

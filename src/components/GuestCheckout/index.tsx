@@ -4,15 +4,15 @@ import SectionCard from "../../layout/SectionCard";
 import "../OrderUpdates/styles.css";
 import RoundedButton from "../../layout/Button";
 import { updatePrePC } from "../../config/api";
-import { CustomerDetails, IOrder } from "../../types";
+import { ShopperResponse, IOrder } from "../../types";
 import Checked from "../../assets/svgs/Checked";
 
 interface IGuestCheckout {
   email: string;
   sessionId: string;
   orderDetails: IOrder;
-  customerDetails: CustomerDetails;
-  setCustomerDetails: (details: CustomerDetails) => void;
+  customerDetails: ShopperResponse;
+  setCustomerDetails: (details: ShopperResponse) => void;
   contentStrings?: any;
 }
 
@@ -39,13 +39,13 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const firstName =
-    customerDetails.data?.first_name?.length > 0
-      ? customerDetails.data.first_name
+    customerDetails?.firstName?.length > 0
+      ? customerDetails?.firstName
       : orderDetails.invoices.at(0)?.billingAddress.first ?? "";
 
   const lastName =
-    customerDetails.data?.last_name?.length > 0
-      ? customerDetails.data.last_name
+    customerDetails?.lastName?.length > 0
+      ? customerDetails?.lastName
       : orderDetails.invoices.at(0)?.billingAddress.last ?? "";
   const {
     values,
@@ -81,7 +81,7 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
           password: values.password,
           mobilePhone: "",
           passwordConfirm: values.password,
-          portalname: customerDetails.data.shop_portal_id,
+          portalname: customerDetails?.portal?.portalId,
           optInIds: "5,0",
           userSessionId: sessionId,
           email: email,

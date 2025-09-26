@@ -78,7 +78,7 @@ export const GET_API_ENDPOINT_BASE_URL_FOR_TRANSLATIONS = (mode: APIMODE) => {
       return `https://stagingapi2.shop.com{{path}}?api_key=0cf27ca394e94667ad6729d427b700d4`;
     case "prod":
     default:
-      return `https://api2.shop.com{{path}}?api_key=0cf27ca394e94667ad6729d427b700d4`;
+      return `https://api2.shop.com{{path}}?api_key=93ccfc2eb6624b028341f00fed1db9a1`;
   }
 };
 export const GET_API_ENDPOINT_BASE_URL_ONLY = () => {

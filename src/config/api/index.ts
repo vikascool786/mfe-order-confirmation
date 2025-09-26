@@ -64,7 +64,20 @@ export const getEwalletCustomerInfo = (
 // Get Customer Profile Alt
 export const getCustomerProfileAlt = (pcid: string) => {
   return apiClient.get(
-    `/customer-profile-alt-service/v1/profiles/customers/${pcid}`,
+    // `/customer-profile-alt-service/v1/profiles/customers/${pcid}`,
+    `/shoppers/v1/${pcid}?detail=true`,
+    {
+      params: {
+        api_key: GET_API_KEY(),
+      },
+    }
+  );
+};
+
+// Get Customer Attribute List to check guest user or not
+export const getAttributeList = (shopperId: string) => {
+  return apiClient.get(
+    `/shopper-attributes/v1/Attribute/${shopperId}?detail=true`,
     {
       params: {
         api_key: GET_API_KEY(),
