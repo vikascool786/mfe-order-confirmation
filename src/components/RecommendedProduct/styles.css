@@ -109,6 +109,7 @@
 .oc-recom-product-card {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
+  flex-shrink: 0;
 }
 
 .oc-recom-product-card::-webkit-scrollbar {

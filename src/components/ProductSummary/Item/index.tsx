@@ -60,9 +60,18 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
             ))}
           </span>
           <span className="oc-ps-cashback">
-            <span className="oc-ps-cashback-amount">+ ${product.cashback.toFixed(2)}</span>
+            {product.cashback > 0 && (
+              <span className="oc-ps-cashback-amount">
+                + ${product.cashback.toFixed(2)}
+              </span>
+            )}
             <span className="qa-cashback oc-ps-cashback-icon-text">
-              <Vift /> {contentStrings?.response?.cashBack || "Cashback"} {product.bv > 0 ? ` | ${product.bv.toFixed(2)} BV` : ''} {product.ibv > 0 ? ` | ${product.ibv.toFixed(2)} IBV` : ''}
+              {product.cashback > 0 && (
+                <>
+                  <Vift /> {contentStrings?.response?.cashBack || "Cashback"} 
+                </>
+              )}
+              {product.bv > 0 ? ` ${product.cashback > 0 ? ' | ' : ''} ${product.bv.toFixed(2)} BV` : ''} {product.ibv > 0 ? ` | ${product.ibv.toFixed(2)} IBV` : ''}
             </span>
           </span>
           <span className="qa-item-quantity oc-ps-quantity">

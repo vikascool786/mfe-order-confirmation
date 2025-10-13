@@ -3,7 +3,7 @@ import "../styles.css"; // Optional: place shared styling here
 import { GET_BASE_URL } from "../../../utils/urlResolver";
 import ShareModal from "../../../layout/Modal";
 
-const SOCIAL_URL = `${GET_BASE_URL}/1981669486-p.xhtml?refpromocode=6565841-CORE3&utm_medium=Sharefeature&credituser=C6565841&utm_source=ConfirmationPage&utm_campaign=`;
+const SOCIAL_URL = `${GET_BASE_URL}/1777143/1981669486-p.xhtml?refpromocode=1870052114-CORE3&utm_medium=Sharefeature&credituser=C1870052114&utm_source=ConfirmationPage&utm_campaign=`;
 
 interface SocialShareButtonsProps {
   contentStrings?: any;
@@ -15,7 +15,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   const [isModalOpen, setModalOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
 
-  const pageUrl = encodeURIComponent(SOCIAL_URL + "Link");
+  const pageUrl = SOCIAL_URL + "Link";
   const emailBody = encodeURIComponent(
     `I love this product on SHOP.COM and thought you might too! ${SOCIAL_URL}Email`
   );

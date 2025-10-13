@@ -63,6 +63,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
   const [contentStrings, setContentStrings] = useState<IBluePrintResponse>(
     {} as IBluePrintResponse
   );
+  const [microShopperPortalError, setMicroShopperPortalError] = useState(false);
   const [isEz, setIsEz] = useState<boolean>(false);
 
   const [recommendations, setRecommendations] =
@@ -126,10 +127,33 @@ const OrderConfirmationContainerWrapper = (appConfig: {
             ? { shopperId: appConfig.shopperId, pcId: appConfig.pcid }
             : await getValidShopperId(appConfig.email as string);
         const customerDetails = await getCustomerProfileAlt(shopperData.pcId);
-        const microShopperDetails = await getMicroShopperPortalDetails(
-          shopperData.shopperId
-        );
-        setShopperPortalData(microShopperDetails.data);
+
+        // Handle only microShopperDetails with its own try/catch
+        try {
+          const microShopperDetails = await getMicroShopperPortalDetails(
+            shopperData.shopperId
+          );
+          setShopperPortalData(microShopperDetails.data);
+          setMicroShopperPortalError(false);
+
+          // --- Dependent API: call only if portal data is available ---
+          if(microShopperDetails?.data?.merchantCountry){
+            const cashbackResponse = await getEwalletCustomerInfo(
+              shopperData.pcId,
+              appConfig.siteId,
+              shopperPortalData?.merchantCountry,
+              appConfig.languagecode,
+              appConfig.countrycode,
+              appConfig.sitetype
+            );
+            setCashback(cashbackResponse?.data.data);
+          }
+        } catch (err: any) {
+          console.error("Failed to fetch micro shopper portal:", err);
+          // Optionally setting some error state to hide component
+          setMicroShopperPortalError(true);
+        }
+
         setCustomerDetails(customerDetails.data);
 
         const orderResponse = await getOrderDetails(
@@ -144,19 +168,19 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           appConfig.siteId
         );
 
+        //remove duplicate products based on prodID
         if (recResponse && recResponse.data && recResponse.data.length > 0) {
-          setRecommendations(recResponse.data[0].products);
+          const products: IRecommendedProduct[] = recResponse.data[0].products;
+
+          const uniqueProducts: IRecommendedProduct[] = Array.from(
+            new Map<number, IRecommendedProduct>(
+              products.map((product: IRecommendedProduct) => [product.prodID, product])
+            ).values()
+          );
+
+          setRecommendations(uniqueProducts);
         }
 
-        const cashbackResponse = await getEwalletCustomerInfo(
-          shopperData.pcId,
-          appConfig.siteId,
-          shopperPortalData?.merchantCountry,
-          appConfig.languagecode,
-          appConfig.countrycode,
-          appConfig.sitetype
-        );
-        setCashback(cashbackResponse.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -351,8 +375,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           />
         )}
 
-
-      {cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
+      {!microShopperPortalError && cashback?.cashbackAvail && parseFloat(cashback?.cashbackAvail) > 0 && (
         <SectionCard title={contentStrings?.response?.viftBalance} gradient>
           <div className="oc-vift-tag">
             <div>
