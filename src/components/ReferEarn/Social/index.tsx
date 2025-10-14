@@ -3,17 +3,21 @@ import "../styles.css"; // Optional: place shared styling here
 import { GET_BASE_URL } from "../../../utils/urlResolver";
 import ShareModal from "../../../layout/Modal";
 
-const SOCIAL_URL = `${GET_BASE_URL}/1777143/1981669486-p.xhtml?refpromocode=1870052114-CORE3&utm_medium=Sharefeature&credituser=C1870052114&utm_source=ConfirmationPage&utm_campaign=`;
 
 interface SocialShareButtonsProps {
   contentStrings?: any;
+  portalId: string;
 }
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   contentStrings,
+  portalId
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
+
+const SOCIAL_URL = `${GET_BASE_URL}/${portalId.replace(".com", "")}/1981669486-p.xhtml?refpromocode=1870052114-CORE3&utm_medium=Sharefeature&credituser=C1870052114&utm_source=ConfirmationPage&utm_campaign=`;
+
 
   const pageUrl = SOCIAL_URL + "Link";
   const emailBody = encodeURIComponent(

@@ -6,14 +6,17 @@ import { IOrder } from "../../types";
 interface ReferEarnProps {
   order: IOrder;
   contentStrings?: any;
+  portalId: string;
 }
 
 export const ReferEarn: React.FC<ReferEarnProps> = ({
   order,
   contentStrings,
+  portalId,
 }: {
   order?: IOrder;
   contentStrings?: any;
+  portalId: string;
 }) => {
   // Flatten all items from invoices
   const items =
@@ -58,7 +61,7 @@ export const ReferEarn: React.FC<ReferEarnProps> = ({
 
           {description && <p className="oc-re-core-text">{description}</p>}
 
-          <SocialShareButtons contentStrings={contentStrings} />
+          <SocialShareButtons contentStrings={contentStrings} portalId={portalId} />
         </div>
 
         <a
