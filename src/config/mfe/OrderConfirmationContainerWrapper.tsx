@@ -332,7 +332,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
           })()}
           extraClass="oc-no-padding"
         >
-          <ReferEarn contentStrings={contentStrings} order={orderDetails} portalId={appConfig.portalid} />
+          <ReferEarn contentStrings={contentStrings} order={orderDetails} portalId={appConfig?.portalid} creditUser={customerDetails?.creditUser} />
         </SectionCard>
       )}
       {!isMobile && orderDetails?.id && (
