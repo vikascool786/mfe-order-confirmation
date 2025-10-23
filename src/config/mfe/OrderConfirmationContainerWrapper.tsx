@@ -302,39 +302,6 @@ const OrderConfirmationContainerWrapper = (appConfig: {
 
   const rightContent = (
     <>
-      {hasCore3Subscription && (
-        <SectionCard
-          title={(() => {
-            // Flatten all items from all invoices
-            const allItems =
-              orderDetails?.invoices?.flatMap(
-                (invoice) => invoice.items || []
-              ) || [];
-
-            // Check which subscription exists
-            const beautyItem = allItems.find(
-              (item) => item.subscriptionOption === "CORE3_B"
-            );
-            const healthItem = allItems.find(
-              (item) => item.subscriptionOption === "CORE3"
-            );
-
-            // Decide profit value
-            const profitValue = beautyItem
-              ? `$${beautyItem.flatRateRetailProfit || 0}`
-              : healthItem
-                ? `$${healthItem.flatRateRetailProfit || 0} - $${healthItem.recommendedFrequency || 0
-                }`
-                : "";
-
-            return `${contentStrings?.response?.referAndEarn || "Refer & Earn"
-              } ${profitValue}`;
-          })()}
-          extraClass="oc-no-padding"
-        >
-          <ReferEarn contentStrings={contentStrings} order={orderDetails} portalId={appConfig?.portalid} creditUser={customerDetails?.creditUser} />
-        </SectionCard>
-      )}
       {!isMobile && orderDetails?.id && (
         <SectionCard title={contentStrings?.response?.orderSummary}>
           <PaymentMethod
