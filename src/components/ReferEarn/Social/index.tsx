@@ -17,7 +17,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({
   const [isModalOpen, setModalOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
 
-  const SOCIAL_URL = `${GET_BASE_URL}/${portalId}/1981669486-p.xhtml?refpromocode=6565841-CORE3&utm_medium=Sharefeature&credituser=${creditUser}&utm_source=ConfirmationPage&utm_campaign=`;
+  const SOCIAL_URL = `${GET_BASE_URL}/${portalId?.replace(/\.com/gi, "")}/1981669486-p.xhtml?refpromocode=6565841-CORE3&utm_medium=Sharefeature&credituser=${creditUser}&utm_source=ConfirmationPage&utm_campaign=`;
 
   const pageUrl = SOCIAL_URL + "Link";
   const emailBody = encodeURIComponent(

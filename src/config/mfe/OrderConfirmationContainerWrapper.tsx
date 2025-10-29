@@ -75,14 +75,6 @@ const OrderConfirmationContainerWrapper = (appConfig: {
     (invoice) => invoice.shippingAddress
   )[0];
 
-  const hasCore3Subscription = orderDetails.invoices?.some((invoice) =>
-    invoice.items?.some(
-      (item) =>
-        item.subscriptionOption === "CORE3" ||
-        item.subscriptionOption === "CORE3_B"
-    )
-  );
-
   //check guest user already created account or not
   useEffect(() => {
     if (!orderDetails?.shopperID) return;
