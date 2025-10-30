@@ -55,7 +55,7 @@ const ProductSummaryItem: React.FC<ExtendedProductSummaryItemProps> = ({
                 {`${getSpecialInstructionMessage(
                   instruction.specialInstructionTypeID
                 )}
-                ${instruction.specialInstruction}`}
+                ${sanitize(instruction.specialInstruction)}`}
               </span>
             ))}
           </span>
