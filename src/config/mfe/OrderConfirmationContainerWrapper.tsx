@@ -375,7 +375,7 @@ const OrderConfirmationContainerWrapper = (appConfig: {
                 orderId={orderDetails?.id?.toString()}
                 deliveryDate={
                   Object.keys(orderDetails?.invoices).length === 1
-                    ? getFormattedDate(
+                    ? getValidShippingDate(
                       productSummaryPerStore[0]?.shippingDate as string
                     )
                     : ""
