@@ -134,9 +134,9 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
       )}
 
       {/* You earned 1% extra cashback using vift  */}
-{order?.walletAppliedAmount > 0 &&
-  (order?.cashbackTotal ?? 0) > 0 &&
-  (order?.extraCashbackPercent ?? 0) > 0 && (
+      {order?.walletAppliedAmount > 0 &&
+        (order?.cashbackTotal ?? 0) > 0 &&
+        (order?.extraCashbackPercent ?? 0) > 0 && (
           <div className="oc-summary-cashback-container">
             <span className="oc-summary-cashback-text">
               <span className="oc-summary-vift-icon">
@@ -155,28 +155,28 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
         )}
 
       {/* Total cash added to your VIFT  */}
-{order?.walletAppliedAmount > 0 &&
-  (order?.cashbackTotal ?? 0) > 0 &&
-  (order?.extraCashbackPercent ?? 0) > 0 && (
-    <div className="oc-summary-cashback-container">
-      <span className="oc-summary-cashback-text">
-        <span className="oc-summary-vift-icon">
-          <VIFTE />
-        </span>
-        <span>
-          {contentStrings?.response?.viftCashbackEarnedTotal ||
-            "Total cash added to your VIFT balance"}
-        </span>
-      </span>
-      <span className="qa-cashback-total-earned oc-summary-cashback-amount">
-        {order?.currencySymbol}
-        {(
-          (order?.cashbackTotal || 0) +
-          (order?.extraCashbackAmount || 0)
-        ).toFixed(2)}
-      </span>
-    </div>
-  )}
+      {order?.walletAppliedAmount > 0 &&
+        (order?.cashbackTotal ?? 0) > 0 &&
+        (order?.extraCashbackPercent ?? 0) > 0 && (
+          <div className="oc-summary-cashback-container">
+            <span className="oc-summary-cashback-text">
+              <span className="oc-summary-vift-icon">
+                <VIFTE />
+              </span>
+              <span>
+                {contentStrings?.response?.viftCashbackEarnedTotal ||
+                  "Total cash added to your VIFT balance"}
+              </span>
+            </span>
+            <span className="qa-cashback-total-earned oc-summary-cashback-amount">
+              {order?.currencySymbol}
+              {(
+                (order?.cashbackTotal || 0) +
+                (order?.extraCashbackAmount || 0)
+              ).toFixed(2)}
+            </span>
+          </div>
+        )}
     </div>
   );
 };
