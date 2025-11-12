@@ -1,11 +1,11 @@
-import { useFormik } from "formik";
 import React, { useState } from "react";
-import Checked from "../../assets/svgs/Checked";
-import { updatePrePC } from "../../config/api";
-import RoundedButton from "../../layout/Button";
+import { useFormik } from "formik";
 import SectionCard from "../../layout/SectionCard";
-import { IOrder, ShopperResponse } from "../../types";
 import "../OrderUpdates/styles.css";
+import RoundedButton from "../../layout/Button";
+import { updatePrePC } from "../../config/api";
+import { ShopperResponse, IOrder } from "../../types";
+import Checked from "../../assets/svgs/Checked";
 
 interface IGuestCheckout {
   email: string;
@@ -38,10 +38,10 @@ export const GuestCheckout: React.FC<IGuestCheckout> = ({
   const [isAccountCreated, setIsAccountCreated] = useState(true);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    const firstName =
+  const firstName =
     orderDetails.invoices.at(0)?.shippingAddress.first || customerDetails?.firstName || "";
-
   const lastName = orderDetails.invoices.at(0)?.shippingAddress.last || customerDetails?.lastName || "";
+
   const {
     values,
     touched,
