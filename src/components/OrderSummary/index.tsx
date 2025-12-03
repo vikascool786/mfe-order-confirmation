@@ -21,6 +21,14 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
     : "oc-summary-single";
   const bordersForSummary = multipleShipments ? "oc-summary-top-border" : "";
 
+  const discountedCoupons = order.coupons.filter(
+    (coupon) => coupon.code !== "C2PREBATE"
+  );
+
+  const c2pRebateCoupon = order.coupons.find(
+    (coupon) => coupon.code === "C2PREBATE"
+  );
+
   return (
     <div className="qa-order-summary oc-summary-order-container">
       {order.invoices.map((invoice, index) => (
@@ -66,12 +74,33 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
         </div>
       )}
 
-      {/* Coupon discount */}
-      {order.coupons.length > 0 && order.couponDiscount !== 0 && (
+      {/* C2P Rebate discount */}
+      {c2pRebateCoupon && order.couponDiscount !== 0 && (
         <div className="oc-summary-item-row oc-summary-item-price">
           <span className={`oc-summary-cashback`}>
             {contentStrings?.response?.couponDiscount || "Coupon Discount"}
-            {order.coupons.map((item) => {
+            <span
+              className="qa-coupon oc-summary-coupon"
+              key={c2pRebateCoupon.code}
+            >
+              {c2pRebateCoupon.code as any}
+            </span>
+          </span>
+          <span
+            className={`qa-coupon-amount oc-summary-cashback oc-summary-green`}
+          >
+            -{order.currencySymbol}
+            {c2pRebateCoupon?.value.toFixed(2)}
+          </span>
+        </div>
+      )}
+
+      {/* Coupon discount */}
+      {discountedCoupons.length > 0 && order.couponDiscount !== 0 && (
+        <div className="oc-summary-item-row oc-summary-item-price">
+          <span className={`oc-summary-cashback`}>
+            {contentStrings?.response?.couponDiscount || "Coupon Discount"}
+            {discountedCoupons.map((item) => {
               return (
                 <span className="qa-coupon oc-summary-coupon" key={item.code}>
                   {item.code as any}
@@ -171,8 +200,7 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
             <span className="qa-cashback-total-earned oc-summary-cashback-amount">
               {order?.currencySymbol}
               {(
-                (order?.cashbackTotal || 0) +
-                (order?.extraCashbackAmount || 0)
+                (order?.cashbackTotal || 0) + (order?.extraCashbackAmount || 0)
               ).toFixed(2)}
             </span>
           </div>
