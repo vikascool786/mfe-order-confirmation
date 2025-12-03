@@ -116,7 +116,7 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
           </span>
         </div>
       )}
-
+      
       {/* Gift discount */}
       {order.giftCardApplied !== 0 && (
         <div className="oc-summary-item-row oc-summary-item-price">
@@ -200,7 +200,8 @@ const OrderSummary: React.FC<SummaryProps> = ({ order, contentStrings }) => {
             <span className="qa-cashback-total-earned oc-summary-cashback-amount">
               {order?.currencySymbol}
               {(
-                (order?.cashbackTotal || 0) + (order?.extraCashbackAmount || 0)
+                (order?.cashbackTotal || 0) +
+                (order?.extraCashbackAmount || 0)
               ).toFixed(2)}
             </span>
           </div>
